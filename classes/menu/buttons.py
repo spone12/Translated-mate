@@ -9,8 +9,9 @@ class Buttons():
         Main program buttons
     """
 
-    def __init__(self, ui):
+    def __init__(self, ui, loadLang):
         self.ui = ui
+        self.loadLang = loadLang
 
     def clearTranslate(self, eve) -> None:
         self.ui.translateBox.clear()
@@ -85,8 +86,8 @@ class Buttons():
         
         translated = translator.translate(
             text, 
-            self.ui.loadLang.getKeyLang(self.ui.toLang.currentText()),
-            self.ui.loadLang.getKeyLang(self.ui.fromLang.currentText())
+            self.loadLang.getKeyLang(self.ui.toLang.currentText()),
+            self.loadLang.getKeyLang(self.ui.fromLang.currentText())
         )
         self.ui.translateBox.insertHtml(translated)
 

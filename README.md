@@ -17,12 +17,15 @@
 
 На будущее:
 
+- Переработка дизайна сохранённых слов
+- Добавление своих слов
+- Экспорт в Anki и txt
 - Flash карточки тренировки
 
 ## Installation (Установка)
 
 Установка зависимостей: `pip install -r requirements.txt` <br />
-Для конвертации при изменении ui использовать команду: `pyuic6 -x TranslateMate.ui -o ui.py`
+Для конвертации при изменении ui использовать команду: `pyuic6 -x TranslateMate.ui -o ui/ui_main_window.py`
 
 ## Visual appearance of the programme (Визуальный вид программы)
 ![Example of a program](img/Examples/Example.png "Example of a program")

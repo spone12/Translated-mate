@@ -66,7 +66,7 @@ QScrollBar::sub-line:vertical {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QLabel" name="translateWindow">
+   <widget class="ClickableLabel" name="translateWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -163,7 +163,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="copyTranslate">
+     <widget class="ClickableLabel" name="copyTranslate">
       <property name="geometry">
        <rect>
         <x>970</x>
@@ -210,7 +210,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="clearInput">
+     <widget class="ClickableLabel" name="clearInput">
       <property name="geometry">
        <rect>
         <x>470</x>
@@ -298,7 +298,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="reverseTranslate">
+     <widget class="ClickableLabel" name="reverseTranslate">
       <property name="geometry">
        <rect>
         <x>510</x>
@@ -382,7 +382,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="saveTranslatedText">
+     <widget class="ClickableLabel" name="saveTranslatedText">
       <property name="geometry">
        <rect>
         <x>940</x>
@@ -429,7 +429,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QLabel" name="pronunciation">
+     <widget class="ClickableLabel" name="pronunciation">
       <property name="geometry">
        <rect>
         <x>910</x>
@@ -634,7 +634,7 @@ QHeaderView::section
      </widget>
     </widget>
    </widget>
-   <widget class="QLabel" name="saveTranslationWindow">
+   <widget class="ClickableLabel" name="saveTranslationWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -674,7 +674,7 @@ QHeaderView::section
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="flashCardsWindow">
+   <widget class="ClickableLabel" name="flashCardsWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -845,6 +845,13 @@ QHeaderView::section
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ClickableLabel</class>
+   <extends>QLabel</extends>
+   <header>ui/widgets/clickable_label</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

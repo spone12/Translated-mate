@@ -79,7 +79,6 @@ class SavedTranslationWindow():
         self.ui.stackedWidget.setCurrentIndex(self.QSindex)
 
 
-
 class ReadOnlyDelegate(QStyledItemDelegate):
     def createEditor(self, parent, option, index):
         return 
