@@ -54,10 +54,7 @@ class Ui_MainWindow(object):
         self.translateWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.translateWindow.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.translateWindow.setAutoFillBackground(False)
-        self.translateWindow.setStyleSheet("#translateWindow {\n"
-"    background-color: #fff6f7;\n"
-"}\n"
-"")
+        self.translateWindow.setStyleSheet("")
         self.translateWindow.setText("")
         self.translateWindow.setPixmap(QtGui.QPixmap("img/translation.png"))
         self.translateWindow.setScaledContents(True)

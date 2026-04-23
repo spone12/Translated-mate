@@ -31,6 +31,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         
         self.styles = Styles(self)
         self.navigator = Navigator(self.ui)
+        self.navigator.goTo(self.navigator.default)
         self.loadLang = LoadingLangs(self.ui)
         self.menu = Menu(self)
         self.ui.db = DB(self.ui)

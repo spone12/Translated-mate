@@ -88,10 +88,7 @@ QScrollBar::sub-line:vertical {
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">#translateWindow {
-	background-color: #fff6f7;
-}
-</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>

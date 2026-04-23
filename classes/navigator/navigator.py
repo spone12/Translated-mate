@@ -1,7 +1,8 @@
 
 class Navigator:
-    def __init__(self, ui):
+    def __init__(self, ui, defaultWindow = 0):
         self.ui = ui
+        self.default = defaultWindow
 
         self.windows = {
             0: ui.translateWindow,
@@ -9,33 +10,33 @@ class Navigator:
             2: ui.flashCardsWindow
         }
 
-        self.initWindowButtons()
+        self.initNavigationButtons()
 
-    def initWindowButtons(self) -> None:
+    def initNavigationButtons(self) -> None:
         """
-           Initializing the Window Buttons property 
+           Initializing the navigation buttons property 
         """
         
         for w in self.windows.values():
-            w.setProperty("navButton", True)
+            w.setProperty("navButton", "true")
+            w.setProperty("active", "false")
 
     def goTo(self, index) -> None:
         """
-            Go to another window
+            Switch to another window
         """
         
-        # Deselecting window icons
+        # Reset state
         for w in self.windows.values():
-            w.setStyleSheet("")
-            w.setProperty("winButton", True)
-            w.setProperty("active", False)
+            w.setProperty("active", "false")
             w.style().unpolish(w)
             w.style().polish(w)
 
-        # Setting the selection of the selected window
+        # Set active
         current = self.windows[index]
-        current.setProperty("active", True)
+        current.setProperty("active", "true")
         current.style().unpolish(current)
         current.style().polish(current)
 
+        # Switch page
         self.ui.stackedWidget.setCurrentIndex(index)
