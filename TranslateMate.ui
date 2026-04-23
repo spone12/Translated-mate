@@ -90,12 +90,8 @@ QScrollBar::sub-line:vertical {
     <property name="styleSheet">
      <string notr="true">#translateWindow {
 	background-color: #fff6f7;
-	background-repeat: no-repeat;
- 	border-radius:  5px;
 }
-#translateWindow:hover  {
-	background:  #fff6f7;
-}</string>
+</string>
     </property>
     <property name="text">
      <string/>
@@ -656,13 +652,7 @@ QHeaderView::section
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">#saveTranslationWindow {
-	background-repeat: no-repeat;
-	border-radius:  5px;
-}
-#saveTranslationWindow:hover  {
-	background:  #fff6f7;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>
@@ -696,13 +686,7 @@ QHeaderView::section
      <bool>false</bool>
     </property>
     <property name="styleSheet">
-     <string notr="true">#flashCardsWindow {
-	background-repeat: no-repeat;
-	border-radius:  5px;
-}
-#flashCardsWindow:hover  {
-	background:  #fff6f7;
-}</string>
+     <string notr="true"/>
     </property>
     <property name="text">
      <string/>

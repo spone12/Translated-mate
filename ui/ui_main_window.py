@@ -56,12 +56,8 @@ class Ui_MainWindow(object):
         self.translateWindow.setAutoFillBackground(False)
         self.translateWindow.setStyleSheet("#translateWindow {\n"
 "    background-color: #fff6f7;\n"
-"    background-repeat: no-repeat;\n"
-"     border-radius:  5px;\n"
 "}\n"
-"#translateWindow:hover  {\n"
-"    background:  #fff6f7;\n"
-"}")
+"")
         self.translateWindow.setText("")
         self.translateWindow.setPixmap(QtGui.QPixmap("img/translation.png"))
         self.translateWindow.setScaledContents(True)
@@ -345,13 +341,7 @@ class Ui_MainWindow(object):
         self.saveTranslationWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.saveTranslationWindow.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.saveTranslationWindow.setAutoFillBackground(False)
-        self.saveTranslationWindow.setStyleSheet("#saveTranslationWindow {\n"
-"    background-repeat: no-repeat;\n"
-"    border-radius:  5px;\n"
-"}\n"
-"#saveTranslationWindow:hover  {\n"
-"    background:  #fff6f7;\n"
-"}")
+        self.saveTranslationWindow.setStyleSheet("")
         self.saveTranslationWindow.setText("")
         self.saveTranslationWindow.setPixmap(QtGui.QPixmap("img/saveButton.png"))
         self.saveTranslationWindow.setScaledContents(True)
@@ -361,13 +351,7 @@ class Ui_MainWindow(object):
         self.flashCardsWindow.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.flashCardsWindow.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.flashCardsWindow.setAutoFillBackground(False)
-        self.flashCardsWindow.setStyleSheet("#flashCardsWindow {\n"
-"    background-repeat: no-repeat;\n"
-"    border-radius:  5px;\n"
-"}\n"
-"#flashCardsWindow:hover  {\n"
-"    background:  #fff6f7;\n"
-"}")
+        self.flashCardsWindow.setStyleSheet("")
         self.flashCardsWindow.setText("")
         self.flashCardsWindow.setPixmap(QtGui.QPixmap("img/flashCards.png"))
         self.flashCardsWindow.setScaledContents(True)

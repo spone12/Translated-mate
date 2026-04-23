@@ -70,13 +70,12 @@ class SavedTranslationWindow():
             self.ui.savedTranslateWidget.removeRow(row)
             self.ui.db.deleteTranslate(translateId)
 
-    def changeWindow(self) -> None:
+    def prepareWindow(self) -> None:
         """
-            Change the window to "saved translations"
+            Prepare the window "Saved translations"
         """
         
         self.renderSavedTable()
-        self.ui.stackedWidget.setCurrentIndex(self.QSindex)
 
 
 class ReadOnlyDelegate(QStyledItemDelegate):

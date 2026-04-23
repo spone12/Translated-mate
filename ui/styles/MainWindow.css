@@ -1,0 +1,44 @@
+* {
+    background-color: #b8b6b6;
+    font: Fira Sans Condensed;     
+}
+QScrollBar {
+    border: none;
+}
+QScrollBar:vertical {
+    background: #f4f4f5;
+    width: 10px;
+    margin: 0px;
+    border: none;
+    border-radius: 0px;
+}
+QScrollBar::handle:vertical {
+    background: #d0d0d0;
+    min-height: 0px;
+    border-radius: 7px;
+}
+QScrollBar::add-line:vertical {
+    height: -10px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+}
+QScrollBar::sub-line:vertical {
+    height:  -10 px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+}
+
+ClickableLabel[winButton="true"] {
+    background-repeat: no-repeat;
+	border-radius:  5px;
+}
+
+ClickableLabel[winButton="true"]:hover {
+    background:  #fff6f7;
+} 
+
+ClickableLabel[winButton="true"][active="true"] {
+    background-color: #fff6f7;
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+} 

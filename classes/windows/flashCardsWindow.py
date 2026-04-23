@@ -24,11 +24,10 @@ class FlashCardsWindow():
         for translation in savedTranslations:
            pass 
 
-    def changeWindow(self) -> None:
+    def prepareWindow(self) -> None:
         """
-            Change the window to "flash cards"
+            Prepare the window "flash cards"
         """
         
         self.renderFlashCards()
-        self.ui.stackedWidget.setCurrentIndex(self.QSindex)
     

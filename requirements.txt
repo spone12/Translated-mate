@@ -1,10 +1,8 @@
 aiohttp~=3.11.14
 PyQt6~=6.8.1
-pyqt6-tools~=6.4
 urllib3~=2.2.1
 requests~=2.32.0
 bs4~=0.0.2
-asyncio~=3.4.3
 openai~=1.68.1
 numpy~=2.2.4
 gTTS~=2.5.4
