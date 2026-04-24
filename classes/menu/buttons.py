@@ -2,6 +2,7 @@ from PyQt6.QtWidgets import QApplication
 from classes.translate.googleTranslator import *
 from classes.translate.deeplTranslator import *
 from classes.modules.pronunciation.pronunciation import *
+from classes.logger import *
 
 
 class Buttons():
@@ -9,8 +10,13 @@ class Buttons():
         Main program buttons
     """
 
-    def __init__(self, ui):
+    def __init__(self, ui, db, loadLang, navigator, savedTranslation, flashCards):
         self.ui = ui
+        self.db = db
+        self.loadLang = loadLang
+        self.navigator = navigator
+        self.savedTranslation = savedTranslation
+        self.flashCards = flashCards
 
     def clearTranslate(self, eve) -> None:
         self.ui.translateBox.clear()
@@ -18,26 +24,24 @@ class Buttons():
 
     def changeWindow(self, QSIndex) -> None:
         """
-           Change Window
+           Change program Window
         """
 
-        windows = [self.ui.translateWindow, self.ui.saveTranslationWindow, self.ui.flashCardsWindow]
-        for w in windows:
-            w.setStyleSheet(w.styleSheet().replace('background-color: #fff6f7;', ''))
+        routes = {
+            1: self.savedTranslation.prepareWindow(),
+            2: self.flashCards.prepareWindow()
+        }
 
-        match QSIndex:
-            case 0:
-                self.ui.stackedWidget.setCurrentIndex(QSIndex)
-            case 1:
-                self.ui.savedTranslation.changeWindow()
-            case 2:
-                self.ui.flashCards.changeWindow() 
+        action = routes.get(QSIndex)
+        if action:
+            action()
 
-        for ind, w in enumerate(windows):
-            if (ind == QSIndex):
-                w.setStyleSheet(w.styleSheet().replace('no-repeat;', 'no-repeat;background-color: #fff6f7;'))
+        self.navigator.goTo(QSIndex)
 
     def copyToClipboard(self, eve) -> None:
+        """
+            Copy text to clipboard
+        """
         
         QApplication.clipboard().setText(self.ui.translateBox.toPlainText())
 
@@ -85,8 +89,8 @@ class Buttons():
         
         translated = translator.translate(
             text, 
-            self.ui.loadLang.getKeyLang(self.ui.toLang.currentText()),
-            self.ui.loadLang.getKeyLang(self.ui.fromLang.currentText())
+            self.loadLang.getKeyLang(self.ui.toLang.currentText()),
+            self.loadLang.getKeyLang(self.ui.fromLang.currentText())
         )
         self.ui.translateBox.insertHtml(translated)
 
@@ -98,7 +102,7 @@ class Buttons():
         if self.ui.translateBox.toPlainText() == '':
             return None
         
-        self.ui.db.insertTranslate()   
+        self.db.insertTranslate()   
 
     def pronunciation(self, eve) -> None:
         """

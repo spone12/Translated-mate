@@ -1,6 +1,6 @@
 import logging
 import os
-
+from pprint import pprint
 
 class Logger():
     """
@@ -23,3 +23,7 @@ class Logger():
         )
         logging.error(message) 
         print(message)
+
+    def printObject(obj) -> None:
+        pprint(vars(obj))
+        

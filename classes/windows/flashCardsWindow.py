@@ -11,24 +11,24 @@ class FlashCardsWindow():
 
     QSindex = 2
 
-    def __init__(self, ui):
+    def __init__(self, ui, db):
         self.ui = ui
+        self.db = db
 
     def renderFlashCards(self) -> None:
         """
             Render a flash cards
         """
         
-        savedTranslations = self.ui.db.getSavedTranslate()
+        savedTranslations = self.db.getSavedTranslate()
 
         for translation in savedTranslations:
            pass 
 
-    def changeWindow(self) -> None:
+    def prepareWindow(self) -> None:
         """
-            Change the window to "flash cards"
+            Prepare the window "flash cards"
         """
         
         self.renderFlashCards()
-        self.ui.stackedWidget.setCurrentIndex(self.QSindex)
     

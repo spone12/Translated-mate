@@ -7,10 +7,9 @@ class Pyttsx():
         self.text = text
         self.pronounceText()
     
-    def pronounceText(self):
-    
+    def pronounceText(self) -> None:
         """
-            Pronounce the text
+            Pronounce the text by Pyttsx
         """
         
         self.engine.say(
