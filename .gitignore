@@ -3,3 +3,4 @@
 .vscode
 log/*.log
 **.db
+translate.db-journal

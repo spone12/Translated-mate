@@ -10,8 +10,9 @@ class Buttons():
         Main program buttons
     """
 
-    def __init__(self, ui, loadLang, navigator, savedTranslation, flashCards):
+    def __init__(self, ui, db, loadLang, navigator, savedTranslation, flashCards):
         self.ui = ui
+        self.db = db
         self.loadLang = loadLang
         self.navigator = navigator
         self.savedTranslation = savedTranslation
@@ -101,7 +102,7 @@ class Buttons():
         if self.ui.translateBox.toPlainText() == '':
             return None
         
-        self.ui.db.insertTranslate()   
+        self.db.insertTranslate()   
 
     def pronunciation(self, eve) -> None:
         """

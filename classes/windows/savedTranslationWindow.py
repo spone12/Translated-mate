@@ -13,15 +13,16 @@ class SavedTranslationWindow():
     columnsWidth = [50, 100, 100, 350, 350, 50]
     headerLabels = ['id', 'From', 'To', 'Native', 'Translate', 'Delete']
 
-    def __init__(self, ui):
+    def __init__(self, ui, db):
         self.ui = ui
+        self.db = db
     
     def renderSavedTable(self) -> None:
         """
             Render a saved translation table
         """
 
-        savedTranslations = self.ui.db.getSavedTranslate()
+        savedTranslations = self.db.getSavedTranslate()
 
         # Disable vertical header
         self.ui.savedTranslateWidget.verticalHeader().hide()
@@ -68,7 +69,7 @@ class SavedTranslationWindow():
             row = self.ui.savedTranslateWidget.indexAt(button.pos()).row()
             translateId = int(self.ui.savedTranslateWidget.item(row, 0).text())
             self.ui.savedTranslateWidget.removeRow(row)
-            self.ui.db.deleteTranslate(translateId)
+            self.db.deleteTranslate(translateId)
 
     def prepareWindow(self) -> None:
         """

@@ -6,7 +6,7 @@ from classes.translate.TranslationResources.deeplTranslateLanguages import *
 
 class LoadingLangs():
     """
-        Load lang
+        Load language
     """
 
     def __init__(self, ui):

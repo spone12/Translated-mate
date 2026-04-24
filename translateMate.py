@@ -34,15 +34,16 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.navigator.goTo(self.navigator.default)
         self.loadLang = LoadingLangs(self.ui)
         self.menu = Menu(self)
-        self.ui.db = DB(self.ui)
-        self.ui.savedTranslation = SavedTranslationWindow(self.ui)
-        self.ui.flashCards = FlashCardsWindow(self.ui)
+        self.db = DB(self.ui)
+        self.savedTranslation = SavedTranslationWindow(self.ui, self.db)
+        self.flashCards = FlashCardsWindow(self.ui, self.db)
         self.buttons = Buttons(
             self.ui,
+            self.db,
             self.loadLang,
             self.navigator,
-            self.ui.savedTranslation,
-            self.ui.flashCards
+            self.savedTranslation,
+            self.flashCards
         )
 
         self.programEvents()
@@ -63,11 +64,11 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         # Windows
         self.ui.saveTranslationWindow.clicked.connect(
-            lambda: self.buttons.changeWindow(self.ui.savedTranslation.QSindex)
+            lambda: self.buttons.changeWindow(self.savedTranslation.QSindex)
         )
 
         self.ui.flashCardsWindow.clicked.connect(
-            lambda: self.buttons.changeWindow(self.ui.flashCards.QSindex)
+            lambda: self.buttons.changeWindow(self.flashCards.QSindex)
         )
 
         # Triggers
