@@ -9,7 +9,6 @@ class SavedTranslationWindow():
         Translation window
     """
 
-    QSindex = 1
     columnsWidth = [50, 100, 100, 350, 350, 50]
     headerLabels = ['id', 'From', 'To', 'Native', 'Translate', 'Delete']
 

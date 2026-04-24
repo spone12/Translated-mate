@@ -4,7 +4,7 @@ import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from PyQt6.QtCore import Qt
 from ui.ui_main_window import Ui_MainWindow
-from classes.navigator.navigator import Navigator
+from classes.core.navigator import Navigator
 from classes.styles.styles import Styles
 from classes.translate.googleTranslator import *
 from classes.translate.TranslationResources.loadLangs import LoadingLangs
@@ -14,6 +14,7 @@ from classes.windows.savedTranslationWindow import *
 from classes.windows.flashCardsWindow import *
 from classes.db import *
 from classes.enums.Translate.translators import Translators
+from classes.enums.routes import Routes
 from classes.menu.actions.prepareTranslateAction import PrepareTranslateAction
 
 
@@ -45,7 +46,6 @@ class TranslateMate(QtWidgets.QMainWindow):
             self.db,
             self.loadLang,
             self.navigator,
-            self.savedTranslation,
             self.flashCards
         )
 
@@ -56,12 +56,15 @@ class TranslateMate(QtWidgets.QMainWindow):
         """
             Loading program events
         """
+        
+        self.navigator.register(Routes.SAVED, self.savedTranslation.prepareWindow)
+        self.navigator.register(Routes.FLASHCARDS, self.flashCards.prepareWindow)
 
         # Actions
         self.actions = [
-            PrepareTranslateAction(self.ui, self.loadLang)
+            PrepareTranslateAction(self.ui, self.loadLang, self.navigator)
         ]
-        
+
         self.ui.saveTranslatedText.clicked.connect(self.buttons.saveTranslatedText)
         self.ui.reverseTranslate.clicked.connect(self.buttons.reverseTranslations)
         self.ui.clearInput.clicked.connect(self.buttons.clearTranslate)
@@ -70,11 +73,11 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         # Windows
         self.ui.saveTranslationWindow.clicked.connect(
-            lambda: self.buttons.changeWindow(self.savedTranslation.QSindex)
+            lambda: self.navigator.goTo(Routes.SAVED)
         )
 
         self.ui.flashCardsWindow.clicked.connect(
-            lambda: self.buttons.changeWindow(self.flashCards.QSindex)
+            lambda: self.navigator.goTo(Routes.FLASHCARDS)
         )
 
         # Triggers

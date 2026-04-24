@@ -11,33 +11,16 @@ class Buttons():
         Main program buttons
     """
 
-    def __init__(self, ui, db, loadLang, navigator, savedTranslation, flashCards):
+    def __init__(self, ui, db, loadLang, navigator, flashCards):
         self.ui = ui
         self.db = db
         self.loadLang = loadLang
         self.navigator = navigator
-        self.savedTranslation = savedTranslation
         self.flashCards = flashCards
 
     def clearTranslate(self, eve) -> None:
         self.ui.translateBox.clear()
         self.ui.inputBox.clear()
-
-    def changeWindow(self, QSIndex) -> None:
-        """
-           Change program Window
-        """
-
-        routes = {
-            1: self.savedTranslation.prepareWindow(),
-            2: self.flashCards.prepareWindow()
-        }
-
-        action = routes.get(QSIndex)
-        if action:
-            action()
-
-        self.navigator.goTo(QSIndex)
 
     def copyToClipboard(self, eve) -> None:
         """

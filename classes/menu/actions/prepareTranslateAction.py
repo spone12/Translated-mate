@@ -1,13 +1,13 @@
 from classes.menu.actions.actionInterface import ActionInterface
-from classes.enums.Translate.translators import Translators
-from classes.translate.googleTranslator import GoogleTranslator
-from classes.translate.deeplTranslator import DeeplTranslator
+from classes.services.translatorFactory import TranslatorFactory
+from classes.enums.routes import Routes
 
 
 class PrepareTranslateAction(ActionInterface):
-    def __init__(self, ui, loadLang):
+    def __init__(self, ui, loadLang, navigator):
         self.ui = ui
         self.loadLang = loadLang
+        self.navigator = navigator
 
         self.ui.translateWindow.clicked.connect(self.execute)
 
@@ -16,8 +16,8 @@ class PrepareTranslateAction(ActionInterface):
            Preparation before the translation 
         """
         
-        if self.ui.stackedWidget.currentIndex() != 0:
-            self.changeWindow(0)
+        if self.ui.stackedWidget.currentIndex() != Routes.TRANSLATE.value:
+            self.navigator.goTo(Routes.TRANSLATE)
             return
         
         if not self.ui.inputBox.toPlainText():
@@ -30,15 +30,10 @@ class PrepareTranslateAction(ActionInterface):
         if self.ui.actionLeaveTheFormatting.isChecked():
             text = self.ui.inputBox.toHtml()
         
-        match self.ui.currentTranslator:
-            case Translators.GOOGLE:
-                translator = GoogleTranslator()
-            case Translators.DEEPL:
-                translator = DeeplTranslator()
-        
-        translated = translator.translate(
+        translator = TranslatorFactory().getTranslator(self.ui.currentTranslator)
+        translatedText = translator.translate(
             text, 
             self.loadLang.getKeyLang(self.ui.toLang.currentText()),
             self.loadLang.getKeyLang(self.ui.fromLang.currentText())
         )
-        self.ui.translateBox.insertHtml(translated)
+        self.ui.translateBox.insertHtml(translatedText)

@@ -1,16 +1,25 @@
+from classes.enums.routes import Routes
 
 class Navigator:
-    def __init__(self, ui, defaultWindow = 0):
+    def __init__(self, ui, defaultWindow = Routes.TRANSLATE):
         self.ui = ui
         self.default = defaultWindow
+        self.beforeRoutes = {}
 
         self.windows = {
-            0: ui.translateWindow,
-            1: ui.saveTranslationWindow,
-            2: ui.flashCardsWindow
+            Routes.TRANSLATE: ui.translateWindow,
+            Routes.SAVED: ui.saveTranslationWindow,
+            Routes.FLASHCARDS: ui.flashCardsWindow
         }
 
         self.initNavigationButtons()
+
+    def register(self, index, beforeAction=None) -> None:
+        """
+            Registering routes with actions
+        """
+    
+        self.beforeRoutes[index] = beforeAction
 
     def initNavigationButtons(self) -> None:
         """
@@ -38,5 +47,11 @@ class Navigator:
         current.style().unpolish(current)
         current.style().polish(current)
 
+        action = self.beforeRoutes.get(index)
+        
+        # Perform an action if a route is found        
+        if action:
+            action()
+
         # Switch page
-        self.ui.stackedWidget.setCurrentIndex(index)
+        self.ui.stackedWidget.setCurrentIndex(index.value)
