@@ -14,6 +14,7 @@ from classes.windows.savedTranslationWindow import *
 from classes.windows.flashCardsWindow import *
 from classes.db import *
 from classes.enums.Translate.translators import Translators
+from classes.menu.actions.prepareTranslateAction import PrepareTranslateAction
 
 
 class TranslateMate(QtWidgets.QMainWindow):
@@ -56,8 +57,11 @@ class TranslateMate(QtWidgets.QMainWindow):
             Loading program events
         """
 
-        # Buttons
-        self.ui.translateWindow.clicked.connect(self.buttons.prepareTranslate)
+        # Actions
+        self.actions = [
+            PrepareTranslateAction(self.ui, self.loadLang)
+        ]
+        
         self.ui.saveTranslatedText.clicked.connect(self.buttons.saveTranslatedText)
         self.ui.reverseTranslate.clicked.connect(self.buttons.reverseTranslations)
         self.ui.clearInput.clicked.connect(self.buttons.clearTranslate)
