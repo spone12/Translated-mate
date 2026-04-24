@@ -13,6 +13,8 @@ from classes.menu.buttons import Buttons
 from classes.windows.savedTranslationWindow import *
 from classes.windows.flashCardsWindow import *
 from classes.db import *
+from classes.enums.Translate.translators import Translators
+
 
 class TranslateMate(QtWidgets.QMainWindow):
     """
@@ -27,7 +29,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
-        self.ui.currentTranslator = 'Google'
+        self.ui.currentTranslator = Translators.GOOGLE
         
         self.styles = Styles(self)
         self.navigator = Navigator(self.ui)

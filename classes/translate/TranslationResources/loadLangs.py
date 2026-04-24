@@ -1,7 +1,7 @@
 from requests.exceptions import HTTPError
 from classes.logger import *
-from classes.translate.TranslationResources.googleTranslateLanguages import *
-from classes.translate.TranslationResources.deeplTranslateLanguages import *
+from classes.enums.Translate.translators import Translators
+from classes.translate.TranslationResources.languages import TRANSLATOR_LANGS
 
 
 class LoadingLangs():
@@ -26,15 +26,15 @@ class LoadingLangs():
             if i.text() != event.text() and i.isChecked():
                 i.setChecked(False)
 
-        self.ui.currentTranslator = event.text()
+        self.ui.currentTranslator = Translators.fromValue(event.text())
         self.loadLangArrays(event.text())
         
-    def loadLangArrays(self, translator = 'Google') -> None:
+    def loadLangArrays(self, translator = Translators.GOOGLE) -> None:
         """
             Change of translator and loading of language arrays
         """
 
-        languageValues = list(self.matchTranslatorLang().values())
+        languageValues = list(self.getListTranslatorLanguages().values())
 
         self.ui.fromLang.clear()
         self.ui.toLang.clear()
@@ -44,7 +44,7 @@ class LoadingLangs():
         
         self.ui.toLang.addItems(languageValues)
         
-        if translator == 'Google':
+        if translator == Translators.GOOGLE:
             self.ui.toLang.model().item(0).setEnabled(False)
             
         self.ui.toLang.setCurrentIndex(languageValues.index('Russian'))
@@ -54,7 +54,8 @@ class LoadingLangs():
             Get country code by full language name
         """
         
-        languagesArray = self.matchTranslatorLang().items()
+        languagesArray = self.getListTranslatorLanguages().items()
+        
         for k, v in languagesArray:
             if (isinstance(v, list) and value in v) or value == v:
                 return k
@@ -62,13 +63,10 @@ class LoadingLangs():
             Logger().log(self.__class__.__name__, f"Cant find language: {value}")
             return 'auto'
 
-    def matchTranslatorLang(self):
-        
-        match self.ui.currentTranslator:
-            case 'Google':
-                languagesArray = googleLanguages
-            case 'Deepl':
-                languagesArray = deeplLanguages
+    def getListTranslatorLanguages(self):
+        """
+            Get a list of translator languages
+        """
 
-        return languagesArray
+        return TRANSLATOR_LANGS[self.ui.currentTranslator]
     

@@ -3,6 +3,7 @@ from classes.translate.googleTranslator import *
 from classes.translate.deeplTranslator import *
 from classes.modules.pronunciation.pronunciation import *
 from classes.logger import *
+from classes.enums.Translate.translators import Translators
 
 
 class Buttons():
@@ -82,9 +83,9 @@ class Buttons():
             text = self.ui.inputBox.toHtml()
         
         match self.ui.currentTranslator:
-            case 'Google':
+            case Translators.GOOGLE:
                 translator = GoogleTranslator()
-            case 'Deepl':
+            case Translators.DEEPL:
                 translator = DeeplTranslator()
         
         translated = translator.translate(
