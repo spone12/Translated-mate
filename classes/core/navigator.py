@@ -14,12 +14,14 @@ class Navigator:
 
         self.initNavigationButtons()
 
-    def register(self, index, beforeAction=None) -> None:
+    def register(self, index: Routes, beforeAction=None) -> None:
         """
             Registering routes with actions
         """
-    
-        self.beforeRoutes[index] = beforeAction
+
+        if beforeAction:
+            if index not in self.beforeRoutes:
+                self.beforeRoutes[index] = beforeAction
 
     def initNavigationButtons(self) -> None:
         """

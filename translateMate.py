@@ -18,6 +18,7 @@ from classes.menu.actions.saveTranslatedTextAction import SaveTranslatedTextActi
 from classes.menu.actions.reverseTranslateAction import ReverseTranslateAction
 from classes.menu.actions.copyTranslateAction import CopyTranslateAction
 from classes.menu.actions.cleanTranslateAction import CleanTranslateAction
+from classes.menu.actions.goToRouteAction import GoToRouteAction
 
 
 class TranslateMate(QtWidgets.QMainWindow):
@@ -52,9 +53,6 @@ class TranslateMate(QtWidgets.QMainWindow):
             Loading program events
         """
         
-        self.navigator.register(Routes.SAVED, self.savedTranslation.prepareWindow)
-        self.navigator.register(Routes.FLASHCARDS, self.flashCards.prepareWindow)
-
         # Actions
         self.actions = [
             PrepareTranslateAction(self.ui, self.loadLang, self.navigator),
@@ -65,14 +63,11 @@ class TranslateMate(QtWidgets.QMainWindow):
             ReverseTranslateAction(self.ui)
         ]
 
-        # Windows
-        self.ui.saveTranslationWindow.clicked.connect(
-            lambda: self.navigator.goTo(Routes.SAVED)
-        )
-
-        self.ui.flashCardsWindow.clicked.connect(
-            lambda: self.navigator.goTo(Routes.FLASHCARDS)
-        )
+        # Action routes
+        self.actions += [
+            GoToRouteAction(self.ui.saveTranslationWindow, self.navigator, Routes.SAVED, self.savedTranslation.prepareWindow),
+            GoToRouteAction(self.ui.flashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow)
+        ]
 
         # Triggers
         self.ui.actionExit.triggered.connect(self.menu.exitProgramm)

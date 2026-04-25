@@ -8,3 +8,11 @@ class Routes(Enum):
     SAVED = 1
     FLASHCARDS = 2
     
+    @classmethod
+    def values(routes) -> list:
+        """
+            Get routes indexes 
+        """
+        
+        return [r.value for r in routes]
+    
