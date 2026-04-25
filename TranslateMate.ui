@@ -203,7 +203,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="ClickableLabel" name="clearInput">
+     <widget class="ClickableLabel" name="cleanTranslate">
       <property name="geometry">
        <rect>
         <x>470</x>
@@ -219,20 +219,20 @@ color:black;</string>
        <enum>Qt::NoFocus</enum>
       </property>
       <property name="toolTip">
-       <string>Clear input and translated text</string>
+       <string>Clean input and translated text</string>
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
       </property>
       <property name="styleSheet">
-       <string notr="true">#clearInput {
+       <string notr="true">#cleanTranslate {
 	background-repeat: no-repeat;
  	border-radius:  5px;
 	background: none;
 	opacity: 0.5;
 	padding: 7px;
 }
-#clearInput:hover  {
+#cleanTranslate:hover  {
 	opacity: 1;
 	background: #dedddd;
 }</string>

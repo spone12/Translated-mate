@@ -11,7 +11,7 @@ class PrepareTranslateAction(ActionInterface):
 
         self.ui.translateWindow.clicked.connect(self.execute)
 
-    def execute(self):
+    def execute(self) -> None:
         """
            Preparation before the translation 
         """
