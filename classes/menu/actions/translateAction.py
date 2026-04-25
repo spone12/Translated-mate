@@ -3,12 +3,13 @@ from classes.services.translatorFactory import TranslatorFactory
 from classes.enums.routes import Routes
 
 
-class PrepareTranslateAction(ActionInterface):
+class TranslateAction(ActionInterface):
     def __init__(self, ui, loadLang, navigator):
         self.ui = ui
         self.loadLang = loadLang
         self.navigator = navigator
 
+        # UI subscription
         self.ui.translateWindow.clicked.connect(self.execute)
 
     def execute(self) -> None:
@@ -20,13 +21,13 @@ class PrepareTranslateAction(ActionInterface):
             self.navigator.goTo(Routes.TRANSLATE)
             return
         
-        if not self.ui.inputBox.toPlainText():
-            return
-
-        self.ui.translateBox.clear()
         text = self.ui.inputBox.toPlainText()
+        if not text:
+            return
         
-        #If leave the formatting
+        self.ui.translateBox.clear()
+        
+        # If leave the formatting
         if self.ui.actionLeaveTheFormatting.isChecked():
             text = self.ui.inputBox.toHtml()
         

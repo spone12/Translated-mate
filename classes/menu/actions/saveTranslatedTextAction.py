@@ -5,6 +5,8 @@ class SaveTranslatedTextAction(ActionInterface):
     def __init__(self, ui, db):
         self.ui = ui
         self.db = db
+
+        # UI subscription
         self.ui.saveTranslatedText.clicked.connect(self.execute)
 
     def execute(self) -> None:
@@ -12,7 +14,7 @@ class SaveTranslatedTextAction(ActionInterface):
             Save translated text to DB
         """
 
-        if self.ui.translateBox.toPlainText() == '':
+        if not self.ui.translateBox.toPlainText():
             return None
         
         self.db.insertTranslate()   

@@ -5,6 +5,8 @@ from classes.menu.actions.actionInterface import ActionInterface
 class CopyTranslateAction(ActionInterface):
     def __init__(self, ui):
         self.ui = ui
+
+        # UI subscription
         self.ui.copyTranslate.clicked.connect(self.execute)
 
     def execute(self) -> None:

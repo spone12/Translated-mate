@@ -1,5 +1,5 @@
 # Translate mate
-# Version 0.4.2
+# Version 0.4.3
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ui.ui_main_window import Ui_MainWindow
@@ -12,7 +12,7 @@ from classes.windows.flashCardsWindow import FlashCardsWindow
 from classes.db import DB
 from classes.enums.Translate.translators import Translators
 from classes.enums.routes import Routes
-from classes.menu.actions.prepareTranslateAction import PrepareTranslateAction
+from classes.menu.actions.translateAction import TranslateAction
 from classes.menu.actions.pronunciationAction import PronunciationAction
 from classes.menu.actions.saveTranslatedTextAction import SaveTranslatedTextAction
 from classes.menu.actions.reverseTranslateAction import ReverseTranslateAction
@@ -55,7 +55,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         
         # Actions
         self.actions = [
-            PrepareTranslateAction(self.ui, self.loadLang, self.navigator),
+            TranslateAction(self.ui, self.loadLang, self.navigator),
             SaveTranslatedTextAction(self.ui, self.db),
             PronunciationAction(self.ui),
             CopyTranslateAction(self.ui),

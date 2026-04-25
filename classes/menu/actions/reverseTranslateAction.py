@@ -4,6 +4,8 @@ from classes.menu.actions.actionInterface import ActionInterface
 class ReverseTranslateAction(ActionInterface):
     def __init__(self, ui):
         self.ui = ui
+
+        # UI subscription
         self.ui.reverseTranslate.clicked.connect(self.execute)
 
     def execute(self) -> None:
@@ -11,14 +13,17 @@ class ReverseTranslateAction(ActionInterface):
             Flip the translations around
         """
     
-        currentToIndex = self.ui.toLang.currentIndex()
-        currentFromIndex = self.ui.fromLang.currentIndex()
-        inputText = self.ui.inputBox.toHtml()
-        translateBox = self.ui.translateBox.toHtml()
+        fromLangIndex = self.ui.fromLang.currentIndex()
+        toLangIndex = self.ui.toLang.currentIndex()
+
+        inputBoxText = self.ui.inputBox.toHtml()
+        translateBoxText = self.ui.translateBox.toHtml()
         
         self.ui.translateBox.clear()
         self.ui.inputBox.clear()
-        self.ui.translateBox.insertHtml(inputText)
-        self.ui.inputBox.insertHtml(translateBox)
-        self.ui.toLang.setCurrentIndex(currentFromIndex)
-        self.ui.fromLang.setCurrentIndex(currentToIndex)
+
+        self.ui.translateBox.insertHtml(inputBoxText)
+        self.ui.inputBox.insertHtml(translateBoxText)
+
+        self.ui.toLang.setCurrentIndex(fromLangIndex)
+        self.ui.fromLang.setCurrentIndex(toLangIndex)
