@@ -1,6 +1,6 @@
 # Save translation window
 import sqlite3
-from classes.logger import *
+from classes.logger import Logger
 
 
 class DB():

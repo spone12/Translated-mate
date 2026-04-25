@@ -1,8 +1,8 @@
 # Deepl translate
 import requests
 from requests.exceptions import HTTPError
-from classes.translate.translateInterface import *
-from classes.logger import *
+from classes.translate.translateInterface import TranslateInterface
+from classes.logger import Logger
 import time
 import math
 from textwrap import wrap

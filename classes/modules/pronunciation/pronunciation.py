@@ -1,4 +1,4 @@
-from classes.modules.pronunciation.pyttsx import *
+from classes.modules.pronunciation.pyttsx import Pyttsx
 
 
 class Pronunciation():
@@ -15,4 +15,3 @@ class Pronunciation():
         """
 
         Pyttsx(text)
-

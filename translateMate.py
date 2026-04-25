@@ -1,18 +1,16 @@
 # Translate mate
-# Version 0.4
+# Version 0.4.1
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
-from PyQt6.QtCore import Qt
 from ui.ui_main_window import Ui_MainWindow
 from classes.core.navigator import Navigator
 from classes.styles.styles import Styles
-from classes.translate.googleTranslator import *
 from classes.translate.TranslationResources.loadLangs import LoadingLangs
 from classes.menu.menu import Menu
 from classes.menu.buttons import Buttons
-from classes.windows.savedTranslationWindow import *
-from classes.windows.flashCardsWindow import *
-from classes.db import *
+from classes.windows.savedTranslationWindow import SavedTranslationWindow
+from classes.windows.flashCardsWindow import FlashCardsWindow
+from classes.db import DB
 from classes.enums.Translate.translators import Translators
 from classes.enums.routes import Routes
 from classes.menu.actions.prepareTranslateAction import PrepareTranslateAction

@@ -1,6 +1,7 @@
 import pyttsx3
+from .pronunciationInterface import PronunciationInterface
 
-class Pyttsx():
+class Pyttsx(PronunciationInterface):
 
     def __init__(self, text):
         self.engine = pyttsx3.init()
@@ -15,5 +16,6 @@ class Pyttsx():
         self.engine.say(
             self.text
         )
-        self.engine.runAndWait()
 
+        if not self.engine._inLoop:
+            self.engine.runAndWait()

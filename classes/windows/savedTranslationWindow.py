@@ -2,9 +2,10 @@
 from classes.logger import *
 from PyQt6 import QtWidgets, QtCore
 from PyQt6.QtWidgets import QStyledItemDelegate, QPushButton
+from .windowInterface import WindowInterface
 
 
-class SavedTranslationWindow():
+class SavedTranslationWindow(WindowInterface):
     """
         Translation window
     """

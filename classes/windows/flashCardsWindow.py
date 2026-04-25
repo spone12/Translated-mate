@@ -1,10 +1,9 @@
 # Save translation window
-from classes.logger import *
-from PyQt6 import QtWidgets, QtCore
-from PyQt6.QtWidgets import QStyledItemDelegate, QPushButton
+from classes.logger import Logger
+from .windowInterface import WindowInterface
 
 
-class FlashCardsWindow():
+class FlashCardsWindow(WindowInterface):
     """
         Flash cards window
     """
