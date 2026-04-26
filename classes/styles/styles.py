@@ -2,11 +2,15 @@ from pathlib import Path
 
 
 class Styles:
+
+    extension = "css"
+
     def __init__(self, ui):
         self.ui = ui
         self.base_path = Path("ui/styles")
         self.files = [
-            "MainWindow.css"
+            "MainWindow.css",
+            "TranslationTable.css"
         ]
 
         self.apply()

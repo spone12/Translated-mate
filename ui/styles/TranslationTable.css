@@ -1,0 +1,19 @@
+QTableView {
+    background-color: #383131;
+    color: white;
+    border: none;
+}
+
+QHeaderView::section {
+    background-color: #2d2d2d;
+    padding: 6px;
+    border: none;
+}
+
+QTableView::item {
+    padding: 5px;
+}
+
+QTableView::item:selected {
+    background-color: #3a82f7;
+}

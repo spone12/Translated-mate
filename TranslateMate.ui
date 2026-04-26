@@ -474,13 +474,13 @@ color:black;</string>
      </widget>
     </widget>
     <widget class="QWidget" name="SaveTranslate">
-     <widget class="QTableWidget" name="savedTranslateWidget">
+     <widget class="QTableView" name="savedTranslateWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
-        <y>30</y>
-        <width>1001</width>
-        <height>381</height>
+        <x>20</x>
+        <y>0</y>
+        <width>1021</width>
+        <height>441</height>
        </rect>
       </property>
       <property name="styleSheet">

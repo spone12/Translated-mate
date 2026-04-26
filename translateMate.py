@@ -32,6 +32,7 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.db = DB(self.ui)
 
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
         self.ui.currentTranslator = Translators.GOOGLE
@@ -40,8 +41,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.navigator = Navigator(self.ui)
         self.navigator.goTo(self.navigator.default)
         self.loadLang = LoadingLangs(self.ui)
-        self.menu = Menu(self)
-        self.db = DB(self.ui)
+        self.menu = Menu(self, self.db)
         self.savedTranslation = SavedTranslationWindow(self.ui, self.db)
         self.flashCards = FlashCardsWindow(self.ui, self.db)
 

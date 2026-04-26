@@ -3,8 +3,9 @@ import ui
 
 class Menu():
 
-    def __init__(self, program):
+    def __init__(self, program, db):
         self.program = program
+        self.db = db
 
     def exitProgramm(self) -> None:
         """
@@ -12,4 +13,5 @@ class Menu():
         """
 
         self.program.close()
+        self.db.close()
         

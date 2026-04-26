@@ -14,10 +14,6 @@ class DB():
         self.curs = self.conn.cursor()
         self.createTranslateTable()
 
-    def __del__(self):
-        self.conn.commit()
-        self.conn.close()
-
     def createTranslateTable(self) -> None:
         """
             Create translate table IF not exist
@@ -64,10 +60,12 @@ class DB():
                     self.ui.toLang.currentText(),
                     self.ui.inputBox.toPlainText(), 
                     self.ui.translateBox.toPlainText(), 
-                    self.ui.currentTranslator, 
+                    self.ui.currentTranslator.value, 
                     knowledge
                 )
             )
+
+            self.conn.commit()
         except Exception as err:
             Logger().log(self.__class__.__name__, f"Insert error: {err}")
 
@@ -78,6 +76,7 @@ class DB():
 
         try:
            self.curs.execute('UPDATE Translate SET text = ? WHERE id = ?', (text, id))
+           self.conn.commit()
         except Exception as err:
             Logger().log(self.__class__.__name__, f"Update error: {err}")
 
@@ -88,5 +87,14 @@ class DB():
 
         try:
            self.curs.execute('DELETE FROM Translate WHERE id = ?', (id, ))
+           self.conn.commit()
         except Exception as err:
             Logger().log(self.__class__.__name__, f"Delete error: {err}")        
+
+    def close(self):
+        """
+            Close DB connection and save data
+        """
+        
+        self.conn.commit()
+        self.conn.close()

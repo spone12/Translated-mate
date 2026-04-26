@@ -251,8 +251,8 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.MainTranslate)
         self.SaveTranslate = QtWidgets.QWidget()
         self.SaveTranslate.setObjectName("SaveTranslate")
-        self.savedTranslateWidget = QtWidgets.QTableWidget(parent=self.SaveTranslate)
-        self.savedTranslateWidget.setGeometry(QtCore.QRect(30, 30, 1001, 381))
+        self.savedTranslateWidget = QtWidgets.QTableView(parent=self.SaveTranslate)
+        self.savedTranslateWidget.setGeometry(QtCore.QRect(20, 0, 1021, 441))
         self.savedTranslateWidget.setStyleSheet("QTableWidget {\n"
 "    border: transparent;\n"
 "}\n"
@@ -282,8 +282,6 @@ class Ui_MainWindow(object):
 "    font-size:12px;\n"
 "}")
         self.savedTranslateWidget.setObjectName("savedTranslateWidget")
-        self.savedTranslateWidget.setColumnCount(0)
-        self.savedTranslateWidget.setRowCount(0)
         self.stackedWidget.addWidget(self.SaveTranslate)
         self.FlashCards = QtWidgets.QWidget()
         self.FlashCards.setObjectName("FlashCards")
