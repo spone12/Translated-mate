@@ -10,14 +10,14 @@ class TranslateAction(ActionInterface):
         self.navigator = navigator
 
         # UI subscription
-        self.ui.translateWindow.clicked.connect(self.execute)
+        self.ui.TranslateWindow.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
            Preparation before the translation 
         """
         
-        if self.ui.stackedWidget.currentIndex() != Routes.TRANSLATE.value:
+        if self.ui.DisplayArea.currentIndex() != Routes.TRANSLATE.value:
             self.navigator.goTo(Routes.TRANSLATE)
             return
         

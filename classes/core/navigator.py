@@ -7,9 +7,9 @@ class Navigator:
         self.beforeRoutes = {}
 
         self.windows = {
-            Routes.TRANSLATE: ui.translateWindow,
-            Routes.SAVED: ui.saveTranslationWindow,
-            Routes.FLASHCARDS: ui.flashCardsWindow
+            Routes.TRANSLATE: ui.TranslateWindow,
+            Routes.SAVED: ui.TranslationViewWindow,
+            Routes.FLASHCARDS: ui.FlashCardsWindow
         }
 
         self.initNavigationButtons()
@@ -56,4 +56,4 @@ class Navigator:
             action()
 
         # Switch page
-        self.ui.stackedWidget.setCurrentIndex(index.value)
+        self.ui.DisplayArea.setCurrentIndex(index.value)

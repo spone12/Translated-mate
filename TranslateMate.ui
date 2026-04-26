@@ -65,8 +65,8 @@ QScrollBar::sub-line:vertical {
     subcontrol-origin: margin;
 }</string>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <widget class="ClickableLabel" name="translateWindow">
+  <widget class="QWidget" name="Grid">
+   <widget class="ClickableLabel" name="TranslateWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -100,19 +100,19 @@ QScrollBar::sub-line:vertical {
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QStackedWidget" name="stackedWidget">
+   <widget class="QStackedWidget" name="DisplayArea">
     <property name="geometry">
      <rect>
       <x>50</x>
       <y>0</y>
       <width>1031</width>
-      <height>451</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
-    <widget class="QWidget" name="MainTranslate">
+    <widget class="QWidget" name="Translate">
      <widget class="QTextEdit" name="inputBox">
       <property name="geometry">
        <rect>
@@ -473,8 +473,8 @@ color:black;</string>
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="SaveTranslate">
-     <widget class="QTableView" name="savedTranslateWidget">
+    <widget class="QWidget" name="TranslationView">
+     <widget class="QTableView" name="TranslationTableWidget">
       <property name="geometry">
        <rect>
         <x>20</x>
@@ -627,7 +627,7 @@ QHeaderView::section
      </widget>
     </widget>
    </widget>
-   <widget class="ClickableLabel" name="saveTranslationWindow">
+   <widget class="ClickableLabel" name="TranslationViewWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -661,7 +661,7 @@ QHeaderView::section
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="ClickableLabel" name="flashCardsWindow">
+   <widget class="ClickableLabel" name="FlashCardsWindow">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -696,7 +696,7 @@ QHeaderView::section
     </property>
    </widget>
   </widget>
-  <widget class="QMenuBar" name="menubar">
+  <widget class="QMenuBar" name="MenuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -712,13 +712,13 @@ QHeaderView::section
     <bool>false</bool>
    </property>
    <property name="styleSheet">
-    <string notr="true">#menubar {
+    <string notr="true">#MenuBar {
 	background: black;
 	color: white;
 }
 </string>
    </property>
-   <widget class="QMenu" name="menuMenu">
+   <widget class="QMenu" name="Menu">
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -730,7 +730,7 @@ QHeaderView::section
     </property>
     <addaction name="actionExit"/>
    </widget>
-   <widget class="QMenu" name="menuTranslate">
+   <widget class="QMenu" name="MenuTranslate">
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -753,7 +753,7 @@ QHeaderView::section
     <addaction name="chooseTranslator"/>
     <addaction name="actionLeaveTheFormatting"/>
    </widget>
-   <widget class="QMenu" name="menuProunanciation">
+   <widget class="QMenu" name="MenuProunanciation">
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
@@ -763,19 +763,19 @@ QHeaderView::section
     <property name="title">
      <string>Pronunciation</string>
     </property>
-    <widget class="QMenu" name="menuType">
+    <widget class="QMenu" name="MenuType">
      <property name="title">
       <string>Type</string>
      </property>
      <addaction name="actionPyttsx"/>
     </widget>
-    <addaction name="menuType"/>
+    <addaction name="MenuType"/>
    </widget>
-   <addaction name="menuMenu"/>
-   <addaction name="menuTranslate"/>
-   <addaction name="menuProunanciation"/>
+   <addaction name="Menu"/>
+   <addaction name="MenuTranslate"/>
+   <addaction name="MenuProunanciation"/>
   </widget>
-  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QStatusBar" name="StatusBar"/>
   <action name="actionExit">
    <property name="text">
     <string>Exit</string>

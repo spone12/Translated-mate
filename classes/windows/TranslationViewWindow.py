@@ -5,7 +5,7 @@ from .windowInterface import WindowInterface
 from classes.models.translationModel import TranslationModel
 
 
-class SavedTranslationWindow(WindowInterface):
+class TranslationViewWindow(WindowInterface):
     """
         Translation window
     """
@@ -25,7 +25,7 @@ class SavedTranslationWindow(WindowInterface):
         data = self.db.getSavedTranslate()
         self.model = TranslationModel(data, self.headerLabels)
 
-        table = self.ui.savedTranslateWidget
+        table = self.ui.TranslationTableWidget
         table.setModel(self.model)
 
         # Hide row ID
@@ -54,7 +54,7 @@ class SavedTranslationWindow(WindowInterface):
             """)
 
             button.clicked.connect(lambda _, r=row: self.deleteRow(r))
-            self.ui.savedTranslateWidget.setIndexWidget(index, button)
+            self.ui.TranslationTableWidget.setIndexWidget(index, button)
 
     def deleteRow(self, row):
         row_id = self.model.getRowId(row)

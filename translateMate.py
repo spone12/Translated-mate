@@ -7,7 +7,7 @@ from classes.core.navigator import Navigator
 from classes.styles.styles import Styles
 from classes.translate.TranslationResources.loadLangs import LoadingLangs
 from classes.menu.menu import Menu
-from classes.windows.savedTranslationWindow import SavedTranslationWindow
+from classes.windows.TranslationViewWindow import TranslationViewWindow
 from classes.windows.flashCardsWindow import FlashCardsWindow
 from classes.db import DB
 from classes.enums.Translate.translators import Translators
@@ -42,7 +42,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.navigator.goTo(self.navigator.default)
         self.loadLang = LoadingLangs(self.ui)
         self.menu = Menu(self, self.db)
-        self.savedTranslation = SavedTranslationWindow(self.ui, self.db)
+        self.translationView = TranslationViewWindow(self.ui, self.db)
         self.flashCards = FlashCardsWindow(self.ui, self.db)
 
         self.programEvents()
@@ -65,8 +65,8 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         # Action routes
         self.actions += [
-            GoToRouteAction(self.ui.saveTranslationWindow, self.navigator, Routes.SAVED, self.savedTranslation.prepareWindow),
-            GoToRouteAction(self.ui.flashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow)
+            GoToRouteAction(self.ui.TranslationViewWindow, self.navigator, Routes.SAVED, self.translationView.prepareWindow),
+            GoToRouteAction(self.ui.FlashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow)
         ]
 
         # Triggers
