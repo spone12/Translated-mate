@@ -1,6 +1,8 @@
 # Save translation window
 from classes.logger import Logger
 from .windowInterface import WindowInterface
+from classes.database.Services.translateService import TranslateService
+from classes.database.Repository.translateRepository import TranslateRepository
 
 
 class FlashCardsWindow(WindowInterface):
@@ -10,15 +12,17 @@ class FlashCardsWindow(WindowInterface):
 
     def __init__(self, ui, db):
         self.ui = ui
-        self.db = db
+        self.service = TranslateService(
+            TranslateRepository(db)
+        )
 
     def renderFlashCards(self) -> None:
         """
             Render a flash cards
         """
         
-        savedTranslations = self.db.getSavedTranslate()
-
+        savedTranslations = self.service.getAll()
+        
         for translation in savedTranslations:
            pass 
 

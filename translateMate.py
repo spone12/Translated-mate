@@ -9,7 +9,8 @@ from classes.translate.TranslationResources.loadLangs import LoadingLangs
 from classes.menu.menu import Menu
 from classes.windows.TranslationViewWindow import TranslationViewWindow
 from classes.windows.flashCardsWindow import FlashCardsWindow
-from classes.db import DB
+from classes.database.db import Database
+from classes.database.migration import Migration
 from classes.enums.Translate.translators import Translators
 from classes.enums.routes import Routes
 from classes.menu.actions.translateAction import TranslateAction
@@ -32,9 +33,11 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.db = DB(self.ui)
-
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
+
+        self.db = Database()
+        Migration(self.db).createTables()
+        
         self.ui.currentTranslator = Translators.GOOGLE
         
         self.styles = Styles(self)
