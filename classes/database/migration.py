@@ -19,8 +19,8 @@ class Migration:
                 source_lang TEXT NOT NULL, -- Source language
                 target_lang TEXT NOT NULL, -- Target language
                 
-                translator VARCHAR(50) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                translator VARCHAR(50) NOT NULL, -- The translator used for the translation
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Row datetime create
                 
                 CHECK (source_lang != target_lang)
             );
@@ -42,7 +42,7 @@ class Migration:
                 next_review_at TIMESTAMP, -- Next review at
                 review_count INTEGER DEFAULT 0, -- Review count
                 
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Date create
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- Row datetime create
                 
                 FOREIGN KEY (translation_id) REFERENCES translations(id) ON DELETE SET NULL,
                 CHECK (knowledge BETWEEN 1 AND 5),

@@ -1,5 +1,5 @@
 # Translate mate
-# Version 0.4.3
+# Version 0.4.5
 import sys
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ui.ui_main_window import Ui_MainWindow
@@ -29,16 +29,26 @@ class TranslateMate(QtWidgets.QMainWindow):
 
     def __init__(self):
 
-        super(self.__class__, self).__init__()
+        super().__init__()
+        self.initializeUI()
+        self.bootstrapDatabase()
+        self.initializeServices()
+        self.setupConnections()
 
+    def initializeUI(self) -> None:
+        """
+            UI initialization
+        """
+        
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
-
-        self.db = Database()
-        Migration(self.db).createTables()
-        
         self.ui.currentTranslator = Translators.GOOGLE
+
+    def initializeServices(self) -> None:
+        """
+            Services initialization
+        """
         
         self.styles = Styles(self)
         self.navigator = Navigator(self.ui)
@@ -47,13 +57,10 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.menu = Menu(self, self.db)
         self.translationView = TranslationViewWindow(self.ui, self.db)
         self.flashCards = FlashCardsWindow(self.ui, self.db)
-
-        self.programEvents()
-
         
-    def programEvents(self) -> None:
+    def setupConnections(self) -> None:
         """
-            Loading program events
+            Loading program actions
         """
         
         # Actions
@@ -75,6 +82,14 @@ class TranslateMate(QtWidgets.QMainWindow):
         # Triggers
         self.ui.actionExit.triggered.connect(self.menu.exitProgramm)
         self.ui.chooseTranslator.triggered.connect(self.loadLang.chooseTranslator)
+
+    def bootstrapDatabase(self) -> None:
+        """
+            Bootstrap Database
+        """
+
+        self.db = Database()
+        Migration(self.db).createTables()
 
 
 if __name__ == "__main__":
