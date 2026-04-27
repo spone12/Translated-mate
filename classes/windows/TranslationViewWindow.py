@@ -12,8 +12,8 @@ class TranslationViewWindow(WindowInterface):
         Translation window
     """
 
-    columnsWidth = [0, 100, 100, 375, 375, 50]
-    headerLabels = ['id', 'From', 'To', 'Native', 'Translate', 'Delete']
+    columnsWidth = [0, 375, 375, 100, 100, 50]
+    headerLabels = ['id', 'Native', 'Translate', 'From', 'To', 'Delete']
 
     def __init__(self, ui, db):
         self.ui = ui

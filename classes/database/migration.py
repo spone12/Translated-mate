@@ -12,13 +12,17 @@ class Migration:
         self.db.cursor.executescript("""
             CREATE TABLE IF NOT EXISTS Translate (
                 id INTEGER PRIMARY KEY,
-                trans_from TEXT NOT NULL,
-                trans_to TEXT NOT NULL,
-                text_from TEXT NOT NULL,
-                text_to TEXT NOT NULL,
-                knowledge SMALLINT DEFAULT 1,
+
+                source_text TEXT NOT NULL, -- Source text
+                target_text TEXT NOT NULL, -- Target text
+                
+                source_lang TEXT NOT NULL, -- Source language
+                target_lang TEXT NOT NULL, -- Target language
+                
                 translator VARCHAR(50) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                
+                CHECK (source_lang != target_lang)
             );
             
             CREATE TABLE IF NOT EXISTS Dictionary (
@@ -27,8 +31,8 @@ class Migration:
                 sentence_id INTEGER NULL, -- For future reference, adding example sentences
                 photo TEXT, -- Photo path
 
-                source_word VARCHAR(50) NOT NULL, -- Word
-                target_word VARCHAR(50) NOT NULL, -- Target word
+                source_word TEXT NOT NULL, -- Word
+                target_word TEXT NOT NULL, -- Target word
 
                 source_lang VARCHAR(50) NOT NULL, -- Source word's language
                 target_lang VARCHAR(50) NOT NULL, -- Target word's language               
@@ -47,7 +51,7 @@ class Migration:
             );
             
             CREATE INDEX IF NOT EXISTS idx_translations_source 
-                ON Translate(trans_to, text_to);
+                ON Translate(source_text, target_text);
         """)
 
         self.db.commit()

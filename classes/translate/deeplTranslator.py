@@ -22,11 +22,11 @@ class DeeplTranslator(TranslateInterface):
     deeplApiUrl = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
     _DeepLId    = 0
 
-    def translate(self, text: str, toLang: str, fromLang = 'auto') -> str:
+    def translate(self, text: str, targetLang: str, sourceLang = 'auto') -> str:
         
         translatedText = ''
         self.generateDeeplId()
-        translatedText = self.translateIternal(self.deeplApiUrl, text, toLang, fromLang)
+        translatedText = self.translateIternal(self.deeplApiUrl, text, targetLang, sourceLang)
 
         return translatedText
 
@@ -42,7 +42,7 @@ class DeeplTranslator(TranslateInterface):
         self._DeepLId = baseIdMult * round(baseIdMult * Rnd.random())
         
 
-    def translateIternal(self, formatedUrl: str, text: str, toLang, fromLang) -> str:
+    def translateIternal(self, formattedUrl: str, text: str, targetLang, sourceLang) -> str:
 
         headers = {
             'Accept': '*/*',
@@ -105,8 +105,8 @@ class DeeplTranslator(TranslateInterface):
                         "default": "default",
                         "weight": {}
                     },
-                    "source_lang_computed": fromLang.upper(),
-                    "target_lang": toLang.upper()
+                    "source_lang_computed": sourceLang.upper(),
+                    "target_lang": targetLang.upper()
                 },
                 "priority": -1,
                 "timestamp": timestamp
@@ -114,7 +114,7 @@ class DeeplTranslator(TranslateInterface):
         }
 
         parsedAnswer = ""
-       
+        
         try:
             request = requests.post(self.deeplApiUrl, data=json.dumps(body), headers = headers)
             request.raise_for_status()

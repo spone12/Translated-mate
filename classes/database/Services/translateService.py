@@ -17,7 +17,7 @@ class TranslateService:
             Service logic Translate table before insert
         """
 
-        if not data.text_to and not data.text_from:
+        if not data.source_text and not data.target_text:
             return None
         
         self.repo.insert(data)

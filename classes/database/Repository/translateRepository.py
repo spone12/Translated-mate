@@ -28,15 +28,14 @@ class TranslateRepository(BaseRepository):
         
         self.db.cursor.execute("""
             INSERT INTO Translate 
-            (trans_from, trans_to, text_from, text_to, translator, knowledge)
-            VALUES (?, ?, ?, ?, ?, ?)
+            (source_text, target_text, source_lang, target_lang, translator)
+            VALUES (?, ?, ?, ?, ?)
         """, (
-            data.trans_from,
-            data.trans_to,
-            data.text_from,
-            data.text_to,
-            data.translator,
-            data.knowledge
+            data.source_text,
+            data.target_text,
+            data.source_lang,
+            data.target_lang,
+            data.translator
         ))
         self.db.commit()
     
