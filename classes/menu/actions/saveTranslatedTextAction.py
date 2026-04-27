@@ -22,8 +22,8 @@ class SaveTranslatedTextAction(ActionInterface):
         dto = TranslateDTO(
             source_text = self.ui.inputBox.toPlainText(),
             target_text = self.ui.translateBox.toPlainText(),
-            source_lang = self.ui.fromLang.currentText(),
-            target_lang = self.ui.toLang.currentText(),
+            source_lang = self.ui.sourceLangList.currentText(),
+            target_lang = self.ui.targetLangList.currentText(),
             translator  = self.ui.currentTranslator.value
         )
 

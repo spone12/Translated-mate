@@ -123,9 +123,9 @@ class Ui_MainWindow(object):
         self.cleanTranslate.setPixmap(QtGui.QPixmap("img/close.png"))
         self.cleanTranslate.setScaledContents(True)
         self.cleanTranslate.setObjectName("cleanTranslate")
-        self.fromLang = QtWidgets.QComboBox(parent=self.Translate)
-        self.fromLang.setGeometry(QtCore.QRect(30, 10, 200, 30))
-        self.fromLang.setStyleSheet("#fromLang {\n"
+        self.sourceLangList = QtWidgets.QComboBox(parent=self.Translate)
+        self.sourceLangList.setGeometry(QtCore.QRect(30, 10, 200, 30))
+        self.sourceLangList.setStyleSheet("#sourceLangList {\n"
 "    font: 11pt Fira Sans Condensed;     \n"
 "    background-color: #2e2e2e;\n"
 "    border-top: 0px solid #3e3e3e;\n"
@@ -139,10 +139,10 @@ class Ui_MainWindow(object):
 "    selection-background-color: #5e5e5e;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#fromLang:drop-down {\n"
+"#sourceLangList:drop-down {\n"
 "    border: none;\n"
 "}\n"
-"#fromLang:down-arrow {\n"
+"#sourceLangList:down-arrow {\n"
 "    image: url(img/downButton.png);\n"
 "    width: 25px;\n"
 "    height: 25px;\n"
@@ -150,12 +150,12 @@ class Ui_MainWindow(object):
 "    padding-right: 10px;\n"
 "}\n"
 "\n"
-"#fromLang:pressed {\n"
+"#sourceLangList:pressed {\n"
 "    position: relative;\n"
 "    top: 1px; left: 1px;\n"
 "}")
-        self.fromLang.setEditable(True)
-        self.fromLang.setObjectName("fromLang")
+        self.sourceLangList.setEditable(True)
+        self.sourceLangList.setObjectName("sourceLangList")
         self.reverseTranslate = ClickableLabel(parent=self.Translate)
         self.reverseTranslate.setGeometry(QtCore.QRect(510, 10, 30, 30))
         self.reverseTranslate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
@@ -172,9 +172,9 @@ class Ui_MainWindow(object):
         self.reverseTranslate.setPixmap(QtGui.QPixmap("img/reverseTranslate.png"))
         self.reverseTranslate.setScaledContents(True)
         self.reverseTranslate.setObjectName("reverseTranslate")
-        self.toLang = QtWidgets.QComboBox(parent=self.Translate)
-        self.toLang.setGeometry(QtCore.QRect(820, 10, 200, 30))
-        self.toLang.setStyleSheet("#toLang {\n"
+        self.targetLangList = QtWidgets.QComboBox(parent=self.Translate)
+        self.targetLangList.setGeometry(QtCore.QRect(820, 10, 200, 30))
+        self.targetLangList.setStyleSheet("#targetLangList {\n"
 "    font: 11pt Fira Sans Condensed;     \n"
 "    background-color: #2e2e2e;\n"
 "    border-top: 0px solid #3e3e3e;\n"
@@ -188,10 +188,10 @@ class Ui_MainWindow(object):
 "    selection-background-color: #5e5e5e;\n"
 "    border-radius: 2px;\n"
 "}\n"
-"#toLang:drop-down {\n"
+"#targetLangList:drop-down {\n"
 "    border: none;\n"
 "}\n"
-"#toLang:down-arrow {\n"
+"#targetLangList:down-arrow {\n"
 "    image: url(img/downButton.png);\n"
 "    width: 25px;\n"
 "    height: 25px;\n"
@@ -199,12 +199,12 @@ class Ui_MainWindow(object):
 "    padding-right: 10px;\n"
 "}\n"
 "\n"
-"#toLang:pressed {\n"
+"#targetLangList:pressed {\n"
 "    position: relative;\n"
 "    top: 1px; left: 1px;\n"
 "}")
-        self.toLang.setEditable(True)
-        self.toLang.setObjectName("toLang")
+        self.targetLangList.setEditable(True)
+        self.targetLangList.setObjectName("targetLangList")
         self.saveTranslatedText = ClickableLabel(parent=self.Translate)
         self.saveTranslatedText.setGeometry(QtCore.QRect(940, 380, 30, 30))
         self.saveTranslatedText.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))

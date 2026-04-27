@@ -34,7 +34,7 @@ class TranslateAction(ActionInterface):
         translator = TranslatorFactory().getTranslator(self.ui.currentTranslator)
         translatedText = translator.translate(
             text, 
-            self.loadLang.getKeyLang(self.ui.toLang.currentText()),
-            self.loadLang.getKeyLang(self.ui.fromLang.currentText())
+            self.loadLang.getKeyLang(self.ui.targetLangList.currentText()),
+            self.loadLang.getKeyLang(self.ui.sourceLangList.currentText())
         )
         self.ui.translateBox.insertHtml(translatedText)

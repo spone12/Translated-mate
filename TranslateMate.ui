@@ -247,7 +247,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QComboBox" name="fromLang">
+     <widget class="QComboBox" name="sourceLangList">
       <property name="geometry">
        <rect>
         <x>30</x>
@@ -257,7 +257,7 @@ color:black;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#fromLang {
+       <string notr="true">#sourceLangList {
     font: 11pt Fira Sans Condensed;     
     background-color: #2e2e2e;
     border-top: 0px solid #3e3e3e;
@@ -271,10 +271,10 @@ color:black;</string>
     selection-background-color: #5e5e5e;
 	border-radius: 2px;
 }
-#fromLang:drop-down {
+#sourceLangList:drop-down {
     border: none;
 }
-#fromLang:down-arrow {
+#sourceLangList:down-arrow {
     image: url(img/downButton.png);
     width: 25px;
     height: 25px;
@@ -282,7 +282,7 @@ color:black;</string>
     padding-right: 10px;
 }
 
-#fromLang:pressed {
+#sourceLangList:pressed {
     position: relative;
     top: 1px; left: 1px;
 }</string>
@@ -331,7 +331,7 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="QComboBox" name="toLang">
+     <widget class="QComboBox" name="targetLangList">
       <property name="geometry">
        <rect>
         <x>820</x>
@@ -341,7 +341,7 @@ color:black;</string>
        </rect>
       </property>
       <property name="styleSheet">
-       <string notr="true">#toLang {
+       <string notr="true">#targetLangList {
     font: 11pt Fira Sans Condensed;     
     background-color: #2e2e2e;
     border-top: 0px solid #3e3e3e;
@@ -355,10 +355,10 @@ color:black;</string>
     selection-background-color: #5e5e5e;
 	border-radius: 2px;
 }
-#toLang:drop-down {
+#targetLangList:drop-down {
     border: none;
 }
-#toLang:down-arrow {
+#targetLangList:down-arrow {
     image: url(img/downButton.png);
     width: 25px;
     height: 25px;
@@ -366,7 +366,7 @@ color:black;</string>
     padding-right: 10px;
 }
 
-#toLang:pressed {
+#targetLangList:pressed {
     position: relative;
     top: 1px; left: 1px;
 }</string>

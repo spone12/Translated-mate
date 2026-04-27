@@ -21,7 +21,7 @@ class LoadingLangs():
             event.setChecked(True)
             return
 
-        # Remove active translators     
+        # Remove active translators
         for i in self.ui.chooseTranslator.actions():
             if i.text() != event.text() and i.isChecked():
                 i.setChecked(False)
@@ -36,18 +36,18 @@ class LoadingLangs():
 
         languageValues = list(self.getListTranslatorLanguages().values())
 
-        self.ui.fromLang.clear()
-        self.ui.toLang.clear()
+        self.ui.sourceLangList.clear()
+        self.ui.targetLangList.clear()
 
-        self.ui.fromLang.addItems(languageValues)
-        self.ui.fromLang.setCurrentIndex(languageValues.index('English'))
+        self.ui.sourceLangList.addItems(languageValues)
+        self.ui.sourceLangList.setCurrentIndex(languageValues.index('English'))
         
-        self.ui.toLang.addItems(languageValues)
+        self.ui.targetLangList.addItems(languageValues)
         
         if translator == Translators.GOOGLE:
-            self.ui.toLang.model().item(0).setEnabled(False)
+            self.ui.targetLangList.model().item(0).setEnabled(False)
             
-        self.ui.toLang.setCurrentIndex(languageValues.index('Russian'))
+        self.ui.targetLangList.setCurrentIndex(languageValues.index('Russian'))
 
     def getKeyLang(self, value) -> str:
         """

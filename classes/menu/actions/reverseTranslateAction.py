@@ -13,8 +13,8 @@ class ReverseTranslateAction(ActionInterface):
             Flip the translations around
         """
     
-        fromLangIndex = self.ui.fromLang.currentIndex()
-        toLangIndex = self.ui.toLang.currentIndex()
+        sourceLangIndex = self.ui.sourceLangList.currentIndex()
+        targetLangIndex = self.ui.targetLangList.currentIndex()
 
         inputBoxText = self.ui.inputBox.toHtml()
         translateBoxText = self.ui.translateBox.toHtml()
@@ -25,5 +25,5 @@ class ReverseTranslateAction(ActionInterface):
         self.ui.translateBox.insertHtml(inputBoxText)
         self.ui.inputBox.insertHtml(translateBoxText)
 
-        self.ui.toLang.setCurrentIndex(fromLangIndex)
-        self.ui.fromLang.setCurrentIndex(toLangIndex)
+        self.ui.targetLangList.setCurrentIndex(sourceLangIndex)
+        self.ui.sourceLangList.setCurrentIndex(targetLangIndex)
