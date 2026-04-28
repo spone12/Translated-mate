@@ -15,30 +15,44 @@ class GoogleTranslator(TranslateInterface):
         Google translate class
     """
 
-    _baseUrl = "https://translate.google.com/m?hl=ru&sl={0}&tl={1}&ie=UTF-8&prev=_m&q={2}"
+    _baseUrl   = "https://translate.google.com/m?hl=ru&sl={0}&tl={1}&ie=UTF-8&prev=_m&q={2}"
+    TEXT_LIMIT = 10000
 
-    def translate(self, text: str, targetLang: str, sourceLang = 'auto') -> str:
-        
+    def translate(self, text: str, targetLang: str, sourceLang: str = 'auto') -> str:
+        """
+            Main tranlate method
+        """
+
         translatedText = ''
 
         if len(text) > 5000:
 
-            # Chunking elements of large text
+            #Splitting large text into chunks
             chunkedText = wrap(text, 5000)
 
             for currentTextBlock in chunkedText:
-                formattedUrl    = self._baseUrl.format(sourceLang, targetLang, urllib.parse.quote(currentTextBlock, safe = ""))
-                translatedText += self.translateIternal(formattedUrl)
+                translatedText += self.requestTranslation(
+                    self.formatUrl(sourceLang, targetLang, currentTextBlock)
+                )
                 time.sleep(0.300)
-
         else:
-            formattedUrl    = self._baseUrl.format(sourceLang, targetLang, urllib.parse.quote(text, safe = ""))
-            translatedText = self.translateIternal(formattedUrl)
+            translatedText = self.requestTranslation(
+                self.formatUrl(sourceLang, targetLang, text)
+            )
 
         return translatedText
 
-    
-    def translateIternal(self, formattedUrl: str):
+    def formatUrl(self, sourceLang: str, targetLang: str, text: str) -> str:
+        """
+            Format the source URL
+        """
+
+        return self.baseUrl.format(sourceLang, targetLang, urllib.parse.quote(text, safe = ""))
+
+    def requestTranslation(self, url: str) -> str:
+        """
+            Request a source for text translation
+        """
         
         headers = {
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
@@ -53,7 +67,7 @@ class GoogleTranslator(TranslateInterface):
         parsedAnswer = ''
 
         try:
-            request = requests.get(formattedUrl, headers = headers)
+            request = requests.get(url, headers = headers)
             request.raise_for_status()
         except HTTPError as http_err:
             Logger().log(self.__class__.__name__, f"HTTP error occurred: {http_err}")
@@ -64,3 +78,12 @@ class GoogleTranslator(TranslateInterface):
             parsedAnswer = answer.find('div', class_='result-container').text
            
         return parsedAnswer
+
+    @property
+    def baseUrl(self) -> str:
+        return self._baseUrl
+    
+    @property
+    def textLimit(self) -> int:
+        return self.TEXT_LIMIT
+    

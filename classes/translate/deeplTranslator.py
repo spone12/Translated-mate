@@ -18,17 +18,18 @@ class DeeplTranslator(TranslateInterface):
         Deepl translate class
     """
 
-    regex       = "(\S.+?([.!?♪。]|$))(?=\s+|$)"
-    deeplApiUrl = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
-    _DeepLId    = 0
+    _baseUrl   = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
+    TEXT_LIMIT = 1500
+    _DeepLId   = 0
+    _regex     = "(\S.+?([.!?♪。]|$))(?=\s+|$)"
 
-    def translate(self, text: str, targetLang: str, sourceLang = 'auto') -> str:
+    def translate(self, text: str, targetLang: str, sourceLang: str = 'auto') -> str:
+        """
+            Main tranlate method
+        """
         
-        translatedText = ''
         self.generateDeeplId()
-        translatedText = self.translateIternal(self.deeplApiUrl, text, targetLang, sourceLang)
-
-        return translatedText
+        return self.requestTranslation(self.baseUrl, text, targetLang, sourceLang)
 
     def generateDeeplId(self) -> None:
 
@@ -42,8 +43,11 @@ class DeeplTranslator(TranslateInterface):
         self._DeepLId = baseIdMult * round(baseIdMult * Rnd.random())
         
 
-    def translateIternal(self, formattedUrl: str, text: str, targetLang, sourceLang) -> str:
-
+    def requestTranslation(self, url: str, text: str, targetLang: str, sourceLang: str) -> str:
+        """
+            Request a source for text translation
+        """
+        
         headers = {
             'Accept': '*/*',
             'Referer': 'https://www.deepl.com/translator',
@@ -55,7 +59,7 @@ class DeeplTranslator(TranslateInterface):
             'User-Agent': 'Opera/9.80 (Android; Opera Mini/11.0.1912/37.7549; U; pl) Presto/2.12.423 Version/12.16'
         }
 
-        matchSentences = re.findall(self.regex, text)
+        matchSentences = re.findall(self._regex, text)
         jobs = []
 
         # Generate Jobs
@@ -116,7 +120,7 @@ class DeeplTranslator(TranslateInterface):
         parsedAnswer = ""
         
         try:
-            request = requests.post(self.deeplApiUrl, data=json.dumps(body), headers = headers)
+            request = requests.post(url, data=json.dumps(body), headers = headers)
             request.raise_for_status()
         except HTTPError as http_err:
             Logger().log(self.__class__.__name__, f"HTTP error occurred: {http_err}")
@@ -133,3 +137,12 @@ class DeeplTranslator(TranslateInterface):
                 parsedAnswer += trans['beams'][0]['sentences'][0]['text']
         
         return parsedAnswer
+
+    @property
+    def baseUrl(self) -> str:
+        return self._baseUrl
+    
+    @property
+    def textLimit(self) -> int:
+        return self.TEXT_LIMIT
+    
