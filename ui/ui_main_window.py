@@ -13,9 +13,9 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1090, 470)
-        MainWindow.setMinimumSize(QtCore.QSize(1090, 470))
-        MainWindow.setMaximumSize(QtCore.QSize(1090, 470))
+        MainWindow.resize(1100, 520)
+        MainWindow.setMinimumSize(QtCore.QSize(1100, 520))
+        MainWindow.setMaximumSize(QtCore.QSize(1100, 520))
         MainWindow.setMouseTracking(False)
         MainWindow.setAutoFillBackground(False)
         MainWindow.setStyleSheet("* {\n"
@@ -48,6 +48,7 @@ class Ui_MainWindow(object):
 "    subcontrol-origin: margin;\n"
 "}")
         self.Grid = QtWidgets.QWidget(parent=MainWindow)
+        self.Grid.setMaximumSize(QtCore.QSize(16777215, 520))
         self.Grid.setObjectName("Grid")
         self.TranslateWindow = ClickableLabel(parent=self.Grid)
         self.TranslateWindow.setGeometry(QtCore.QRect(10, 60, 40, 40))
@@ -60,14 +61,16 @@ class Ui_MainWindow(object):
         self.TranslateWindow.setScaledContents(True)
         self.TranslateWindow.setObjectName("TranslateWindow")
         self.DisplayArea = QtWidgets.QStackedWidget(parent=self.Grid)
-        self.DisplayArea.setGeometry(QtCore.QRect(50, 0, 1031, 441))
+        self.DisplayArea.setGeometry(QtCore.QRect(50, 0, 1100, 520))
+        self.DisplayArea.setMaximumSize(QtCore.QSize(1100, 520))
         self.DisplayArea.setObjectName("DisplayArea")
         self.Translate = QtWidgets.QWidget()
+        self.Translate.setMaximumSize(QtCore.QSize(1100, 520))
         self.Translate.setObjectName("Translate")
         self.inputBox = QtWidgets.QTextEdit(parent=self.Translate)
         self.inputBox.setGeometry(QtCore.QRect(20, 50, 500, 380))
         self.inputBox.setStyleSheet("border: 1px solid black;\n"
-"border-radius: 10px;\n"
+"border-radius: 10px 10px;\n"
 "background: #f4f4f5;\n"
 "font-size: 16px;\n"
 "color:black;")
@@ -82,27 +85,6 @@ class Ui_MainWindow(object):
 "color:black;")
         self.translateBox.setReadOnly(True)
         self.translateBox.setObjectName("translateBox")
-        self.copyTranslate = ClickableLabel(parent=self.Translate)
-        self.copyTranslate.setGeometry(QtCore.QRect(970, 380, 30, 30))
-        self.copyTranslate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.copyTranslate.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
-        self.copyTranslate.setAutoFillBackground(False)
-        self.copyTranslate.setStyleSheet("#copyTranslate {\n"
-"    background-repeat: no-repeat;\n"
-"     border-radius:  5px;\n"
-"    opacity: 0.5;\n"
-"    background: none;\n"
-"    padding: 7px;\n"
-"}\n"
-"#copyTranslate:hover  {\n"
-"    opacity: 1;\n"
-"    background: #dedddd;\n"
-"}")
-        self.copyTranslate.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.copyTranslate.setText("")
-        self.copyTranslate.setPixmap(QtGui.QPixmap("img/copy.png"))
-        self.copyTranslate.setScaledContents(True)
-        self.copyTranslate.setObjectName("copyTranslate")
         self.cleanTranslate = ClickableLabel(parent=self.Translate)
         self.cleanTranslate.setGeometry(QtCore.QRect(470, 60, 30, 30))
         self.cleanTranslate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
@@ -205,8 +187,85 @@ class Ui_MainWindow(object):
 "}")
         self.targetLangList.setEditable(True)
         self.targetLangList.setObjectName("targetLangList")
-        self.saveTranslatedText = ClickableLabel(parent=self.Translate)
-        self.saveTranslatedText.setGeometry(QtCore.QRect(940, 380, 30, 30))
+        self.RightPanel = QtWidgets.QWidget(parent=self.Translate)
+        self.RightPanel.setGeometry(QtCore.QRect(530, 430, 490, 50))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.RightPanel.sizePolicy().hasHeightForWidth())
+        self.RightPanel.setSizePolicy(sizePolicy)
+        self.RightPanel.setMinimumSize(QtCore.QSize(490, 50))
+        self.RightPanel.setMaximumSize(QtCore.QSize(490, 40))
+        self.RightPanel.setBaseSize(QtCore.QSize(490, 40))
+        self.RightPanel.setStyleSheet("")
+        self.RightPanel.setObjectName("RightPanel")
+        self.horizontalLayoutWidget = QtWidgets.QWidget(parent=self.RightPanel)
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(0, -10, 491, 471))
+        self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
+        self.rightPanelLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
+        self.rightPanelLayout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+        self.rightPanelLayout.setContentsMargins(10, 5, 0, 0)
+        self.rightPanelLayout.setSpacing(6)
+        self.rightPanelLayout.setObjectName("rightPanelLayout")
+        self.pronunciation = ClickableLabel(parent=self.horizontalLayoutWidget)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pronunciation.sizePolicy().hasHeightForWidth())
+        self.pronunciation.setSizePolicy(sizePolicy)
+        self.pronunciation.setMinimumSize(QtCore.QSize(30, 30))
+        self.pronunciation.setMaximumSize(QtCore.QSize(30, 30))
+        self.pronunciation.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.pronunciation.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.pronunciation.setAutoFillBackground(False)
+        self.pronunciation.setStyleSheet("#pronunciation {\n"
+"    background-repeat: no-repeat;\n"
+"     border-radius:  5px;\n"
+"    opacity: 0.5;\n"
+"    background: white;\n"
+"    padding: 7px;\n"
+"    border: 1px solid black;\n"
+"}\n"
+"#pronunciation:hover  {\n"
+"    opacity: 1;\n"
+"    background: #dedddd;\n"
+"}")
+        self.pronunciation.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.pronunciation.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.pronunciation.setText("")
+        self.pronunciation.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        self.pronunciation.setPixmap(QtGui.QPixmap("img/pronunciation.png"))
+        self.pronunciation.setScaledContents(True)
+        self.pronunciation.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
+        self.pronunciation.setOpenExternalLinks(False)
+        self.pronunciation.setObjectName("pronunciation")
+        self.rightPanelLayout.addWidget(self.pronunciation, 0, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.copyTranslate = ClickableLabel(parent=self.horizontalLayoutWidget)
+        self.copyTranslate.setMaximumSize(QtCore.QSize(30, 30))
+        self.copyTranslate.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.copyTranslate.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.copyTranslate.setAutoFillBackground(False)
+        self.copyTranslate.setStyleSheet("#copyTranslate {\n"
+"    background-repeat: no-repeat;\n"
+"     border-radius:  5px;\n"
+"    opacity: 0.5;\n"
+"    background: white;\n"
+"    padding: 7px;\n"
+"    border: 1px solid black;\n"
+"}\n"
+"#copyTranslate:hover  {\n"
+"    opacity: 1;\n"
+"    background: #dedddd;\n"
+"}")
+        self.copyTranslate.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.copyTranslate.setText("")
+        self.copyTranslate.setPixmap(QtGui.QPixmap("img/copy.png"))
+        self.copyTranslate.setScaledContents(True)
+        self.copyTranslate.setObjectName("copyTranslate")
+        self.rightPanelLayout.addWidget(self.copyTranslate, 0, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.saveTranslatedText = ClickableLabel(parent=self.horizontalLayoutWidget)
+        self.saveTranslatedText.setMinimumSize(QtCore.QSize(30, 30))
+        self.saveTranslatedText.setMaximumSize(QtCore.QSize(30, 30))
         self.saveTranslatedText.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
         self.saveTranslatedText.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
         self.saveTranslatedText.setAutoFillBackground(False)
@@ -214,8 +273,9 @@ class Ui_MainWindow(object):
 "    background-repeat: no-repeat;\n"
 "     border-radius:  5px;\n"
 "    opacity: 0.5;\n"
-"    background: none;\n"
+"    background: white;\n"
 "    padding: 7px;\n"
+"    border: 1px solid black;\n"
 "}\n"
 "#saveTranslatedText:hover  {\n"
 "    opacity: 1;\n"
@@ -226,28 +286,60 @@ class Ui_MainWindow(object):
         self.saveTranslatedText.setPixmap(QtGui.QPixmap("img/saveTranslatedText.png"))
         self.saveTranslatedText.setScaledContents(True)
         self.saveTranslatedText.setObjectName("saveTranslatedText")
-        self.pronunciation = ClickableLabel(parent=self.Translate)
-        self.pronunciation.setGeometry(QtCore.QRect(910, 380, 30, 30))
-        self.pronunciation.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
-        self.pronunciation.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
-        self.pronunciation.setAutoFillBackground(False)
-        self.pronunciation.setStyleSheet("#pronunciation {\n"
+        self.rightPanelLayout.addWidget(self.saveTranslatedText, 0, QtCore.Qt.AlignmentFlag.AlignTop)
+        self.LeftPanel = QtWidgets.QWidget(parent=self.Translate)
+        self.LeftPanel.setGeometry(QtCore.QRect(20, 430, 490, 50))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.LeftPanel.sizePolicy().hasHeightForWidth())
+        self.LeftPanel.setSizePolicy(sizePolicy)
+        self.LeftPanel.setMinimumSize(QtCore.QSize(490, 50))
+        self.LeftPanel.setMaximumSize(QtCore.QSize(490, 40))
+        self.LeftPanel.setBaseSize(QtCore.QSize(490, 40))
+        self.LeftPanel.setStyleSheet("")
+        self.LeftPanel.setObjectName("LeftPanel")
+        self.horizontalLayoutWidget_3 = QtWidgets.QWidget(parent=self.LeftPanel)
+        self.horizontalLayoutWidget_3.setGeometry(QtCore.QRect(0, -10, 491, 471))
+        self.horizontalLayoutWidget_3.setObjectName("horizontalLayoutWidget_3")
+        self.leftPanelLayout = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget_3)
+        self.leftPanelLayout.setSizeConstraint(QtWidgets.QLayout.SizeConstraint.SetFixedSize)
+        self.leftPanelLayout.setContentsMargins(10, 5, 0, 0)
+        self.leftPanelLayout.setSpacing(6)
+        self.leftPanelLayout.setObjectName("leftPanelLayout")
+        self.sourcePronunciation = ClickableLabel(parent=self.horizontalLayoutWidget_3)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Policy.Preferred, QtWidgets.QSizePolicy.Policy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.sourcePronunciation.sizePolicy().hasHeightForWidth())
+        self.sourcePronunciation.setSizePolicy(sizePolicy)
+        self.sourcePronunciation.setMinimumSize(QtCore.QSize(30, 30))
+        self.sourcePronunciation.setMaximumSize(QtCore.QSize(30, 30))
+        self.sourcePronunciation.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.PointingHandCursor))
+        self.sourcePronunciation.setFocusPolicy(QtCore.Qt.FocusPolicy.NoFocus)
+        self.sourcePronunciation.setAutoFillBackground(False)
+        self.sourcePronunciation.setStyleSheet("#sourcePronunciation {\n"
 "    background-repeat: no-repeat;\n"
 "     border-radius:  5px;\n"
 "    opacity: 0.5;\n"
-"    background: none;\n"
+"    background: white;\n"
 "    padding: 7px;\n"
+"    border: 1px solid black;\n"
 "}\n"
-"#pronunciation:hover  {\n"
+"#sourcePronunciation:hover  {\n"
 "    opacity: 1;\n"
 "    background: #dedddd;\n"
 "}")
-        self.pronunciation.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
-        self.pronunciation.setText("")
-        self.pronunciation.setTextFormat(QtCore.Qt.TextFormat.PlainText)
-        self.pronunciation.setPixmap(QtGui.QPixmap("img/pronunciation.png"))
-        self.pronunciation.setScaledContents(True)
-        self.pronunciation.setObjectName("pronunciation")
+        self.sourcePronunciation.setFrameShape(QtWidgets.QFrame.Shape.NoFrame)
+        self.sourcePronunciation.setFrameShadow(QtWidgets.QFrame.Shadow.Plain)
+        self.sourcePronunciation.setText("")
+        self.sourcePronunciation.setTextFormat(QtCore.Qt.TextFormat.PlainText)
+        self.sourcePronunciation.setPixmap(QtGui.QPixmap("img/pronunciation.png"))
+        self.sourcePronunciation.setScaledContents(True)
+        self.sourcePronunciation.setAlignment(QtCore.Qt.AlignmentFlag.AlignLeading|QtCore.Qt.AlignmentFlag.AlignLeft|QtCore.Qt.AlignmentFlag.AlignTop)
+        self.sourcePronunciation.setOpenExternalLinks(False)
+        self.sourcePronunciation.setObjectName("sourcePronunciation")
+        self.leftPanelLayout.addWidget(self.sourcePronunciation, 0, QtCore.Qt.AlignmentFlag.AlignTop)
         self.DisplayArea.addWidget(self.Translate)
         self.TranslationView = QtWidgets.QWidget()
         self.TranslationView.setObjectName("TranslationView")
@@ -353,7 +445,7 @@ class Ui_MainWindow(object):
         self.FlashCardsWindow.setObjectName("FlashCardsWindow")
         MainWindow.setCentralWidget(self.Grid)
         self.MenuBar = QtWidgets.QMenuBar(parent=MainWindow)
-        self.MenuBar.setGeometry(QtCore.QRect(0, 0, 1090, 20))
+        self.MenuBar.setGeometry(QtCore.QRect(0, 0, 1100, 20))
         self.MenuBar.setCursor(QtGui.QCursor(QtCore.Qt.CursorShape.ArrowCursor))
         self.MenuBar.setAutoFillBackground(False)
         self.MenuBar.setStyleSheet("#MenuBar {\n"
@@ -422,11 +514,12 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "Translated mate"))
         self.TranslateWindow.setToolTip(_translate("MainWindow", "Translate text"))
         self.inputBox.setPlaceholderText(_translate("MainWindow", "Input text"))
-        self.copyTranslate.setToolTip(_translate("MainWindow", "Copy translate to clipboard"))
         self.cleanTranslate.setToolTip(_translate("MainWindow", "Clean input and translated text"))
         self.reverseTranslate.setToolTip(_translate("MainWindow", "Reverse translate"))
-        self.saveTranslatedText.setToolTip(_translate("MainWindow", "Save translated text"))
         self.pronunciation.setToolTip(_translate("MainWindow", "Pronunciation"))
+        self.copyTranslate.setToolTip(_translate("MainWindow", "Copy translate to clipboard"))
+        self.saveTranslatedText.setToolTip(_translate("MainWindow", "Save translated text"))
+        self.sourcePronunciation.setToolTip(_translate("MainWindow", "Pronunciation"))
         self.flashCardCansel.setToolTip(_translate("MainWindow", "Save translation window"))
         self.flashCardOk.setToolTip(_translate("MainWindow", "Save translation window"))
         self.TranslationViewWindow.setToolTip(_translate("MainWindow", "Save translation window"))

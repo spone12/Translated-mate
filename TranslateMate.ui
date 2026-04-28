@@ -9,20 +9,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1090</width>
-    <height>470</height>
+    <width>1100</width>
+    <height>520</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
-    <width>1090</width>
-    <height>470</height>
+    <width>1100</width>
+    <height>520</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>1090</width>
-    <height>470</height>
+    <width>1100</width>
+    <height>520</height>
    </size>
   </property>
   <property name="mouseTracking">
@@ -66,6 +66,12 @@ QScrollBar::sub-line:vertical {
 }</string>
   </property>
   <widget class="QWidget" name="Grid">
+   <property name="maximumSize">
+    <size>
+     <width>16777215</width>
+     <height>520</height>
+    </size>
+   </property>
    <widget class="ClickableLabel" name="TranslateWindow">
     <property name="geometry">
      <rect>
@@ -105,14 +111,26 @@ QScrollBar::sub-line:vertical {
      <rect>
       <x>50</x>
       <y>0</y>
-      <width>1031</width>
-      <height>441</height>
+      <width>1100</width>
+      <height>520</height>
      </rect>
+    </property>
+    <property name="maximumSize">
+     <size>
+      <width>1100</width>
+      <height>520</height>
+     </size>
     </property>
     <property name="currentIndex">
      <number>0</number>
     </property>
     <widget class="QWidget" name="Translate">
+     <property name="maximumSize">
+      <size>
+       <width>1100</width>
+       <height>520</height>
+      </size>
+     </property>
      <widget class="QTextEdit" name="inputBox">
       <property name="geometry">
        <rect>
@@ -124,7 +142,7 @@ QScrollBar::sub-line:vertical {
       </property>
       <property name="styleSheet">
        <string notr="true">border: 1px solid black;
-border-radius: 10px;
+border-radius: 10px 10px;
 background: #f4f4f5;
 font-size: 16px;
 color:black;</string>
@@ -153,53 +171,6 @@ font-size: 16px;
 color:black;</string>
       </property>
       <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="ClickableLabel" name="copyTranslate">
-      <property name="geometry">
-       <rect>
-        <x>970</x>
-        <y>380</y>
-        <width>30</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="toolTip">
-       <string>Copy translate to clipboard</string>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#copyTranslate {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: none;
-	padding: 7px;
-}
-#copyTranslate:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>img/copy.png</pixmap>
-      </property>
-      <property name="scaledContents">
        <bool>true</bool>
       </property>
      </widget>
@@ -375,102 +346,385 @@ color:black;</string>
        <bool>true</bool>
       </property>
      </widget>
-     <widget class="ClickableLabel" name="saveTranslatedText">
+     <widget class="QWidget" name="RightPanel" native="true">
       <property name="geometry">
        <rect>
-        <x>940</x>
-        <y>380</y>
-        <width>30</width>
-        <height>30</height>
+        <x>530</x>
+        <y>430</y>
+        <width>490</width>
+        <height>50</height>
        </rect>
       </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
+      <property name="minimumSize">
+       <size>
+        <width>490</width>
+        <height>50</height>
+       </size>
       </property>
-      <property name="toolTip">
-       <string>Save translated text</string>
+      <property name="maximumSize">
+       <size>
+        <width>490</width>
+        <height>40</height>
+       </size>
       </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
+      <property name="baseSize">
+       <size>
+        <width>490</width>
+        <height>40</height>
+       </size>
       </property>
       <property name="styleSheet">
-       <string notr="true">#saveTranslatedText {
+       <string notr="true"/>
+      </property>
+      <widget class="QWidget" name="horizontalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>-10</y>
+         <width>491</width>
+         <height>471</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="rightPanelLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="pronunciation">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Pronunciation</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#pronunciation {
 	background-repeat: no-repeat;
  	border-radius:  5px;
 	opacity: 0.5;
-	background: none;
+	background: white;
 	padding: 7px;
-}
-#saveTranslatedText:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>img/saveTranslatedText.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="ClickableLabel" name="pronunciation">
-      <property name="geometry">
-       <rect>
-        <x>910</x>
-        <y>380</y>
-        <width>30</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="toolTip">
-       <string>Pronunciation</string>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#pronunciation {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: none;
-	padding: 7px;
+	border: 1px solid black;
 }
 #pronunciation:hover  {
 	opacity: 1;
 	background: #dedddd;
 }</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/pronunciation.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="openExternalLinks">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="copyTranslate">
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Copy translate to clipboard</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#copyTranslate {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+	opacity: 0.5;
+	background: white;
+	padding: 7px;
+	border: 1px solid black;
+}
+#copyTranslate:hover  {
+	opacity: 1;
+	background: #dedddd;
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/copy.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="saveTranslatedText">
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Save translated text</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#saveTranslatedText {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+	opacity: 0.5;
+	background: white;
+	padding: 7px;
+	border: 1px solid black;
+}
+#saveTranslatedText:hover  {
+	opacity: 1;
+	background: #dedddd;
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/saveTranslatedText.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="LeftPanel" native="true">
+      <property name="geometry">
+       <rect>
+        <x>20</x>
+        <y>430</y>
+        <width>490</width>
+        <height>50</height>
+       </rect>
       </property>
-      <property name="frameShape">
-       <enum>QFrame::NoFrame</enum>
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
       </property>
-      <property name="text">
-       <string/>
+      <property name="minimumSize">
+       <size>
+        <width>490</width>
+        <height>50</height>
+       </size>
       </property>
-      <property name="textFormat">
-       <enum>Qt::PlainText</enum>
+      <property name="maximumSize">
+       <size>
+        <width>490</width>
+        <height>40</height>
+       </size>
       </property>
-      <property name="pixmap">
-       <pixmap>img/pronunciation.png</pixmap>
+      <property name="baseSize">
+       <size>
+        <width>490</width>
+        <height>40</height>
+       </size>
       </property>
-      <property name="scaledContents">
-       <bool>true</bool>
+      <property name="styleSheet">
+       <string notr="true"/>
       </property>
+      <widget class="QWidget" name="horizontalLayoutWidget_3">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>-10</y>
+         <width>491</width>
+         <height>471</height>
+        </rect>
+       </property>
+       <layout class="QHBoxLayout" name="leftPanelLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <property name="sizeConstraint">
+         <enum>QLayout::SetFixedSize</enum>
+        </property>
+        <property name="leftMargin">
+         <number>10</number>
+        </property>
+        <property name="topMargin">
+         <number>5</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="sourcePronunciation">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Pronunciation</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">#sourcePronunciation {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+	opacity: 0.5;
+	background: white;
+	padding: 7px;
+	border: 1px solid black;
+}
+#sourcePronunciation:hover  {
+	opacity: 1;
+	background: #dedddd;
+}</string>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/pronunciation.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="openExternalLinks">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </widget>
     <widget class="QWidget" name="TranslationView">
@@ -701,7 +955,7 @@ QHeaderView::section
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1090</width>
+     <width>1100</width>
      <height>20</height>
     </rect>
    </property>
