@@ -1,6 +1,5 @@
-from PyQt6.QtWidgets import QApplication
 from classes.menu.actions.actionInterface import ActionInterface
-
+from ui.widgets.persistantTooltip import PersistentTooltip
 
 class CleanTranslateAction(ActionInterface):
     def __init__(self, ui):
@@ -16,3 +15,7 @@ class CleanTranslateAction(ActionInterface):
         
         self.ui.translateBox.clear()
         self.ui.inputBox.clear()
+        
+        """ TODO: create abstract class """
+        pos = self.ui.cleanTranslate.mapToGlobal(self.ui.cleanTranslate.rect().bottomRight())
+        PersistentTooltip(self.ui.cleanTranslate).showText(pos, "Cleaned")
