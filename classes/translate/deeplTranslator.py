@@ -1,11 +1,10 @@
 # Deepl translate
 import requests
 from requests.exceptions import HTTPError
-from classes.translate.translateInterface import TranslateInterface
+from .abstractTranslator import AbstractTranslator
 from classes.logger import Logger
 import time
 import math
-from textwrap import wrap
 import random
 import calendar
 import json
@@ -13,7 +12,7 @@ import datetime
 import re
 
 
-class DeeplTranslator(TranslateInterface):
+class DeeplTranslator(AbstractTranslator):
     """
         Deepl translate class
     """

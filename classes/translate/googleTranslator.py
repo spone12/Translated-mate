@@ -3,20 +3,19 @@ import requests
 from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup
 import urllib.parse
-from classes.translate.translateInterface import TranslateInterface
+from .abstractTranslator import AbstractTranslator
 from classes.logger import Logger
 import time
-import math
-from textwrap import wrap
 
 
-class GoogleTranslator(TranslateInterface):
+class GoogleTranslator(AbstractTranslator):
     """
         Google translate class
     """
 
     _baseUrl   = "https://translate.google.com/m?hl=ru&sl={0}&tl={1}&ie=UTF-8&prev=_m&q={2}"
     TEXT_LIMIT = 10000
+    CHUNK_SIZE = 5000
 
     def translate(self, text: str, targetLang: str, sourceLang: str = 'auto') -> str:
         """
@@ -25,13 +24,13 @@ class GoogleTranslator(TranslateInterface):
 
         translatedText = ''
 
-        if len(text) > 5000:
+        if len(text) > self.CHUNK_SIZE:
 
             #Splitting large text into chunks
-            chunkedText = wrap(text, 5000)
+            chunkedText = self.getTextChunks(text, self.CHUNK_SIZE)
 
             for currentTextBlock in chunkedText:
-                translatedText += self.requestTranslation(
+                translatedText += " " + self.requestTranslation(
                     self.formatUrl(sourceLang, targetLang, currentTextBlock)
                 )
                 time.sleep(0.300)
