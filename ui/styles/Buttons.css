@@ -1,0 +1,28 @@
+ClickableLabel[navButton="true"] {
+    background-repeat: no-repeat;
+	border-radius:  5px;
+}
+
+ClickableLabel[navButton="true"]:hover {
+    background: #fef5df;
+} 
+
+ClickableLabel[navButton="true"][active="true"] {
+    background-color: #fef5df;
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+}
+
+ClickableLabel[translateButton="true"] {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+	opacity: 0.5;
+	background: white;
+	padding: 7px;
+	border: 1px solid black;
+}
+
+ClickableLabel[translateButton="true"]:hover {
+	opacity: 1;
+	background: #dedddd;
+}

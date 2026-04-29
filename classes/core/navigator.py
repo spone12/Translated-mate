@@ -9,7 +9,8 @@ class Navigator:
         self.windows = {
             Routes.TRANSLATE: ui.TranslateWindow,
             Routes.SAVED: ui.TranslationViewWindow,
-            Routes.FLASHCARDS: ui.FlashCardsWindow
+            Routes.FLASHCARDS: ui.FlashCardsWindow,
+            Routes.SETTINGS: ui.SettingsWindow,
         }
 
         self.initNavigationButtons()

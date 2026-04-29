@@ -7,6 +7,7 @@ class Routes(Enum):
     TRANSLATE = 0
     SAVED = 1
     FLASHCARDS = 2
+    SETTINGS = 3
     
     @classmethod
     def values(routes) -> list:

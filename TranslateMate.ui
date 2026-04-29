@@ -420,14 +420,14 @@ color:black;</string>
           </property>
           <property name="minimumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="cursor">
@@ -437,24 +437,13 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>Pronunciation</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text pronunciation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">#pronunciation {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: white;
-	padding: 7px;
-	border: 1px solid black;
-}
-#pronunciation:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -486,8 +475,8 @@ color:black;</string>
          <widget class="ClickableLabel" name="copyTranslate">
           <property name="maximumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="cursor">
@@ -503,18 +492,7 @@ color:black;</string>
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">#copyTranslate {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: white;
-	padding: 7px;
-	border: 1px solid black;
-}
-#copyTranslate:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -534,14 +512,14 @@ color:black;</string>
          <widget class="ClickableLabel" name="saveTranslatedText">
           <property name="minimumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="cursor">
@@ -551,24 +529,13 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>Save translated text</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save translated text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">#saveTranslatedText {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: white;
-	padding: 7px;
-	border: 1px solid black;
-}
-#saveTranslatedText:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -652,7 +619,7 @@ color:black;</string>
          <number>0</number>
         </property>
         <item alignment="Qt::AlignTop">
-         <widget class="ClickableLabel" name="sourcePronunciation">
+         <widget class="ClickableLabel" name="microphone">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -661,14 +628,14 @@ color:black;</string>
           </property>
           <property name="minimumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
-            <width>30</width>
-            <height>30</height>
+            <width>35</width>
+            <height>35</height>
            </size>
           </property>
           <property name="cursor">
@@ -678,24 +645,74 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>Pronunciation</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Microphone input&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
           </property>
           <property name="styleSheet">
-           <string notr="true">#sourcePronunciation {
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-	opacity: 0.5;
-	background: white;
-	padding: 7px;
-	border: 1px solid black;
-}
-#sourcePronunciation:hover  {
-	opacity: 1;
-	background: #dedddd;
-}</string>
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/microphone.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="openExternalLinks">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="sourcePronunciation">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text pronunciation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
           </property>
           <property name="frameShape">
            <enum>QFrame::NoFrame</enum>
@@ -720,6 +737,43 @@ color:black;</string>
           </property>
           <property name="openExternalLinks">
            <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="sourceCopyTranslate">
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copy input text to clipboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/copy.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
           </property>
          </widget>
         </item>
@@ -880,6 +934,7 @@ QHeaderView::section
       </property>
      </widget>
     </widget>
+    <widget class="QWidget" name="Settings"/>
    </widget>
    <widget class="ClickableLabel" name="TranslationViewWindow">
     <property name="geometry">
@@ -944,6 +999,40 @@ QHeaderView::section
     </property>
     <property name="pixmap">
      <pixmap>img/flashCards.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="ClickableLabel" name="SettingsWindow">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>370</y>
+      <width>40</width>
+      <height>40</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="toolTip">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Main setting window&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>img/settings.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>

@@ -28,17 +28,11 @@ QScrollBar::sub-line:vertical {
     subcontrol-origin: margin;
 }
 
- ClickableLabel[navButton="true"] {
-    background-repeat: no-repeat;
-	border-radius:  5px;
+QToolTip {
+    background-color: #2b2b2b;
+    color: white;
+    border: 1px solid #555;
+    padding: 6px;
+    border-radius: 6px;
+    font-size: 14px;
 }
-
-ClickableLabel[navButton="true"]:hover {
-    background:  #fff6f7;
-} 
-
-ClickableLabel[navButton="true"][active="true"] {
-    background-color: #fff6f7;
-	background-repeat: no-repeat;
- 	border-radius:  5px;
-}  

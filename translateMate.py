@@ -1,10 +1,12 @@
 # Translate mate
 # Version 0.4.5
 import sys
+import ctypes
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ui.ui_main_window import Ui_MainWindow
 from classes.core.navigator import Navigator
 from classes.styles.styles import Styles
+from ui.configurators.mainWindowConfigurator import MainWindowConfigurator
 from classes.translate.TranslationResources.loadLangs import LoadingLangs
 from classes.menu.menu import Menu
 from classes.windows.TranslationViewWindow import TranslationViewWindow
@@ -31,6 +33,7 @@ class TranslateMate(QtWidgets.QMainWindow):
 
         super().__init__()
         self.initializeUI()
+        self.setupUIConfigurators()
         self.bootstrapDatabase()
         self.initializeServices()
         self.setupConnections()
@@ -43,8 +46,16 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("my.app.id")
         self.ui.currentTranslator = Translators.GOOGLE
 
+    def setupUIConfigurators(self):
+        """
+            Setup UI configurators
+        """
+        
+        MainWindowConfigurator(self.ui).apply()
+    
     def initializeServices(self) -> None:
         """
             Services initialization

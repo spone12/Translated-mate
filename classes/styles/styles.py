@@ -9,7 +9,8 @@ class Styles:
         self.ui = ui
         self.base_path = Path("ui/styles")
         self.files = [
-            "MainWindow.css",
+            "Main.css",
+            "Buttons.css",
             "TranslationTable.css"
         ]
 
