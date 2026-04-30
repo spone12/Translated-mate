@@ -11,6 +11,7 @@ from classes.translate.TranslationResources.loadLangs import LoadingLangs
 from classes.menu.menu import Menu
 from classes.windows.TranslationViewWindow import TranslationViewWindow
 from classes.windows.flashCardsWindow import FlashCardsWindow
+from classes.windows.settingsWindow import SettingsWindow
 from classes.database.db import Database
 from classes.database.migration import Migration
 from classes.enums.Translate.translators import Translators
@@ -68,6 +69,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.menu = Menu(self, self.db)
         self.translationView = TranslationViewWindow(self.ui, self.db)
         self.flashCards = FlashCardsWindow(self.ui, self.db)
+        self.settingsWindow = SettingsWindow(self.ui, self.db)
         
     def setupConnections(self) -> None:
         """
@@ -87,7 +89,8 @@ class TranslateMate(QtWidgets.QMainWindow):
         # Action routes
         self.actions += [
             GoToRouteAction(self.ui.TranslationViewWindow, self.navigator, Routes.SAVED, self.translationView.prepareWindow),
-            GoToRouteAction(self.ui.FlashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow)
+            GoToRouteAction(self.ui.FlashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow),
+            GoToRouteAction(self.ui.SettingsWindow, self.navigator, Routes.SETTINGS, self.settingsWindow.prepareWindow)
         ]
 
         # Triggers

@@ -14,4 +14,3 @@ class Menu():
 
         self.program.close()
         self.db.close()
-        

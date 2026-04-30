@@ -24,12 +24,11 @@ class FlashCardsWindow(WindowInterface):
         savedTranslations = self.service.getAll()
         
         for translation in savedTranslations:
-           pass 
+            pass 
 
     def prepareWindow(self) -> None:
         """
-            Prepare the window "flash cards"
+            Prepare the window "Flash cards"
         """
         
         self.renderFlashCards()
-    

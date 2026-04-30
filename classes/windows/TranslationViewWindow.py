@@ -61,6 +61,7 @@ class TranslationViewWindow(WindowInterface):
             self.ui.TranslationTableWidget.setIndexWidget(index, button)
 
     def deleteRow(self, row):
+        """ Delete row from table """
         rowId = self.model.getRowId(row)
 
         self.service.deleteRow(rowId)
