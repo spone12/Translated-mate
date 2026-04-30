@@ -1,12 +1,12 @@
-from classes.menu.actions.actionInterface import ActionInterface
+from .abstractAction import AbstractAction
 
 
-class ReverseTranslateAction(ActionInterface):
+class ReverseTranslateAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui
 
         # UI subscription
-        self.ui.reverseTranslate.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
@@ -27,3 +27,8 @@ class ReverseTranslateAction(ActionInterface):
 
         self.ui.targetLangList.setCurrentIndex(sourceLangIndex)
         self.ui.sourceLangList.setCurrentIndex(targetLangIndex)
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.reverseTranslate

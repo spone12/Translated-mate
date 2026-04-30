@@ -1,10 +1,10 @@
-from classes.menu.actions.actionInterface import ActionInterface
+from .abstractAction import AbstractAction
 from classes.database.Services.translateService import TranslateService
 from classes.database.Repository.translateRepository import TranslateRepository
 from classes.database.DTO.translateDTO import TranslateDTO
 
 
-class SaveTranslatedTextAction(ActionInterface):
+class SaveTranslatedTextAction(AbstractAction):
     def __init__(self, ui, db):
         self.ui = ui
         self.service = TranslateService(
@@ -12,7 +12,7 @@ class SaveTranslatedTextAction(ActionInterface):
         )
 
         # UI subscription
-        self.ui.saveTranslatedText.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
@@ -28,3 +28,9 @@ class SaveTranslatedTextAction(ActionInterface):
         )
 
         self.service.saveTranslation(dto)
+        self.showTooltip("Saved")
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.saveTranslatedText

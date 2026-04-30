@@ -1,7 +1,7 @@
-from .clickable_label import ClickableLabel
 from PyQt6.QtCore import Qt, QTimer
+from PyQt6.QtWidgets import QLabel
 
-class PersistentTooltip(ClickableLabel):
+class PersistentTooltip(QLabel):
     def __init__(self, parent=None):
         super().__init__(parent)
 
@@ -10,7 +10,7 @@ class PersistentTooltip(ClickableLabel):
         )
 
         self.setStyleSheet("""
-            background-color: #2b2b2b;
+            background-color: #036d33;
             color: white;
             padding: 6px;
             border-radius: 6px;

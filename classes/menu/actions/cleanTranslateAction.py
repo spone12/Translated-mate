@@ -1,12 +1,11 @@
-from classes.menu.actions.actionInterface import ActionInterface
-from ui.widgets.persistantTooltip import PersistentTooltip
+from .abstractAction import AbstractAction
 
-class CleanTranslateAction(ActionInterface):
+class CleanTranslateAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui
 
         # UI subscription
-        self.ui.cleanTranslate.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
@@ -15,7 +14,8 @@ class CleanTranslateAction(ActionInterface):
         
         self.ui.translateBox.clear()
         self.ui.inputBox.clear()
-        
-        """ TODO: create abstract class """
-        pos = self.ui.cleanTranslate.mapToGlobal(self.ui.cleanTranslate.rect().bottomRight())
-        PersistentTooltip(self.ui.cleanTranslate).showText(pos, "Cleaned")
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.cleanTranslate

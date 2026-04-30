@@ -1,13 +1,12 @@
-from classes.menu.actions.actionInterface import ActionInterface
 from classes.modules.pronunciation.pronunciation import Pronunciation
+from .abstractAction import AbstractAction
 
-
-class PronunciationAction(ActionInterface):
+class PronunciationAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui
 
         # UI subscription
-        self.ui.pronunciation.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
@@ -18,3 +17,8 @@ class PronunciationAction(ActionInterface):
             return None
 
         Pronunciation(self.ui.translateBox.toPlainText())
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.pronunciation

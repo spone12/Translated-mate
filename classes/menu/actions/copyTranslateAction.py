@@ -1,13 +1,12 @@
 from PyQt6.QtWidgets import QApplication
-from classes.menu.actions.actionInterface import ActionInterface
+from .abstractAction import AbstractAction
 
-
-class CopyTranslateAction(ActionInterface):
+class CopyTranslateAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui
 
         # UI subscription
-        self.ui.copyTranslate.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
@@ -15,3 +14,9 @@ class CopyTranslateAction(ActionInterface):
         """
         
         QApplication.clipboard().setText(self.ui.translateBox.toPlainText())
+        self.showTooltip("Copied")
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.copyTranslate

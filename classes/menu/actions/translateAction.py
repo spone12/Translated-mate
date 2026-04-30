@@ -1,20 +1,20 @@
-from classes.menu.actions.actionInterface import ActionInterface
+from .abstractAction import AbstractAction
 from classes.services.translatorFactory import TranslatorFactory
 from classes.enums.routes import Routes
 
 
-class TranslateAction(ActionInterface):
+class TranslateAction(AbstractAction):
     def __init__(self, ui, loadLang, navigator):
         self.ui = ui
         self.loadLang = loadLang
         self.navigator = navigator
 
         # UI subscription
-        self.ui.TranslateWindow.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
 
     def execute(self) -> None:
         """
-           Preparation before the translation 
+            Preparation before the translation 
         """
         
         if self.ui.DisplayArea.currentIndex() != Routes.TRANSLATE.value:
@@ -38,3 +38,8 @@ class TranslateAction(ActionInterface):
             self.loadLang.getKeyLang(self.ui.sourceLangList.currentText())
         )
         self.ui.translateBox.insertHtml(translatedText)
+
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.ui.TranslateWindow

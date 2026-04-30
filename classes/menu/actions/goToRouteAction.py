@@ -1,16 +1,16 @@
-from classes.menu.actions.actionInterface import ActionInterface
+from .abstractAction import AbstractAction
 
-
-class GoToRouteAction(ActionInterface):
-    def __init__(self, widget, navigator, route, beforeAction=None):
+class GoToRouteAction(AbstractAction):
+    def __init__(self, routeWidget, navigator, route, beforeAction=None):
         self.navigator = navigator
         self.route = route
+        self.routeWidget = routeWidget
 
         # Registering prepare-logic
         self.navigator.register(route, beforeAction)
 
         # UI subscription
-        widget.clicked.connect(self.execute)
+        self.widget.clicked.connect(self.execute)
         
 
     def execute(self):
@@ -19,3 +19,8 @@ class GoToRouteAction(ActionInterface):
         """
         
         self.navigator.goTo(self.route)
+        
+    @property
+    def widget(self):
+        """ Get current widget """
+        return self.routeWidget
