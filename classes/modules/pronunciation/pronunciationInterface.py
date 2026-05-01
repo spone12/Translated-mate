@@ -1,4 +1,4 @@
-# Main Interface translations API
+# Main Pronunciation Interface
 from abc import ABC, ABCMeta, abstractmethod
 
 

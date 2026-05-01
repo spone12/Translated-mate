@@ -1,6 +1,7 @@
 from abc import abstractmethod
 from .configuratorInterface import ConfiguratorInterface
 
+
 class AbstractUIConfigurator(ConfiguratorInterface):
     def __init__(self, ui):
         self.ui = ui
@@ -16,6 +17,4 @@ class AbstractUIConfigurator(ConfiguratorInterface):
         widget.setProperty(role, value)
         
     @abstractmethod
-    def setupUiProperties(self) -> None:
-        """ Setup UI properties """
-        pass
+    def setupUiProperties(self) -> None: raise NotImplementedError

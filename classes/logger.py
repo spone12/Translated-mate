@@ -2,6 +2,7 @@ import logging
 import os
 from pprint import pprint
 
+
 class Logger():
     """
         Logger class

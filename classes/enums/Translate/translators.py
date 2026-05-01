@@ -1,5 +1,6 @@
 from enum import Enum, unique
 
+
 # Translators Enum 
 @unique
 class Translators(Enum):
@@ -25,4 +26,3 @@ class Translators(Enum):
             if t.value == value:
                 return t
         raise ValueError(f"Unknown translator: {value}")
-    

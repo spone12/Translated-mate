@@ -1,7 +1,7 @@
 from requests.exceptions import HTTPError
-from classes.logger import *
+from classes.logger import Logger
 from classes.enums.Translate.translators import Translators
-from classes.translate.TranslationResources.languages import TRANSLATOR_LANGS
+from .languages import TRANSLATOR_LANGS
 
 
 class LoadingLangs():
@@ -69,4 +69,3 @@ class LoadingLangs():
         """
 
         return TRANSLATOR_LANGS[self.ui.currentTranslator]
-    

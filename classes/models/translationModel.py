@@ -66,4 +66,3 @@ class TranslationModel(QAbstractTableModel):
                 self.endRemoveRows()
                 
                 return
-            

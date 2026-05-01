@@ -1,5 +1,6 @@
 from .abstractAction import AbstractAction
 
+
 class GoToRouteAction(AbstractAction):
     def __init__(self, routeWidget, navigator, route, beforeAction=None):
         self.navigator = navigator

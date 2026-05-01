@@ -1,6 +1,7 @@
 import sqlite3
 from classes.logger import Logger
 
+
 class Database:
     def __init__(self, dbPath: str = "translate.db"):
         self.conn = sqlite3.connect(dbPath)
@@ -13,10 +14,9 @@ class Database:
         """
         
         try:
-           self.conn.commit()
+            self.conn.commit()
         except Exception as err:
             Logger().log(self.__class__.__name__, f"Database error: {err}")    
-        
 
     def close(self) -> None:
         """

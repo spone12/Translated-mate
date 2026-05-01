@@ -1,6 +1,7 @@
 from PyQt6.QtWidgets import QApplication
 from .abstractAction import AbstractAction
 
+
 class CopyTranslateAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui

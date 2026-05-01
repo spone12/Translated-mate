@@ -1,5 +1,6 @@
 from .db import Database
 
+
 class Migration:
     def __init__(self, db: Database):
         self.db = db

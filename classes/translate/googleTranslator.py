@@ -75,7 +75,7 @@ class GoogleTranslator(AbstractTranslator):
         else:
             answer       = BeautifulSoup(request.text, 'html.parser')
             parsedAnswer = answer.find('div', class_='result-container').text
-           
+            
         return parsedAnswer
 
     @property
@@ -85,4 +85,3 @@ class GoogleTranslator(AbstractTranslator):
     @property
     def textLimit(self) -> int:
         return self.TEXT_LIMIT
-    

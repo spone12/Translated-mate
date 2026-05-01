@@ -1,6 +1,7 @@
 from classes.modules.pronunciation.pronunciation import Pronunciation
 from .abstractAction import AbstractAction
 
+
 class PronunciationAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui

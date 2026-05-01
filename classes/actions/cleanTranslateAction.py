@@ -1,5 +1,6 @@
 from .abstractAction import AbstractAction
 
+
 class CleanTranslateAction(AbstractAction):
     def __init__(self, ui):
         self.ui = ui

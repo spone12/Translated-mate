@@ -3,4 +3,3 @@ class AppContext:
         self.ui = ui
         self.loadLang = loadLang
         self.navigator = navigator
-        

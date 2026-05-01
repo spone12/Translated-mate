@@ -1,6 +1,7 @@
 import pyttsx3
 from .pronunciationInterface import PronunciationInterface
 
+
 class Pyttsx(PronunciationInterface):
 
     def __init__(self, text):

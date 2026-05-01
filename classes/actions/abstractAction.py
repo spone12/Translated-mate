@@ -3,6 +3,7 @@ from abc import abstractmethod
 from .actionInterface import ActionInterface
 from ui.widgets.persistantTooltip import PersistentTooltip
 
+
 class AbstractAction(ActionInterface):
 
     @property

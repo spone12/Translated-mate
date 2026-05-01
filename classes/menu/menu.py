@@ -1,6 +1,7 @@
 import sys
 import ui
 
+
 class Menu():
 
     def __init__(self, program, db):

@@ -1,5 +1,6 @@
 from .abstractUIConfigurator import AbstractUIConfigurator
 
+
 class MainWindowConfigurator(AbstractUIConfigurator):
     def __init__(self, ui):
         self.ui = ui
@@ -18,4 +19,3 @@ class MainWindowConfigurator(AbstractUIConfigurator):
         
         for elem in elements:
             self.setProperty(elem, "translateButton")
-        

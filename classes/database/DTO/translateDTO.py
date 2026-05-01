@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 
+
 @dataclass
 class TranslateDTO:
     source_text: str
@@ -7,4 +8,3 @@ class TranslateDTO:
     source_lang: str
     target_lang: str
     translator: str
-    

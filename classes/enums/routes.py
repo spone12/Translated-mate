@@ -1,5 +1,6 @@
 from enum import Enum, unique
 
+
 # Window Index Mapping Routes
 @unique
 class Routes(Enum):
@@ -16,4 +17,3 @@ class Routes(Enum):
         """
         
         return [r.value for r in routes]
-    

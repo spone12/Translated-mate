@@ -1,6 +1,7 @@
 from ..Repository.translateRepository import TranslateRepository
 from classes.database.DTO.translateDTO import TranslateDTO
 
+
 class TranslateService:
     def __init__(self, repo: TranslateRepository):
         self.repo = repo

@@ -12,4 +12,3 @@ class TranslateInterface(ABC):
 
     @abstractmethod
     def textLimitReached(self, text: str) -> bool: raise NotImplementedError
-    

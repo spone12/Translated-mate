@@ -1,6 +1,7 @@
 from PyQt6.QtCore import Qt, QTimer
 from PyQt6.QtWidgets import QLabel
 
+
 class PersistentTooltip(QLabel):
     def __init__(self, parent=None):
         super().__init__(parent)

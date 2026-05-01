@@ -1,5 +1,6 @@
 from classes.enums.routes import Routes
 
+
 class Navigator:
     def __init__(self, ui, defaultWindow = Routes.TRANSLATE):
         self.ui = ui
@@ -26,7 +27,7 @@ class Navigator:
 
     def initNavigationButtons(self) -> None:
         """
-           Initializing the navigation buttons property 
+            Initializing the navigation buttons property 
         """
         
         for w in self.windows.values():

@@ -41,7 +41,6 @@ class DeeplTranslator(AbstractTranslator):
         Rnd = random.Random(totalSeconds)
         self._DeepLId = baseIdMult * round(baseIdMult * Rnd.random())
         
-
     def requestTranslation(self, url: str, text: str, targetLang: str, sourceLang: str) -> str:
         """
             Request a source for text translation
@@ -144,4 +143,3 @@ class DeeplTranslator(AbstractTranslator):
     @property
     def textLimit(self) -> int:
         return self.TEXT_LIMIT
-    

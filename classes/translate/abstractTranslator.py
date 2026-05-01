@@ -3,6 +3,7 @@ from abc import abstractmethod
 from .translateInterface import TranslateInterface
 from textwrap import wrap
 
+
 class AbstractTranslator(TranslateInterface):
 
     @property
@@ -20,4 +21,3 @@ class AbstractTranslator(TranslateInterface):
     def getTextChunks(self, text: str, len: int) -> list:
         """ Splitting large text into chunks """
         return wrap(text, len)
-    

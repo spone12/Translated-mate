@@ -1,5 +1,5 @@
 # Save translation window
-from classes.logger import *
+from classes.logger import Logger
 from PyQt6.QtWidgets import QStyledItemDelegate, QPushButton
 from .windowInterface import WindowInterface
 from classes.models.translationModel import TranslationModel

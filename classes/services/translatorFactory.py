@@ -14,4 +14,3 @@ class TranslatorFactory:
                 return GoogleTranslator()
             case Translators.DEEPL:
                 return DeeplTranslator()
-            
