@@ -16,13 +16,13 @@ from classes.database.db import Database
 from classes.database.migration import Migration
 from classes.enums.Translate.translators import Translators
 from classes.enums.routes import Routes
-from classes.menu.actions.translateAction import TranslateAction
-from classes.menu.actions.pronunciationAction import PronunciationAction
-from classes.menu.actions.saveTranslatedTextAction import SaveTranslatedTextAction
-from classes.menu.actions.reverseTranslateAction import ReverseTranslateAction
-from classes.menu.actions.copyTranslateAction import CopyTranslateAction
-from classes.menu.actions.cleanTranslateAction import CleanTranslateAction
-from classes.menu.actions.goToRouteAction import GoToRouteAction
+from classes.actions.translateAction import TranslateAction
+from classes.actions.pronunciationAction import PronunciationAction
+from classes.actions.saveTranslatedTextAction import SaveTranslatedTextAction
+from classes.actions.reverseTranslateAction import ReverseTranslateAction
+from classes.actions.copyTranslateAction import CopyTranslateAction
+from classes.actions.cleanTranslateAction import CleanTranslateAction
+from classes.actions.goToRouteAction import GoToRouteAction
 
 
 class TranslateMate(QtWidgets.QMainWindow):

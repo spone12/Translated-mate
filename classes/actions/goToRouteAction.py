@@ -10,8 +10,7 @@ class GoToRouteAction(AbstractAction):
         self.navigator.register(route, beforeAction)
 
         # UI subscription
-        self.widget.clicked.connect(self.execute)
-        
+        self.bind()
 
     def execute(self):
         """

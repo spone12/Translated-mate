@@ -6,7 +6,7 @@ class PronunciationAction(AbstractAction):
         self.ui = ui
 
         # UI subscription
-        self.widget.clicked.connect(self.execute)
+        self.bind()
 
     def execute(self) -> None:
         """

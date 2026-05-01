@@ -9,6 +9,11 @@ class AbstractAction(ActionInterface):
     @abstractmethod
     def widget(self): raise NotImplementedError
 
+    def bind(self) -> None:
+        """ Bind the action """
+        if self.widget:
+            self.widget.clicked.connect(self.execute)
+        
     def showTooltip(self, text: str) -> None:
         """ Show message tooltip """
         pos = self.widget.mapToGlobal(
