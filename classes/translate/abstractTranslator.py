@@ -1,11 +1,15 @@
 # Abstract translator class
 from abc import abstractmethod
 from .translateInterface import TranslateInterface
+from classes.logger import Logger
 from textwrap import wrap
 
 
 class AbstractTranslator(TranslateInterface):
 
+    def __init__(self):
+        self.logger = Logger().getLogger(self.__class__.__name__)
+        
     @property
     @abstractmethod
     def baseUrl(self) -> str: raise NotImplementedError

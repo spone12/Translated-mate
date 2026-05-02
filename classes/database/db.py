@@ -7,6 +7,7 @@ class Database:
         self.conn = sqlite3.connect(dbPath)
         self.conn.row_factory = sqlite3.Row
         self.cursor = self.conn.cursor()
+        self.logger = Logger().getLogger(self.__class__.__name__)
 
     def commit(self) -> None:
         """
@@ -15,8 +16,9 @@ class Database:
         
         try:
             self.conn.commit()
-        except Exception as err:
-            Logger().log(self.__class__.__name__, f"Database error: {err}")    
+        except Exception:
+            self.logger.exception("Database commit failed")
+            raise
 
     def close(self) -> None:
         """

@@ -13,7 +13,7 @@ class TranslateService:
         
         return self.repo.getAll()
 
-    def saveTranslation(self, data: TranslateDTO) -> None:
+    def saveTranslation(self, data: TranslateDTO) -> int:
         """
             Service logic Translate table before insert
         """
@@ -21,7 +21,7 @@ class TranslateService:
         if not data.source_text and not data.target_text:
             return None
         
-        self.repo.insert(data)
+        return self.repo.insert(data)
 
     def deleteRow(self, id: int) -> None:
         """

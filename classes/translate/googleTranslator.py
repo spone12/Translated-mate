@@ -21,7 +21,7 @@ class GoogleTranslator(AbstractTranslator):
         """
             Main tranlate method
         """
-
+        
         translatedText = ''
 
         if len(text) > self.CHUNK_SIZE:
@@ -69,9 +69,9 @@ class GoogleTranslator(AbstractTranslator):
             request = requests.get(url, headers = headers)
             request.raise_for_status()
         except HTTPError as http_err:
-            Logger().log(self.__class__.__name__, f"HTTP error occurred: {http_err}")
+            self.logger.error(f"HTTP error occurred: {http_err}")
         except Exception as err:
-            Logger().log(self.__class__.__name__, f"Other error occurred: {err}")
+            self.logger.error(f"Other error occurred: {err}")
         else:
             answer       = BeautifulSoup(request.text, 'html.parser')
             parsedAnswer = answer.find('div', class_='result-container').text

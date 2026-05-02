@@ -11,6 +11,7 @@ class LoadingLangs():
 
     def __init__(self, ui):
         self.ui = ui
+        self.logger = Logger().getLogger(self.__class__.__name__)
         self.loadLangArrays(self.ui.currentTranslator)
         
     def chooseTranslator(self, event):
@@ -54,13 +55,13 @@ class LoadingLangs():
             Get country code by full language name
         """
         
-        languagesArray = self.getListTranslatorLanguages().items()
-        
-        for k, v in languagesArray:
+        languagesList = self.getListTranslatorLanguages().items()
+
+        for k, v in languagesList:
             if (isinstance(v, list) and value in v) or value == v:
                 return k
         else:
-            Logger().log(self.__class__.__name__, f"Cant find language: {value}")
+            self.logger.error(f"Cant find language: {value}")
             return 'auto'
 
     def getListTranslatorLanguages(self):

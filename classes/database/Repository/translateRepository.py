@@ -1,5 +1,4 @@
 from ..db import Database
-from classes.logger import Logger
 from classes.database.DTO.translateDTO import TranslateDTO
 from .baseRepository import BaseRepository
 
@@ -16,33 +15,43 @@ class TranslateRepository(BaseRepository):
         
         try:
             return self.db.cursor.execute("SELECT * FROM Translate").fetchall()
-        except Exception as err:
-            self.logger.log(self.__class__.__name__, f"Select error: {err}")
+        except Exception:
+            self.logger.exception("Failed to fetch translations")
             raise
         
     
-    def insert(self, data: TranslateDTO) -> None:
+    def insert(self, data: TranslateDTO) -> int:
         """
             Insert data into table
         """
         
-        self.db.cursor.execute("""
-            INSERT INTO Translate 
-            (source_text, target_text, source_lang, target_lang, translator)
-            VALUES (?, ?, ?, ?, ?)
-        """, (
-            data.source_text,
-            data.target_text,
-            data.source_lang,
-            data.target_lang,
-            data.translator
-        ))
-        self.db.commit()
-    
+        try:
+            self.db.cursor.execute("""
+                INSERT INTO Translate 
+                (source_text, target_text, source_lang, target_lang, translator)
+                VALUES (?, ?, ?, ?, ?)
+            """, (
+                data.source_text,
+                data.target_text,
+                data.source_lang,
+                data.target_lang,
+                data.translator
+            ))
+            
+            self.db.commit()
+            return self.db.cursor.lastrowid
+        except Exception:
+            self.logger.exception("Failed to insert into table translations")
+            raise
+        
     def delete(self, id: int) -> None:
         """
             Delete row from table by ID
         """
 
-        self.db.cursor.execute('DELETE FROM Translate WHERE id = ?', (id, ))
-        self.db.commit()
+        try:
+            self.db.cursor.execute('DELETE FROM Translate WHERE id = ?', (id, ))
+            self.db.commit()
+        except Exception:
+            self.logger.exception("Failed to delete row from translations")
+            raise

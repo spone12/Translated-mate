@@ -1,30 +1,44 @@
 import logging
 import os
-from pprint import pprint
 
 
-class Logger():
-    """
-        Logger class
-    """
+class Logger:
+    _instance = None
 
-    def __init__(self):
-        self.logPath = "log/"
+    def __new__(cls, logDir: str = "log"):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+            cls._instance._init(logDir)
+        return cls._instance
 
-    def log(self, logClass: str, message: str, level = 'error') -> None:
+    def _init(self, logDir: str):
+        self.logDir = logDir
+        os.makedirs(self.logDir, exist_ok=True)
+        self.loggers = {}
 
-        if not os.path.exists(self.logPath):
-            os.mkdir(self.logPath)
+    def getLogger(self, name: str):
+        """ Get logger """
+        if name in self.loggers:
+            return self.loggers[name]
 
-        logging.basicConfig(
-            level    = logging.INFO,
-            filename = self.logPath + logClass + "_errors.log",
-            filemode = "a",
-            format   = "%(asctime)s [%(levelname)s]: %(message)s"
+        logger = logging.getLogger(name)
+        logger.setLevel(logging.INFO)
+
+        fileHandler = logging.FileHandler(
+            os.path.join(self.logDir, f"{name}.log")
         )
-        logging.error(message) 
-        print(message)
+        consoleHandler = logging.StreamHandler()
 
-    def printObject(obj) -> None:
-        pprint(vars(obj))
+        formatter = logging.Formatter(
+            "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+        )
         
+        consoleHandler.setFormatter(formatter)
+        fileHandler.setFormatter(formatter)
+        
+        if not logger.handlers:
+            logger.addHandler(consoleHandler)
+            logger.addHandler(fileHandler)
+
+        self.loggers[name] = logger
+        return logger

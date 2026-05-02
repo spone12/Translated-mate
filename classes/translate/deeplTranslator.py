@@ -121,15 +121,14 @@ class DeeplTranslator(AbstractTranslator):
             request = requests.post(url, data=json.dumps(body), headers = headers)
             request.raise_for_status()
         except HTTPError as http_err:
-            Logger().log(self.__class__.__name__, f"HTTP error occurred: {http_err}")
+            self.logger.error(f"HTTP error occurred: {http_err}")
         except Exception as err:
-            Logger().log(self.__class__.__name__, f"Other error occurred: {err}")
+            self.logger.error(f"Other error occurred: {err}")
         else:
 
             answerDecode = json.loads(request.text)
             if not answerDecode['result']['translations']:
-                Logger().log(self.__class__.__name__, f"Deepl strange response;")
-                Logger().log(self.__class__.__name__, f"Deepl body is null!")
+                self.logger.error(f"Deepl strange response;\nDeepl body is null!")
 
             for trans in answerDecode['result']['translations']:
                 parsedAnswer += trans['beams'][0]['sentences'][0]['text']
