@@ -23,7 +23,7 @@ from classes.actions.reverseTranslateAction import ReverseTranslateAction
 from classes.actions.copyTranslateAction import CopyTranslateAction
 from classes.actions.cleanTranslateAction import CleanTranslateAction
 from classes.actions.goToRouteAction import GoToRouteAction
-
+from classes.core.actionRouter import ActionRouter
 
 class TranslateMate(QtWidgets.QMainWindow):
     """
@@ -31,7 +31,6 @@ class TranslateMate(QtWidgets.QMainWindow):
     """
 
     def __init__(self):
-
         super().__init__()
         self.initializeUI()
         self.setupUIConfigurators()
@@ -70,27 +69,29 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.translationView = TranslationViewWindow(self.ui, self.db)
         self.flashCards = FlashCardsWindow(self.ui, self.db)
         self.settingsWindow = SettingsWindow(self.ui, self.db)
+        self.actionRouter = ActionRouter()
         
     def setupConnections(self) -> None:
         """
             Loading program actions
         """
         
+        # Action routes
+        self.actionRoutes = {
+            Routes.SAVED: GoToRouteAction(self.ui.TranslationViewWindow, self.navigator, Routes.SAVED, self.translationView.prepareWindow),
+            Routes.FLASHCARDS: GoToRouteAction(self.ui.FlashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow),
+            Routes.SETTINGS: GoToRouteAction(self.ui.SettingsWindow, self.navigator, Routes.SETTINGS, self.settingsWindow.prepareWindow)
+        }
+        self.actionRouter.registerAll(self.actionRoutes)
+        
         # Actions
         self.actions = [
             TranslateAction(self.ui, self.loadLang, self.navigator),
-            SaveTranslatedTextAction(self.ui, self.db),
+            SaveTranslatedTextAction(self.ui, self.db, self.actionRouter),
             PronunciationAction(self.ui),
             CopyTranslateAction(self.ui),
             CleanTranslateAction(self.ui),
             ReverseTranslateAction(self.ui)
-        ]
-
-        # Action routes
-        self.actions += [
-            GoToRouteAction(self.ui.TranslationViewWindow, self.navigator, Routes.SAVED, self.translationView.prepareWindow),
-            GoToRouteAction(self.ui.FlashCardsWindow, self.navigator, Routes.FLASHCARDS, self.flashCards.prepareWindow),
-            GoToRouteAction(self.ui.SettingsWindow, self.navigator, Routes.SETTINGS, self.settingsWindow.prepareWindow)
         ]
 
         # Triggers

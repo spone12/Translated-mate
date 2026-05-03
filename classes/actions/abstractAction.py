@@ -2,10 +2,16 @@
 from abc import abstractmethod
 from .actionInterface import ActionInterface
 from ui.widgets.persistantTooltip import PersistentTooltip
+from classes.enums.routes import Routes
+from ui.widgets.actionTooltip import ActionTooltip
+from classes.core.actionRouter import ActionRouter
 
 
 class AbstractAction(ActionInterface):
 
+    def __init__(self):
+        self.toast = None
+        
     @property
     @abstractmethod
     def widget(self): raise NotImplementedError
@@ -14,6 +20,10 @@ class AbstractAction(ActionInterface):
         """ Bind the action """
         if self.widget:
             self.widget.clicked.connect(self.execute)
+    
+    def bindToast(self, actionRouter: ActionRouter, route: Routes):
+        """ Bind toast to route """
+        actionRouter.bind(self.getToast().clicked, route)
         
     def showTooltip(self, text: str) -> None:
         """ Show message tooltip """
@@ -21,3 +31,10 @@ class AbstractAction(ActionInterface):
             self.widget.rect().bottomRight()
         )
         PersistentTooltip(self.widget).showText(pos, text)
+
+    def getToast(self):
+        """ Get toast """
+        
+        if self.toast is None:
+            self.toast = ActionTooltip(self.widget)
+        return self.toast
