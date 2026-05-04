@@ -31,7 +31,9 @@ class SaveTranslatedTextAction(AbstractAction):
             translator  = self.ui.currentTranslator.value
         )
         
-        self.service.saveTranslation(dto)
+        rowId = self.service.saveTranslation(dto)
+        if rowId is None:
+            return None
         
         text = '''Translation added to 
         <b style="font-size: 14px; color: orange;">Saved translations</b>
