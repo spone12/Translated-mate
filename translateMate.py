@@ -17,6 +17,7 @@ from classes.database.migration import Migration
 from classes.enums.Translate.translators import Translators
 from classes.enums.routes import Routes
 from classes.actions.translateAction import TranslateAction
+from classes.handlers.textChangeHandler import TextChangeHandler
 from classes.actions.pronunciationAction import PronunciationAction
 from classes.actions.sourcePronunciationAction import SourcePronunciationAction
 from classes.actions.saveTranslatedTextAction import SaveTranslatedTextAction
@@ -98,6 +99,11 @@ class TranslateMate(QtWidgets.QMainWindow):
             ReverseTranslateAction(self.ui)
         ]
 
+        # Handlers
+        self.handlers = [
+            TextChangeHandler(self.ui),
+        ]
+        
         # Triggers
         self.ui.actionExit.triggered.connect(self.menu.exitProgramm)
         self.ui.chooseTranslator.triggered.connect(self.loadLang.chooseTranslator)
