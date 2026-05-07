@@ -27,7 +27,7 @@
 ## Installation (Установка)
 
 Установка зависимостей: `pip install -r requirements.txt` <br />
-Для конвертации при изменении ui использовать команду: `pyuic6 -x TranslateMate.ui -o ui/ui_main_window.py`
+Для конвертации при изменении ui использовать команду: `python -m PyQt6.uic.pyuic -x TranslateMate.ui -o ui/ui_main_window.py`
 
 ## Visual appearance of the programme (Визуальный вид программы)
 ![Example of a program](img/Examples/Example.png "Example of a program")

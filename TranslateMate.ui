@@ -175,6 +175,9 @@ color:black;</string>
       </property>
      </widget>
      <widget class="ClickableLabel" name="cleanTranslate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>470</x>
@@ -412,6 +415,9 @@ color:black;</string>
         </property>
         <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="pronunciation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -473,6 +479,9 @@ color:black;</string>
         </item>
         <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="copyTranslate">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="maximumSize">
            <size>
             <width>35</width>
@@ -510,6 +519,9 @@ color:black;</string>
         </item>
         <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="saveTranslatedText">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="minimumSize">
            <size>
             <width>35</width>
@@ -681,6 +693,9 @@ color:black;</string>
         </item>
         <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="sourcePronunciation">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
             <horstretch>0</horstretch>
@@ -742,6 +757,9 @@ color:black;</string>
         </item>
         <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="sourceCopyTranslate">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="maximumSize">
            <size>
             <width>35</width>
@@ -1045,7 +1063,7 @@ QHeaderView::section
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>20</height>
+     <height>24</height>
     </rect>
    </property>
    <property name="cursor">
