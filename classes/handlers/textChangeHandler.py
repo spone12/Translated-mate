@@ -23,6 +23,7 @@ class TextChangeHandler(AbstractHandler):
     def bind(self) -> None:
         """ Bind the handler """
         self.ui.inputBox.textChanged.connect(self.execute)
+        self.ui.translateBox.textChanged.connect(self.execute)
 
     def execute(self) -> None:
         """ Triggering events when the input field is changed """
@@ -39,11 +40,10 @@ class TextChangeHandler(AbstractHandler):
         for btn in self.sourceButtons:
             btn.setEnabled(state["is_valid"])
         
-        
         for btn in self.translateButtons:
             btn.setEnabled(state["is_valid_target"])
         
         self.ui.saveTranslatedText.setEnabled(state["can_save"])
         
         # Char counter
-        #self.ui.charCounter.setText(str(state["length"]))
+        #self.ui.charCounter.setText(str(state["chars"]))
