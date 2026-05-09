@@ -36,3 +36,17 @@ QToolTip {
     border-radius: 6px;
     font-size: 14px;
 }
+
+QLabel:disabled {
+    color: #cccccc;
+    background-color: #2b2b2b;
+    border-radius: 6px;
+    padding: 2px;
+}
+
+QTextEdit:disabled {
+    color: white;
+    background-color: #2b2b2b;
+    border-radius: 6px;
+    padding: 2px;
+}
