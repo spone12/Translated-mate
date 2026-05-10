@@ -10,6 +10,8 @@ import calendar
 import json
 import datetime
 import re
+from classes.enums.Translate.translatorsLimit import TranslatorsLimit
+from classes.enums.Translate.translators import Translators
 
 
 class DeeplTranslator(AbstractTranslator):
@@ -18,7 +20,6 @@ class DeeplTranslator(AbstractTranslator):
     """
 
     _baseUrl   = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
-    TEXT_LIMIT = 1500
     _DeepLId   = 0
     _regex     = "(\S.+?([.!?♪。]|$))(?=\s+|$)"
 
@@ -141,4 +142,4 @@ class DeeplTranslator(AbstractTranslator):
     
     @property
     def textLimit(self) -> int:
-        return self.TEXT_LIMIT
+        return TranslatorsLimit.fromValue(Translators.DEEPL)

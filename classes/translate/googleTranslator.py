@@ -6,6 +6,8 @@ import urllib.parse
 from .abstractTranslator import AbstractTranslator
 from classes.logger import Logger
 import time
+from classes.enums.Translate.translatorsLimit import TranslatorsLimit
+from classes.enums.Translate.translators import Translators
 
 
 class GoogleTranslator(AbstractTranslator):
@@ -14,7 +16,6 @@ class GoogleTranslator(AbstractTranslator):
     """
 
     _baseUrl   = "https://translate.google.com/m?hl=ru&sl={0}&tl={1}&ie=UTF-8&prev=_m&q={2}"
-    TEXT_LIMIT = 10000
     CHUNK_SIZE = 5000
 
     def translate(self, text: str, targetLang: str, sourceLang: str = 'auto') -> str:
@@ -84,4 +85,4 @@ class GoogleTranslator(AbstractTranslator):
     
     @property
     def textLimit(self) -> int:
-        return self.TEXT_LIMIT
+        return TranslatorsLimit.fromValue(Translators.GOOGLE)

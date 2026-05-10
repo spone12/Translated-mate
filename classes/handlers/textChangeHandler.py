@@ -1,4 +1,5 @@
 from .abstractHandler import AbstractHandler
+from classes.enums.Translate.translatorsLimit import TranslatorsLimit
 from classes.core.validators.translationValidator import TranslationValidator
 from classes.core.controllers.translationFormController import TranslationFormController
 
@@ -47,9 +48,9 @@ class TextChangeHandler(AbstractHandler):
         
         # Set char counter
         self.ui.charCounter.setText(
-            str(state["chars"]) + " / " + " 0 "
+            str(state["chars"]) + " / " + 
+            str(TranslatorsLimit.fromValue(self.ui.currentTranslator))
         )
         
         # Set words counter
         self.ui.wordsCounter.setText(str(state["words"]))
-
