@@ -19,6 +19,7 @@ from classes.enums.routes import Routes
 from classes.actions.translateAction import TranslateAction
 from classes.handlers.textChangeHandler import TextChangeHandler
 from classes.actions.pronunciationAction import PronunciationAction
+from classes.actions.pastSourceTextAction import PastSourceTextAction
 from classes.actions.sourcePronunciationAction import SourcePronunciationAction
 from classes.actions.saveTranslatedTextAction import SaveTranslatedTextAction
 from classes.actions.reverseTranslateAction import ReverseTranslateAction
@@ -91,6 +92,7 @@ class TranslateMate(QtWidgets.QMainWindow):
         self.actions = [
             TranslateAction(self.ui, self.loadLang, self.navigator),
             SaveTranslatedTextAction(self.ui, self.db, self.actionRouter),
+            PastSourceTextAction(self.ui),
             PronunciationAction(self.ui),
             SourcePronunciationAction(self.ui),
             CopyTranslateAction(self.ui),

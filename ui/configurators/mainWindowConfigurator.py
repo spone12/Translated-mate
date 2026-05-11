@@ -9,6 +9,7 @@ class MainWindowConfigurator(AbstractUIConfigurator):
         """ Setup UI properties """
         
         elements = (
+            self.ui.pastSourceText,
             self.ui.microphone,
             self.ui.sourcePronunciation,
             self.ui.sourceCopyTranslate,

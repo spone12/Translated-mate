@@ -443,7 +443,7 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text pronunciation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Text pronunciation</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
@@ -541,7 +541,7 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Save translated text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Save translated text</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
@@ -634,6 +634,67 @@ color:black;</string>
          <number>0</number>
         </property>
         <item alignment="Qt::AlignTop">
+         <widget class="ClickableLabel" name="pastSourceText">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>35</width>
+            <height>35</height>
+           </size>
+          </property>
+          <property name="cursor">
+           <cursorShape>PointingHandCursor</cursorShape>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
+          <property name="toolTip">
+           <string>Paste text from the clipboard for translate</string>
+          </property>
+          <property name="autoFillBackground">
+           <bool>false</bool>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="frameShape">
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="frameShadow">
+           <enum>QFrame::Plain</enum>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+          <property name="textFormat">
+           <enum>Qt::PlainText</enum>
+          </property>
+          <property name="pixmap">
+           <pixmap>img/paste.png</pixmap>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+          </property>
+          <property name="openExternalLinks">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item alignment="Qt::AlignTop">
          <widget class="ClickableLabel" name="microphone">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -660,7 +721,7 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Microphone input&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Microphone input</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
@@ -724,7 +785,7 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text pronunciation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Text pronunciation</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
@@ -776,7 +837,7 @@ color:black;</string>
            <enum>Qt::NoFocus</enum>
           </property>
           <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Copy input text to clipboard&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <string>Copy input text to clipboard</string>
           </property>
           <property name="autoFillBackground">
            <bool>false</bool>
@@ -1202,7 +1263,7 @@ QHeaderView::section
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>24</height>
+     <height>25</height>
     </rect>
    </property>
    <property name="cursor">
