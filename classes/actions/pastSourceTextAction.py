@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QApplication
+from PyQt6.QtCore import QTimer
 from .abstractAction import AbstractAction
 
 
@@ -11,16 +12,24 @@ class PastSourceTextAction(AbstractAction):
 
     def execute(self) -> None:
         """ Paste text from the clipboard for translate """
-        
-        app = QApplication([])
 
         # Get the clipboard object
-        clipboard = app.clipboard()
+        clipboard = QApplication.clipboard()
+        # Get mime data
+        mime = clipboard.mimeData()
 
-        # Retrieve the clipboard text
-        text = clipboard.text()
-
-        print(f"Clipboard contains: {text}")        
+        if mime.hasText() and not mime.hasImage():
+            # Clear input box
+            self.ui.inputBox.clear()
+            
+            # Retrieve the clipboard text
+            text = mime.text()
+            
+            # Past text after 500 ms
+            QTimer.singleShot(
+                500,
+                lambda: self.ui.inputBox.insertPlainText(text)
+            )
 
     @property
     def widget(self):
