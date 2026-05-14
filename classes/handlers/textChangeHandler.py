@@ -46,11 +46,10 @@ class TextChangeHandler(AbstractHandler):
         
         self.ui.saveTranslatedText.setEnabled(state["can_save"])
         
-        # Set char counter
+        # Set counter
+        limit = TranslatorsLimit.fromValue(self.ui.currentTranslator)
         self.ui.charCounter.setText(
-            str(state["chars"]) + " / " + 
-            str(TranslatorsLimit.fromValue(self.ui.currentTranslator))
+            f'{state["chars"]} / '
+            f'{limit} chars '
+            f'({state["words"]} words)'
         )
-        
-        # Set words counter
-        self.ui.wordsCounter.setText(str(state["words"]))
