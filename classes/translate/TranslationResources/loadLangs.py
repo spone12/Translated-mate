@@ -1,6 +1,7 @@
 from requests.exceptions import HTTPError
 from classes.logger import Logger
 from classes.enums.Translate.translators import Translators
+from classes.services.detector.language_detector import LanguageDetector
 from .languages import TRANSLATOR_LANGS
 
 
@@ -12,6 +13,7 @@ class LoadingLangs():
     def __init__(self, ui):
         self.ui = ui
         self.logger = Logger().getLogger(self.__class__.__name__)
+        self.langDetector = LanguageDetector()
         self.loadLangArrays(self.ui.currentTranslator)
         
     def chooseTranslator(self, event):
@@ -50,19 +52,26 @@ class LoadingLangs():
             
         self.ui.targetLangList.setCurrentIndex(languageValues.index('Russian'))
 
-    def getKeyLang(self, value) -> str:
+    def getKeyLang(self, language: str, text:str = '') -> str:
         """
-            Get country code by full language name
+            Getting the language country code by name
         """
         
-        languagesList = self.getListTranslatorLanguages().items()
-
-        for k, v in languagesList:
-            if (isinstance(v, list) and value in v) or value == v:
+        languagesList = self.getListTranslatorLanguages()
+        
+        # Checking for presence in an array
+        for k, llist in languagesList.items():
+            if (isinstance(llist, list) and language in llist) or language == llist:
                 return k
         else:
-            self.logger.error(f"Cant find language: {value}")
-            return 'auto'
+            # Language detection
+            if text:
+                detectedLanguage = self.langDetector.detect(text)
+                
+                if detectedLanguage in languagesList:
+                    return detectedLanguage
+                
+        return 'auto'
 
     def getListTranslatorLanguages(self):
         """
