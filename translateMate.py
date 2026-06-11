@@ -25,7 +25,12 @@ from classes.actions.copyTranslateAction import CopyTranslateAction
 from classes.actions.sourceCopyTranslateAction import SourceCopyTranslateAction
 from classes.actions.cleanTranslateAction import CleanTranslateAction
 from classes.actions.goToRouteAction import GoToRouteAction
+from classes.actions.previousTranslatitonAction import PreviousTranslationAction
+from classes.actions.nextTranslatitonAction import NextTranslationAction
 from classes.core.actionRouter import ActionRouter
+from classes.services.translationHistory import TranslationHistory
+from classes.factories.translate.TranslationUIMapper import TranslationUIMapper
+
 
 class TranslateMate(QtWidgets.QMainWindow):
     """
@@ -86,17 +91,22 @@ class TranslateMate(QtWidgets.QMainWindow):
         }
         self.actionRouter.registerAll(self.actionRoutes)
         
+        translationMapper = TranslationUIMapper(self.ui)
+        history = TranslationHistory(self.ui, translationMapper)
+        
         # Actions
         self.actions = [
-            TranslateAction(self.ui, self.loadLang, self.navigator),
-            SaveTranslatedTextAction(self.ui, self.db, self.actionRouter),
+            TranslateAction(self.ui, self.loadLang, self.navigator, history, translationMapper),
+            SaveTranslatedTextAction(self.ui, self.db, self.actionRouter, translationMapper),
             PastSourceTextAction(self.ui),
             PronunciationAction(self.ui),
             SourcePronunciationAction(self.ui),
             CopyTranslateAction(self.ui),
             SourceCopyTranslateAction(self.ui),
             CleanTranslateAction(self.ui),
-            ReverseTranslateAction(self.ui)
+            ReverseTranslateAction(self.ui),
+            PreviousTranslationAction(self.ui, history),
+            NextTranslationAction(self.ui, history),
         ]
 
         # Handlers

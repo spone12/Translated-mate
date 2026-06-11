@@ -902,6 +902,100 @@ color:black;</string>
        </layout>
       </widget>
      </widget>
+     <widget class="ClickableLabel" name="prevTranslate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>10</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="toolTip">
+       <string>Previous translate</string>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#prevTranslate {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+}
+#prevTranslate:hover  {
+	background: #fff6f7;
+}
+#prevTranslate:disabled  {
+	background-color: transparent;
+    border: none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>img/arrow_left.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="ClickableLabel" name="nextTranslate">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>10</y>
+        <width>30</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="focusPolicy">
+       <enum>Qt::NoFocus</enum>
+      </property>
+      <property name="toolTip">
+       <string>Next translate</string>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">#nextTranslate {
+	background-repeat: no-repeat;
+ 	border-radius:  5px;
+}
+#nextTranslate:hover  {
+	background:  #fff6f7;
+}
+#nextTranslate:disabled  {
+	background-color: transparent;
+    border: none;
+}</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>img/arrow_right.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="TranslationView">
      <widget class="QTableView" name="TranslationTableWidget">
@@ -1167,7 +1261,7 @@ QHeaderView::section
      <x>0</x>
      <y>0</y>
      <width>1100</width>
-     <height>24</height>
+     <height>20</height>
     </rect>
    </property>
    <property name="cursor">

@@ -1,18 +1,19 @@
 from .abstractAction import AbstractAction
 from classes.database.Services.translateService import TranslateService
 from classes.database.Repository.translateRepository import TranslateRepository
-from classes.database.DTO.translateDTO import TranslateDTO
 from classes.enums.routes import Routes
 from classes.core.actionRouter import ActionRouter
+from classes.factories.translate.TranslationUIMapper import TranslationUIMapper
 
 
 class SaveTranslatedTextAction(AbstractAction):
-    def __init__(self, ui, db, actionRouter: ActionRouter):
+    def __init__(self, ui, db, actionRouter: ActionRouter, translationMapper: TranslationUIMapper):
         super().__init__()
         self.ui = ui
         self.service = TranslateService(
             TranslateRepository(db)
         )
+        self.translationMapper = translationMapper
 
         # UI subscription
         self.bind()
@@ -23,15 +24,10 @@ class SaveTranslatedTextAction(AbstractAction):
             Action save translated text to DB
         """
 
-        dto = TranslateDTO(
-            source_text = self.ui.inputBox.toPlainText(),
-            target_text = self.ui.translateBox.toPlainText(),
-            source_lang = self.ui.sourceLangList.currentText(),
-            target_lang = self.ui.targetLangList.currentText(),
-            translator  = self.ui.currentTranslator.value
+        rowId = self.service.saveTranslation(
+            self.translationMapper.toDTO()
         )
         
-        rowId = self.service.saveTranslation(dto)
         if rowId is None:
             return None
         

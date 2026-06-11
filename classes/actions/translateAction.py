@@ -1,13 +1,17 @@
 from .abstractAction import AbstractAction
 from classes.services.translatorFactory import TranslatorFactory
 from classes.enums.routes import Routes
+from classes.services.translationHistory import TranslationHistory
+from classes.factories.translate.TranslationUIMapper import TranslationUIMapper
 
 
 class TranslateAction(AbstractAction):
-    def __init__(self, ui, loadLang, navigator):
+    def __init__(self, ui, loadLang, navigator, history: TranslationHistory, translationMapper: TranslationUIMapper):
         self.ui = ui
         self.loadLang = loadLang
         self.navigator = navigator
+        self.history = history
+        self.translationMapper = translationMapper
 
         # UI subscription
         self.bind()
@@ -38,6 +42,11 @@ class TranslateAction(AbstractAction):
             self.loadLang.getKeyLang(self.ui.sourceLangList.currentText())
         )
         self.ui.translateBox.insertHtml(translatedText)
+        
+        dto = self.translationMapper.toDTO()
+        if dto:    
+            # Add history item
+            self.history.add(dto)
 
     @property
     def widget(self):
