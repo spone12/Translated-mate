@@ -2,12 +2,12 @@ import sys
 import ctypes
 from PyQt6 import QtCore, QtGui, QtWidgets
 from ui.ui_main_window import Ui_MainWindow
-from classes.styles.styles import Styles
+from app.styles.styles import Styles
 from ui.configurators.mainWindowConfigurator import MainWindowConfigurator
-from classes.enums.Translate.translators import Translators
-from classes.core.appContext import AppContext
-from classes.bootstrap.actionLoader import ActionLoader
-from classes.bootstrap.databaseLoader import DatabaseLoader
+from app.enums.Translate.translators import Translators
+from app.core.appContext import AppContext
+from app.bootstrap.actionLoader import ActionLoader
+from app.bootstrap.databaseLoader import DatabaseLoader
 
 
 class TranslateMate(QtWidgets.QMainWindow):
