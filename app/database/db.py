@@ -1,5 +1,5 @@
 import sqlite3
-from app.logger import Logger
+from app.core.logger import Logger
 
 
 class Database:

@@ -1,5 +1,5 @@
-from ..Repository.translateRepository import TranslateRepository
-from app.database.DTO.translateDTO import TranslateDTO
+from ..database.Repository.translateRepository import TranslateRepository
+from app.DTO.translateDTO import TranslateDTO
 
 
 class TranslateService:

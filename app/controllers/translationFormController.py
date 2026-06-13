@@ -1,4 +1,4 @@
-from app.core.validators.translationValidator import TranslationValidator
+from app.validators.translationValidator import TranslationValidator
 
 
 class TranslationFormController:

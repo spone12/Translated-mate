@@ -1,5 +1,5 @@
 from .abstractAction import AbstractAction
-from app.database.Services.translateService import TranslateService
+from app.services.translateService import TranslateService
 from app.database.Repository.translateRepository import TranslateRepository
 from app.enums.routes import Routes
 from app.core.actionRouter import ActionRouter

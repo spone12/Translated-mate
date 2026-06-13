@@ -1,4 +1,4 @@
-from app.database.DTO.translateDTO import TranslateDTO
+from app.DTO.translateDTO import TranslateDTO
 
 
 class TranslationUIMapper:

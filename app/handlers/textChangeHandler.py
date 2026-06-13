@@ -1,7 +1,7 @@
 from .abstractHandler import AbstractHandler
 from app.enums.Translate.translatorsLimit import TranslatorsLimit
-from app.core.validators.translationValidator import TranslationValidator
-from app.core.controllers.translationFormController import TranslationFormController
+from app.validators.translationValidator import TranslationValidator
+from app.controllers.translationFormController import TranslationFormController
 
 
 class TextChangeHandler(AbstractHandler):

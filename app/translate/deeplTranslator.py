@@ -2,7 +2,7 @@
 import requests
 from requests.exceptions import HTTPError
 from .abstractTranslator import AbstractTranslator
-from app.logger import Logger
+from app.core.logger import Logger
 import time
 import math
 import random

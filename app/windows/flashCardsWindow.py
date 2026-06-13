@@ -1,7 +1,7 @@
 # Save translation window
-from app.logger import Logger
+from app.core.logger import Logger
 from .windowInterface import WindowInterface
-from app.database.Services.translateService import TranslateService
+from app.services.translateService import TranslateService
 from app.database.Repository.translateRepository import TranslateRepository
 
 

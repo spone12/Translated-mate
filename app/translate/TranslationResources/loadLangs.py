@@ -1,7 +1,7 @@
 from requests.exceptions import HTTPError
-from app.logger import Logger
+from app.core.logger import Logger
 from app.enums.Translate.translators import Translators
-from app.services.detector.language_detector import LanguageDetector
+from app.services.detector.languageDetector import LanguageDetector
 from .languages import TRANSLATOR_LANGS
 
 

@@ -1,5 +1,5 @@
 # Settings window
-from app.logger import Logger
+from app.core.logger import Logger
 from .windowInterface import WindowInterface
 
 

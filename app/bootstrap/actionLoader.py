@@ -56,5 +56,5 @@ class ActionLoader:
         ]
         
         # Triggers
-        self.context.ui.actionExit.triggered.connect(self.context.menu.exitProgramm)
+        self.context.ui.actionExit.triggered.connect(self.context.lifecycle.shutDown)
         self.context.ui.chooseTranslator.triggered.connect(self.context.loadLang.chooseTranslator)

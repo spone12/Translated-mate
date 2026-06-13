@@ -1,7 +1,7 @@
 # Abstract translator class
 from abc import abstractmethod
 from .translateInterface import TranslateInterface
-from app.logger import Logger
+from app.core.logger import Logger
 from textwrap import wrap
 
 

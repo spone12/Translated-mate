@@ -1,9 +1,9 @@
 # Save translation window
-from app.logger import Logger
+from app.core.logger import Logger
 from PyQt6.QtWidgets import QStyledItemDelegate, QPushButton
 from .windowInterface import WindowInterface
 from app.models.translationModel import TranslationModel
-from app.database.Services.translateService import TranslateService
+from app.services.translateService import TranslateService
 from app.database.Repository.translateRepository import TranslateRepository
 
 

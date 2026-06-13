@@ -4,7 +4,7 @@ from requests.exceptions import HTTPError
 from bs4 import BeautifulSoup
 import urllib.parse
 from .abstractTranslator import AbstractTranslator
-from app.logger import Logger
+from app.core.logger import Logger
 import time
 from app.enums.Translate.translatorsLimit import TranslatorsLimit
 from app.enums.Translate.translators import Translators

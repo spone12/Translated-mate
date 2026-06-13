@@ -1,5 +1,5 @@
 from ..db import Database
-from app.database.DTO.translateDTO import TranslateDTO
+from app.DTO.translateDTO import TranslateDTO
 from .baseRepository import BaseRepository
 
 

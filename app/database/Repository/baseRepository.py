@@ -1,4 +1,4 @@
-from app.logger import Logger
+from app.core.logger import Logger
 
 
 class BaseRepository:
