@@ -30,8 +30,14 @@ class TranslateMate(QtWidgets.QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.generalScrollArea.setWidgetResizable(True)
+        
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
-        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID("my.app.id")
+        
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(
+            "my.app.id"
+        )
+        
         self.ui.currentTranslator = Translators.GOOGLE
 
     def setupUIConfigurators(self):

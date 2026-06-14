@@ -11,7 +11,8 @@ class Styles:
         self.files = [
             "Main.css",
             "Buttons.css",
-            "TranslationTable.css"
+            "TranslationTable.css",
+            "SettingsWindow.css"
         ]
 
         self.apply()

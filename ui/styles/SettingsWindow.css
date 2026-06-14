@@ -1,0 +1,225 @@
+
+/* ==================================================
+   TAB WIDGET
+================================================== */
+
+QTabWidget#settingsTabWidget {
+    background-color: #252526;
+}
+
+QTabWidget#settingsTabWidget::pane {
+    border: 1px solid #3c3c3c;
+    border-radius: 8px;
+    background-color: #252526;
+    top: -1px;
+}
+
+/* ==================================================
+   TABS
+================================================== */
+
+QTabWidget#settingsTabWidget QTabBar::tab {
+    background-color: #2d2d30;
+    color: #d4d4d4;
+    border: 1px solid #3c3c3c;
+    border-bottom: none;
+    padding: 8px 18px;
+    min-width: 100px;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    margin-right: 2px;
+}
+
+QTabWidget#settingsTabWidget QTabBar::tab:selected {
+    background-color: #252526;
+    color: white;
+}
+
+QTabWidget#settingsTabWidget QTabBar::tab:hover:!selected {
+    background-color: #37373d;
+}
+
+/* ==================================================
+   TAB PAGES
+================================================== */
+
+QTabWidget#settingsTabWidget QWidget {
+    background-color: #252526;
+    color: #d4d4d4;
+}
+
+/* ==================================================
+   SCROLL AREA
+================================================== */
+
+QTabWidget#settingsTabWidget QScrollArea {
+    border: none;
+    background-color: #252526;
+}
+
+QTabWidget#settingsTabWidget QScrollBar:vertical {
+    background: #252526;
+    width: 12px;
+    margin: 0px;
+}
+
+QTabWidget#settingsTabWidget QScrollBar::handle:vertical {
+    background: #4f4f4f;
+    border-radius: 5px;
+    min-height: 30px;
+}
+
+QTabWidget#settingsTabWidget QScrollBar::handle:vertical:hover {
+    background: #6a6a6a;
+}
+
+QTabWidget#settingsTabWidget QScrollBar::add-line:vertical,
+QTabWidget#settingsTabWidget QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QTabWidget#settingsTabWidget QScrollBar::add-page:vertical,
+QTabWidget#settingsTabWidget QScrollBar::sub-page:vertical {
+    background: transparent;
+}
+
+/* ==================================================
+   GROUP BOX
+================================================== */
+
+QTabWidget#settingsTabWidget QGroupBox {
+    border: 1px solid #3c3c3c;
+    border-radius: 8px;
+    margin-top: 14px;
+    padding-top: 14px;
+    font-weight: bold;
+    background-color: #2d2d30;
+    color: #e0e0e0;
+}
+
+QTabWidget#settingsTabWidget QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 6px;
+}
+
+/* ==================================================
+   LABELS
+   ================================================== */
+
+QTabWidget#settingsTabWidget QLabel {
+    background: wheat;
+    color: black;
+    border: 1px solid #5a5a5a;
+    border-radius: 6px;
+    min-height: 24px;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+/* ==================================================
+   COMBOBOX
+   ================================================== */
+
+QTabWidget#settingsTabWidget QComboBox {
+    background-color: #3c3c3c;
+    border: 1px solid #5a5a5a;
+    border-radius: 6px;
+    padding: 6px 10px;
+    color: white;
+    min-height: 24px;
+}
+
+QTabWidget#settingsTabWidget QComboBox:hover {
+    border-color: #0078d4;
+}
+
+QTabWidget#settingsTabWidget QComboBox:focus {
+    border-color: #0094ff;
+}
+
+QTabWidget#settingsTabWidget QComboBox::drop-down {
+    border: none;
+    width: 25px;
+}
+
+QTabWidget#settingsTabWidget QComboBox QAbstractItemView {
+    background-color: #2d2d30;
+    color: white;
+    border: 1px solid #444444;
+    selection-background-color: #0078d4;
+}
+
+/* ==================================================
+   CHECKBOX
+   ================================================== */
+
+QTabWidget#settingsTabWidget QCheckBox {
+    color: #d4d4d4;
+    spacing: 8px;
+}
+
+QTabWidget#settingsTabWidget QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #666666;
+    border-radius: 4px;
+    background: #3c3c3c;
+}
+
+QTabWidget#settingsTabWidget QCheckBox::indicator:checked {
+    background: #0078d4;
+    border-color: #0078d4;
+}
+
+/* ==================================================
+   LINE EDIT
+   ================================================== */
+
+QTabWidget#settingsTabWidget QLineEdit {
+    background-color: #3c3c3c;
+    border: 1px solid #5a5a5a;
+    border-radius: 6px;
+    padding: 6px;
+    color: white;
+}
+
+QTabWidget#settingsTabWidget QLineEdit:focus {
+    border-color: #0094ff;
+}
+
+/* ==================================================
+   SPIN BOX
+   ================================================== */
+
+QTabWidget#settingsTabWidget QSpinBox {
+    background-color: #3c3c3c;
+    border: 1px solid #5a5a5a;
+    border-radius: 6px;
+    padding: 6px;
+    color: white;
+}
+
+QTabWidget#settingsTabWidget QSpinBox:focus {
+    border-color: #0094ff;
+}
+
+/* ==================================================
+   PUSH BUTTON
+   ================================================== */
+
+QTabWidget#settingsTabWidget QPushButton {
+    background-color: #0078d4;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+}
+
+QTabWidget#settingsTabWidget QPushButton:hover {
+    background-color: #1984d8;
+}
+
+QTabWidget#settingsTabWidget QPushButton:pressed {
+    background-color: #0067b8;
+}
