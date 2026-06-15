@@ -13,20 +13,20 @@ class AppContext:
         self.db = db
         self.window = window
         
-        #Navigator
-        self.navigator = Navigator(self.ui)
-        self.navigator.goTo(self.navigator.default)
-        
-        # Langs
-        self.loadLang = LoadingLangs(self.ui)
+        # Windows
+        self.translationView = TranslationViewWindow(self.ui, self.db)
+        self.flashCards = FlashCardsWindow(self.ui, self.db)
+        self.settingsWindow = SettingsWindow(self.ui)
         
         # Menu
         self.lifecycle = AppLifecycle(self.window, self.db)
         
-        # Windows
-        self.translationView = TranslationViewWindow(self.ui, self.db)
-        self.flashCards = FlashCardsWindow(self.ui, self.db)
-        self.settingsWindow = SettingsWindow(self.ui, self.db)
+        #Navigator
+        self.navigator = Navigator(self.ui)
+        self.navigator.goTo(self.navigator.default)
         
         # Router
         self.actionRouter = ActionRouter()
+        
+        # Langs
+        self.loadLang = LoadingLangs(self.ui)

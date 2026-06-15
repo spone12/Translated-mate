@@ -1,6 +1,7 @@
 # Settings window
 from app.core.logger import Logger
 from .windowInterface import WindowInterface
+from app.controllers.settings.settingsController import SettingsController
 
 
 class SettingsWindow(WindowInterface):
@@ -8,19 +9,14 @@ class SettingsWindow(WindowInterface):
         Flash cards window
     """
 
-    def __init__(self, ui, db):
+    def __init__(self, ui):
         self.ui = ui
-
-    def renderSettings(self) -> None:
-        """
-            Render a settings data
-        """
         
-        print("Settings")
+        self.controller = SettingsController(self.ui)
+        self.controller.init()
 
     def prepareWindow(self) -> None:
         """
             Prepare the window "Settings"
         """
-        
-        self.renderSettings()
+        self.controller.refresh()

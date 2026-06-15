@@ -1,6 +1,6 @@
 
 /* ==================================================
-   TAB WIDGET
+TAB WIDGET
 ================================================== */
 
 QTabWidget#settingsTabWidget {
@@ -15,7 +15,7 @@ QTabWidget#settingsTabWidget::pane {
 }
 
 /* ==================================================
-   TABS
+TABS
 ================================================== */
 
 QTabWidget#settingsTabWidget QTabBar::tab {
@@ -40,7 +40,7 @@ QTabWidget#settingsTabWidget QTabBar::tab:hover:!selected {
 }
 
 /* ==================================================
-   TAB PAGES
+TAB PAGES
 ================================================== */
 
 QTabWidget#settingsTabWidget QWidget {
@@ -49,7 +49,7 @@ QTabWidget#settingsTabWidget QWidget {
 }
 
 /* ==================================================
-   SCROLL AREA
+SCROLL AREA
 ================================================== */
 
 QTabWidget#settingsTabWidget QScrollArea {
@@ -84,7 +84,7 @@ QTabWidget#settingsTabWidget QScrollBar::sub-page:vertical {
 }
 
 /* ==================================================
-   GROUP BOX
+GROUP BOX
 ================================================== */
 
 QTabWidget#settingsTabWidget QGroupBox {
@@ -104,8 +104,8 @@ QTabWidget#settingsTabWidget QGroupBox::title {
 }
 
 /* ==================================================
-   LABELS
-   ================================================== */
+LABELS
+================================================== */
 
 QTabWidget#settingsTabWidget QLabel {
     background: wheat;
@@ -118,8 +118,8 @@ QTabWidget#settingsTabWidget QLabel {
 }
 
 /* ==================================================
-   COMBOBOX
-   ================================================== */
+COMBOBOX
+================================================== */
 
 QTabWidget#settingsTabWidget QComboBox {
     background-color: #3c3c3c;
@@ -151,8 +151,8 @@ QTabWidget#settingsTabWidget QComboBox QAbstractItemView {
 }
 
 /* ==================================================
-   CHECKBOX
-   ================================================== */
+CHECKBOX
+================================================== */
 
 QTabWidget#settingsTabWidget QCheckBox {
     color: #d4d4d4;
@@ -173,8 +173,8 @@ QTabWidget#settingsTabWidget QCheckBox::indicator:checked {
 }
 
 /* ==================================================
-   LINE EDIT
-   ================================================== */
+LINE EDIT
+================================================== */
 
 QTabWidget#settingsTabWidget QLineEdit {
     background-color: #3c3c3c;
@@ -189,8 +189,8 @@ QTabWidget#settingsTabWidget QLineEdit:focus {
 }
 
 /* ==================================================
-   SPIN BOX
-   ================================================== */
+SPIN BOX
+================================================== */
 
 QTabWidget#settingsTabWidget QSpinBox {
     background-color: #3c3c3c;
@@ -205,8 +205,8 @@ QTabWidget#settingsTabWidget QSpinBox:focus {
 }
 
 /* ==================================================
-   PUSH BUTTON
-   ================================================== */
+PUSH BUTTON
+================================================== */
 
 QTabWidget#settingsTabWidget QPushButton {
     background-color: #0078d4;
