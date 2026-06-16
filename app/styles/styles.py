@@ -1,18 +1,18 @@
-from pathlib import Path
+from app.enums.filePaths import FilePaths
 
 
 class Styles:
 
-    extension = "css"
+    EXTENSION = ".css"
 
     def __init__(self, ui):
         self.ui = ui
-        self.base_path = Path("ui/styles")
+        self.basePath = FilePaths.STYLES_PATH.value
         self.files = [
-            "Main.css",
-            "Buttons.css",
-            "TranslationTable.css",
-            "SettingsWindow.css"
+            "Main" + self.EXTENSION,
+            "Buttons" + self.EXTENSION,
+            "TranslationTable" + self.EXTENSION,
+            "SettingsWindow" + self.EXTENSION
         ]
 
         self.apply()
@@ -24,7 +24,7 @@ class Styles:
         styles = ""
 
         for file in self.files:
-            path = self.base_path / file
+            path = self.basePath / file
 
             with open(path, "r", encoding="utf-8") as f:
                 styles += f.read() + "\n"

@@ -18,16 +18,17 @@ class LoadingLangs():
         
     def chooseTranslator(self, event):
         """
-            Choose the translaor
+            Choose runtime translaor
         """
+        
         if not event.isChecked():
             event.setChecked(True)
             return
 
         # Remove active translators
-        for i in self.ui.chooseTranslator.actions():
-            if i.text() != event.text() and i.isChecked():
-                i.setChecked(False)
+        for action in self.ui.chooseTranslator.actions():
+            if action.text() != event.text() and action.isChecked():
+                action.setChecked(False)
 
         self.ui.currentTranslator = Translators.fromValue(event.text())
         self.loadLangArrays(event.text())
