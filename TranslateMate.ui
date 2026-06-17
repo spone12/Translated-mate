@@ -144,7 +144,6 @@ QScrollBar::sub-line:vertical {
        <string notr="true">border: 1px solid black;
 border-radius: 10px 10px;
 background: #f4f4f5;
-font-size: 16px;
 color:black;</string>
       </property>
       <property name="placeholderText">
@@ -167,7 +166,6 @@ color:black;</string>
        <string notr="true">border: 1px solid black;
 border-radius: 10px;
 background: #f4f4f5;
-font-size: 16px;
 color:black;</string>
       </property>
       <property name="readOnly">
@@ -1039,117 +1037,7 @@ QHeaderView::section
       </property>
      </widget>
     </widget>
-    <widget class="QWidget" name="FlashCards">
-     <widget class="QStackedWidget" name="cardWidget">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>60</y>
-        <width>200</width>
-        <height>151</height>
-       </rect>
-      </property>
-      <property name="currentIndex">
-       <number>1</number>
-      </property>
-      <widget class="QWidget" name="page">
-       <widget class="QPlainTextEdit" name="cardTextObj">
-        <property name="geometry">
-         <rect>
-          <x>3</x>
-          <y>10</y>
-          <width>191</width>
-          <height>141</height>
-         </rect>
-        </property>
-        <property name="plainText">
-         <string/>
-        </property>
-       </widget>
-      </widget>
-      <widget class="QWidget" name="page_2"/>
-     </widget>
-     <widget class="QLabel" name="flashCardCansel">
-      <property name="geometry">
-       <rect>
-        <x>90</x>
-        <y>230</y>
-        <width>40</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="toolTip">
-       <string>Save translation window</string>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#flashCardsWindow {
-	background-repeat: no-repeat;
-	border-radius:  5px;
-}
-#flashCardsWindow:hover  {
-	background:  #fff6f7;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>img/cansel.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QLabel" name="flashCardOk">
-      <property name="geometry">
-       <rect>
-        <x>130</x>
-        <y>230</y>
-        <width>40</width>
-        <height>40</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="focusPolicy">
-       <enum>Qt::NoFocus</enum>
-      </property>
-      <property name="toolTip">
-       <string>Save translation window</string>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">#flashCardsWindow {
-	background-repeat: no-repeat;
-	border-radius:  5px;
-}
-#flashCardsWindow:hover  {
-	background:  #fff6f7;
-}</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="pixmap">
-       <pixmap>img/ok.png</pixmap>
-      </property>
-      <property name="scaledContents">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </widget>
+    <widget class="QWidget" name="FlashCards"/>
     <widget class="QWidget" name="Settings">
      <widget class="QTabWidget" name="settingsTabWidget">
       <property name="geometry">
@@ -1169,7 +1057,7 @@ QHeaderView::section
        </font>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="generalTab">
        <attribute name="title">
@@ -1187,7 +1075,7 @@ QHeaderView::section
         <property name="widgetResizable">
          <bool>true</bool>
         </property>
-        <widget class="QWidget" name="scrollAreaWidgetContents">
+        <widget class="QWidget" name="generalScrollAreaWidgetContents">
          <property name="geometry">
           <rect>
            <x>0</x>
@@ -1205,7 +1093,7 @@ QHeaderView::section
             <height>441</height>
            </rect>
           </property>
-          <layout class="QFormLayout" name="formLayout">
+          <layout class="QFormLayout" name="generalFormLayout">
            <item row="0" column="0">
             <widget class="QLabel" name="defaultTranslatorLabel">
              <property name="minimumSize">
@@ -1248,6 +1136,80 @@ QHeaderView::section
       <widget class="QWidget" name="translateTab">
        <attribute name="title">
         <string>Translate</string>
+       </attribute>
+       <widget class="QScrollArea" name="translateScrollArea">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>0</y>
+          <width>1021</width>
+          <height>431</height>
+         </rect>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="translateScrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>1019</width>
+           <height>429</height>
+          </rect>
+         </property>
+         <widget class="QWidget" name="formLayoutWidget_3">
+          <property name="geometry">
+           <rect>
+            <x>-1</x>
+            <y>-1</y>
+            <width>1021</width>
+            <height>441</height>
+           </rect>
+          </property>
+          <layout class="QFormLayout" name="translateFormLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="translateFontSizeLabel">
+             <property name="minimumSize">
+              <size>
+               <width>300</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="frameShape">
+              <enum>QFrame::NoFrame</enum>
+             </property>
+             <property name="frameShadow">
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="text">
+              <string>Font size</string>
+             </property>
+             <property name="textFormat">
+              <enum>Qt::AutoText</enum>
+             </property>
+             <property name="scaledContents">
+              <bool>true</bool>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <property name="wordWrap">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="translateFontSizeComboBox"/>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="hotkeysTab">
+       <attribute name="title">
+        <string>Hot keys</string>
        </attribute>
       </widget>
      </widget>

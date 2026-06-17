@@ -2,7 +2,7 @@ from .baseSettingsController import BaseSettingsController
 from app.enums.Translate.translators import Translators
 
 
-class HotkeysSettingsController(BaseSettingsController):
+class HotKeysSettingsController(BaseSettingsController):
     def load(self):
         pass
 

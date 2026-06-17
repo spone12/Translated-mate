@@ -1,3 +1,4 @@
 {
-    "defaultTranslator": "Google"
+    "defaultTranslator": "Google",
+    "translateFontSize": 16
 }

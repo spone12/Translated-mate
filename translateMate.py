@@ -29,7 +29,6 @@ class TranslateMate(QtWidgets.QMainWindow):
         
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.ui.generalScrollArea.setWidgetResizable(True)
         
         self.setWindowIcon(QtGui.QIcon('appico.ico'))
         

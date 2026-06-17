@@ -9,7 +9,8 @@ class GeneralSettingsController(BaseSettingsController):
     def load(self) -> None:
         """Load General settings"""
         
-        self.loadTranslator()
+        self.ui.generalScrollArea.setWidgetResizable(True)
+        self.loadDefaultTranslatorComboBox()
         
     def bind(self) -> None:
         """Bind handlers"""
@@ -18,8 +19,8 @@ class GeneralSettingsController(BaseSettingsController):
             self.onChangedTranslator
         )
         
-    def loadTranslator(self):
-        """Load translator"""
+    def loadDefaultTranslatorComboBox(self):
+        """Load translator combo box"""
         for translator in Translators:
             self.ui.defaultTranslatorComboBox.addItem(
                 translator.name.title(),
