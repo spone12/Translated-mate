@@ -4,7 +4,7 @@ from .baseSettingsController import BaseSettingsController
 
 class TranslateSettingsController(BaseSettingsController):
     
-    TRANSLATE_FONT_SIZE = "translateFontSize"
+    TRANSLATE_FONT_SIZE = "translate.fontSize"
     
     def load(self):
         """Load translate settings"""

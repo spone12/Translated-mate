@@ -4,7 +4,7 @@ from app.enums.Translate.translators import Translators
 
 class GeneralSettingsController(BaseSettingsController):
     
-    DEFAULT_TRANSLATOR_KEY = "defaultTranslator"
+    DEFAULT_TRANSLATOR_KEY = "general.defaultTranslator"
     
     def load(self) -> None:
         """Load General settings"""
@@ -29,7 +29,7 @@ class GeneralSettingsController(BaseSettingsController):
 
         savedValue = self.settings.get(
             self.DEFAULT_TRANSLATOR_KEY,
-            self.settings.get(self.DEFAULT_TRANSLATOR_KEY)
+            Translators.GOOGLE
         )
 
         translator = Translators(savedValue)

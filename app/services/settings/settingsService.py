@@ -1,4 +1,5 @@
 import json
+from typing import Any
 from app.enums.filePaths import FilePaths
 
 
@@ -7,37 +8,60 @@ class SettingsService:
     def __init__(self):
         self._settings = {}
 
-    def get(self, key, default=None):
+    def get(self, path: str, default: Any = None) -> Any: 
         """Get settings value by key
 
         Args:
-            key (_type_): _description_
-            default (_type_, optional): Set default vakye
+            path (str): The path to the specific setting
+            default (mixed, optional): Set default value
 
         Returns:
-            _type_: Value
+            Any: Value
         """
-        return self._settings.get(key, default)
+        
+        keys = path.split(".")
+        value = self._settings
+        
+        for key in keys:
+            if not isinstance(value, dict):
+                return default
+            
+            value = value.get(key)
+            
+            if value is None:
+                return default
+            
+        return value
     
-    def getAll(self):
+    def getAll(self) -> list:
         """Get all settings
 
         Returns:
-            _type_: _description_
+            list: All settings
         """
         return self._settings
 
-    def set(self, key, value):
+    def set(self, path: str, value: Any) -> None:
         """Set settings value
 
         Args:
-            key (_type_): key
-            value (_type_): value
+            path (str): The path to the specific setting
+            value (mixed): value to set
         """
-        self._settings[key] = value
+        
+        keys = path.split(".")
+        settings = self._settings
+        
+        for key in keys[:-1]:
+            if key not in settings:
+                settings[key] = {}
+            
+            settings = settings[key]
+            
+        settings[keys[-1]] = value
         self.save()
 
-    def load(self):
+    def load(self) -> None:
         """Load settings
         """
         if not FilePaths.SETTINGS_FILE.value.exists():
@@ -48,7 +72,7 @@ class SettingsService:
             self._settings = json.load(file)
 
 
-    def save(self):
+    def save(self) -> None:
         """Save settings"""
         with open(FilePaths.SETTINGS_FILE.value, "w", encoding="utf-8") as file:
             json.dump(

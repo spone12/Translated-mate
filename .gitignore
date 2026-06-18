@@ -4,3 +4,4 @@
 log/*.log
 **.db
 translate.db-journal
+app/config/settings.json
