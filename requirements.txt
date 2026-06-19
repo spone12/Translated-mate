@@ -1,5 +1,5 @@
 aiohttp~=3.11.14
-PyQt6~=6.8.1
+PyQt6~=6.11.0
 urllib3~=2.2.1
 requests~=2.32.0
 bs4~=0.0.2
