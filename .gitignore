@@ -1,7 +1,29 @@
+# PyInstaller-generated executable files and folders
+/dist/
+/build/
+*.spec
+
+# Python Virtual Environment 
+venv/
+.venv/
+env/
+
+# Cache Python
 **/__pycache__/
-/venv
-.vscode
-log/*.log
-**.db
-translate.db-journal
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and hidden folders of code editors
+.idea/
+.vscode/
+*.log
+
+# Settings
 app/config/settings.json
+
+# Database
+**.db
+
+# Other
+translate.db-journal
