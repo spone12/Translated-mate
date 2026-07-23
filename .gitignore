@@ -25,5 +25,8 @@ app/config/settings.json
 # Database
 **.db
 
+# User data
+storage/
+
 # Other
 translate.db-journal

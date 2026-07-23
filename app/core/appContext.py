@@ -5,6 +5,7 @@ from app.windows.flashCardsWindow import FlashCardsWindow
 from app.windows.settingsWindow import SettingsWindow
 from app.core.actionRouter import ActionRouter
 from app.core.appLifecycle import AppLifecycle
+from app.services.TTS.MicrophoneService import MicrophoneService
 
 
 class AppContext:
@@ -30,3 +31,6 @@ class AppContext:
         
         # Langs
         self.loadLang = LoadingLangs(self.ui)
+
+        # Other
+        self.speech = MicrophoneService()

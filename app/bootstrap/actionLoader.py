@@ -14,6 +14,8 @@ from app.actions.cleanTranslateAction import CleanTranslateAction
 from app.actions.goToRouteAction import GoToRouteAction
 from app.actions.previousTranslatitonAction import PreviousTranslationAction
 from app.actions.nextTranslatitonAction import NextTranslationAction
+from app.actions.microphoneAction import MicrophoneAction
+from app.actions.offMicrophoneAction import OffMicrophoneAction
 
 
 class ActionLoader:
@@ -21,8 +23,7 @@ class ActionLoader:
         self.context = context
 
     def bootstrap(self):
-        """Load actions
-        """
+        """Load actions"""
         
         # Action routes
         self.actionRoutes = {
@@ -44,10 +45,12 @@ class ActionLoader:
             SourcePronunciationAction(self.context.ui),
             CopyTranslateAction(self.context.ui),
             SourceCopyTranslateAction(self.context.ui),
-            CleanTranslateAction(self.context.ui),
+            CleanTranslateAction(self.context.ui, self.context.speech),
             ReverseTranslateAction(self.context.ui),
             PreviousTranslationAction(self.context.ui, history),
             NextTranslationAction(self.context.ui, history),
+            MicrophoneAction(self.context.ui, self.context.speech),
+            OffMicrophoneAction(self.context.ui, self.context.speech),
         ]
 
         # Handlers

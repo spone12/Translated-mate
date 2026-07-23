@@ -1,17 +1,17 @@
 from .abstractAction import AbstractAction
 
 
-class CleanTranslateAction(AbstractAction):
+class OffMicrophoneAction(AbstractAction):
     def __init__(self, ui, speechService):
         self.ui = ui
         self.speechService = speechService
-
+        
         # UI subscription
         self.bind()
 
     def execute(self) -> None:
         """
-            Clean input and translated text
+            Microphone action
         """
         
         # Mic Icons
@@ -19,10 +19,8 @@ class CleanTranslateAction(AbstractAction):
         self.ui.microphone.show()
         
         self.speechService.stop()
-        self.ui.translateBox.clear()
-        self.ui.inputBox.clear()
 
     @property
     def widget(self):
         """ Get current widget """
-        return self.ui.cleanTranslate
+        return self.ui.offMicrophone

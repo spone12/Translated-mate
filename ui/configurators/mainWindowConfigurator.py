@@ -11,6 +11,7 @@ class MainWindowConfigurator(AbstractUIConfigurator):
         elements = (
             self.ui.pastSourceText,
             self.ui.microphone,
+            self.ui.offMicrophone,
             self.ui.sourcePronunciation,
             self.ui.sourceCopyTranslate,
             self.ui.pronunciation,
@@ -20,3 +21,5 @@ class MainWindowConfigurator(AbstractUIConfigurator):
         
         for elem in elements:
             self.setProperty(elem, "translateButton")
+        
+        self.ui.offMicrophone.hide()
