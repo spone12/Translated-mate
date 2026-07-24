@@ -22,4 +22,6 @@ class MainWindowConfigurator(AbstractUIConfigurator):
         for elem in elements:
             self.setProperty(elem, "translateButton")
         
+        # Hidden elements
+        self.ui.progressBar.hide()
         self.ui.offMicrophone.hide()

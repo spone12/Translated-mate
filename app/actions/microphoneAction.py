@@ -15,16 +15,37 @@ class MicrophoneAction(AbstractAction):
             Microphone action
         """
         
+        self.ui.progressBar.setValue(0)
+        
         self.downloader = DownloadModel()
+        self.downloader.download_started.connect(self.startDownload)
+        self.downloader.progress.connect(self.updateDownloadProgress)
         self.downloader.finished.connect(self.onModelDownloaded)
         self.downloader.start()
+    
+    def startDownload(self):
+        self.ui.progressBar.setFormat("Downloading model... %p%")
+        self.ui.progressBar.show()
+    
+    def updateDownloadProgress(self, value: int, text: str):
+        """Update progress bar
+
+        Args:
+            value (int): progress value
+            text (str): progress format
+        """
         
+        self.ui.progressBar.setValue(value)
+        self.ui.progressBar.setFormat(text)
+    
     def onModelDownloaded(self, path):
         """_summary_
         
         Args:
             path (_type_): _description_
         """
+        
+        self.ui.progressBar.hide()
         
         # Mic Icons
         self.ui.microphone.hide()
@@ -85,6 +106,7 @@ class MicrophoneAction(AbstractAction):
         
         self.ui.inputBox.append(f"<br><span style='color: red;'><b>Ошибка:</b> {error_message}</span>")
         self.speechService.stop()
+        self.ui.progressBar.hide()
     
     @property
     def widget(self):

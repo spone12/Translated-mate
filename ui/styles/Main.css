@@ -45,3 +45,26 @@ QLabel:disabled {
     vertical-align: middle;
     text-align: center;
 }
+
+QProgressBar {
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    background-color: #1e1e1e;
+    height: 22px;
+    text-align: center;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+QProgressBar::chunk {
+    border-radius: 7px;
+    background: qlineargradient(
+        x1:0,
+        y1:0,
+        x2:1,
+        y2:0,
+        stop:0 #495248,
+        stop:1 #4b7546
+    );
+}

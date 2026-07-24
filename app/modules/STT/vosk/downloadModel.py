@@ -12,7 +12,8 @@ ZIP_PATH = MODEL_DIR + "/model.zip"
 
 class DownloadModel(QThread):
 
-    progress = pyqtSignal(int)
+    download_started = pyqtSignal()
+    progress = pyqtSignal(int, str)
     finished = pyqtSignal(str)
     error = pyqtSignal(str)
     
@@ -39,6 +40,7 @@ class DownloadModel(QThread):
         if os.path.exists(MODEL_PATH):
             return MODEL_PATH
 
+        self.download_started.emit()
         os.makedirs(MODEL_DIR, exist_ok=True)
 
         response = requests.get(
@@ -52,12 +54,17 @@ class DownloadModel(QThread):
         with open(ZIP_PATH, "wb") as file:
 
             for chunk in response.iter_content(1024 * 1024):
-                print(f"Downloading model: {downloaded}/{total} bytes")
+
                 file.write(chunk)
                 downloaded += len(chunk)
+                
+                downloaded_mb = downloaded / 1024 / 1024
+                total_mb = total / 1024 / 1024
 
-                percent = int(downloaded * 100 / total)
-                self.progress.emit(percent)
+                percent = downloaded * 100 / total
+                text = f"Downloading model: {downloaded_mb:.2f} / {total_mb:.2f} MB ({percent:.1f}%)"
+
+                self.progress.emit(int(percent), text)
 
         with zipfile.ZipFile(ZIP_PATH) as zip_file:
             zip_file.extractall(MODEL_DIR)
