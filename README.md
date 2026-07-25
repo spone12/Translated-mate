@@ -1,5 +1,7 @@
 # Translated mate
+
 # v0.5
+
 ## Description (Описание)
 
 Переводчик с возможностью переводить текст на различные языки с одного на другой, используя разные модели переводчиков.
@@ -20,6 +22,7 @@
     - Перевода
 
 **Фишки:**
+
 - Перевод текста с одного языка на другой
 - Сохранение форматирования переводимого текста
 - Подсчёт кол-ва слов и символов в тексте
@@ -39,8 +42,8 @@
 - Статистика
 
 **Is it necessary?**
-- Достижения
 
+- Достижения
 
 ## Installation (Установка)
 
@@ -53,4 +56,5 @@ python -m PyQt6.uic.pyuic -x TranslateMate.ui -o ui/ui_main_window.py
 ```
 
 ## Visual appearance of the programme (Визуальный вид программы)
+
 ![Example of a program](img/Examples/Example_v0.4.png "Example of a program")
