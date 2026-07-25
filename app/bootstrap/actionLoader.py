@@ -49,7 +49,7 @@ class ActionLoader:
             ReverseTranslateAction(self.context.ui),
             PreviousTranslationAction(self.context.ui, history),
             NextTranslationAction(self.context.ui, history),
-            MicrophoneAction(self.context.ui, self.context.speech),
+            MicrophoneAction(self.context.ui, self.context.speech, self.context.loadLang),
             OffMicrophoneAction(self.context.ui, self.context.speech),
         ]
 

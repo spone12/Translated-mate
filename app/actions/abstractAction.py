@@ -25,12 +25,12 @@ class AbstractAction(ActionInterface):
         """ Bind toast to route """
         actionRouter.bind(self.getToast().clicked, route)
         
-    def showTooltip(self, text: str) -> None:
+    def showTooltip(self, text: str, duration: int = 2000, isError: bool = False) -> None:
         """ Show message tooltip """
         pos = self.widget.mapToGlobal(
             self.widget.rect().bottomRight()
         )
-        PersistentTooltip(self.widget).showText(pos, text)
+        PersistentTooltip(self.widget).showText(pos, text, duration, isError)
 
     def getToast(self):
         """ Get toast """

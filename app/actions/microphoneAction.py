@@ -3,9 +3,10 @@ from app.modules.STT.vosk.downloadModel import DownloadModel
 
 
 class MicrophoneAction(AbstractAction):
-    def __init__(self, ui, speechService):
+    def __init__(self, ui, speechService, loadLang):
         self.ui = ui
         self.speechService = speechService
+        self.loadLang = loadLang
         
         # UI subscription
         self.bind()
@@ -16,11 +17,13 @@ class MicrophoneAction(AbstractAction):
         """
         
         self.ui.progressBar.setValue(0)
-        
-        self.downloader = DownloadModel()
+        currentLang = self.loadLang.getKeyLang(self.ui.sourceLangList.currentText())
+
+        self.downloader = DownloadModel(currentLang)
         self.downloader.download_started.connect(self.startDownload)
         self.downloader.progress.connect(self.updateDownloadProgress)
         self.downloader.finished.connect(self.onModelDownloaded)
+        self.downloader.error.connect(self.handleError)
         self.downloader.start()
     
     def startDownload(self):
@@ -42,7 +45,7 @@ class MicrophoneAction(AbstractAction):
         """_summary_
         
         Args:
-            path (_type_): _description_
+            path (Path): path to model
         """
         
         self.ui.progressBar.hide()
@@ -80,7 +83,7 @@ class MicrophoneAction(AbstractAction):
         what is being written right now
         
         Args:
-            partial_text (str): partial typtranscribed texte
+            partial_text (str): partial transcribed text
         """
         
         history = " ".join(self.speechService.transcriptGet())
@@ -97,16 +100,17 @@ class MicrophoneAction(AbstractAction):
         scrollbar = self.ui.inputBox.verticalScrollBar()
         scrollbar.setValue(scrollbar.maximum())
         
-    def handleError(self, error_message:str):
+    def handleError(self, errorMessage: str) -> None:
         """Handle error
         
         Args:
             error_message (str): error
         """
         
-        self.ui.inputBox.append(f"<br><span style='color: red;'><b>Ошибка:</b> {error_message}</span>")
         self.speechService.stop()
         self.ui.progressBar.hide()
+        
+        self.showTooltip(errorMessage, 4000, True)
     
     @property
     def widget(self):

@@ -1,14 +1,12 @@
 import os
 import zipfile
 import requests
-from PyQt6.QtCore import QThread, pyqtSignal
+import json
 from pathlib import Path
+from PyQt6.QtCore import QThread, pyqtSignal
+from app.enums.STT.vosk import VoskEnums
+from .updateModelList import UpdateModelList
 
-
-MODEL_URL = "https://alphacephei.com/vosk/models/vosk-model-small-ru-0.22.zip"
-MODEL_DIR = "storage/record/models"
-MODEL_PATH = MODEL_DIR + "/vosk-model-small-ru-0.22"
-ZIP_PATH = MODEL_DIR + "/model.zip"
 
 class DownloadModel(QThread):
 
@@ -17,16 +15,18 @@ class DownloadModel(QThread):
     finished = pyqtSignal(str)
     error = pyqtSignal(str)
     
-    def __init__(self):
+    def __init__(self, lang: str):
         super().__init__()
+        self.lang = lang
+        self.models = {}
+        self.modelType = "small"
     
     def run(self):
         """Run download model"""
         
         try:
-            model_path = self.download()
-            print(model_path)
-            self.finished.emit(model_path)
+            modelPath = self.download()
+            self.finished.emit(modelPath)
         except Exception as e:
             self.error.emit(str(e))
         
@@ -36,24 +36,46 @@ class DownloadModel(QThread):
         Returns:
             str: model path
         """
+
+        # Donwload list of models
+        if not VoskEnums.VOSK_MODELS_LIST.value.exists():
+            updateModelsList = UpdateModelList()
+            updateModelsList.updateList()
         
-        if os.path.exists(MODEL_PATH):
-            return MODEL_PATH
+        # Check if lang model exists
+        with open(VoskEnums.VOSK_MODELS_LIST.value, "r", encoding="utf-8") as file:
+            self.models = json.load(file)
+            self.model = self.models.get(self.lang, {}).get(self.modelType, {})
 
+            if self.model.get("url") is None:
+                raise Exception(f"Language '{self.lang}' is not supported by Vosk")
+
+        # Output of a ready-made speech recognition model path
+        modelPath = VoskEnums.MODELS_DIR.value / self.model.get("name")
+
+        if modelPath.exists():
+            return str(modelPath)
+        
+        # Start downloading model
         self.download_started.emit()
-        os.makedirs(MODEL_DIR, exist_ok=True)
-
-        response = requests.get(
-            MODEL_URL,
-            stream=True
+        
+        VoskEnums.MODELS_DIR.value.mkdir(
+            parents=True,
+            exist_ok=True
         )
 
-        total = int(response.headers["content-length"])
+        response = requests.get(
+            self.model.get("url"),
+            stream=True,
+            timeout=30
+        )
+        response.raise_for_status()
+
+        total = int(response.headers.get("content-length", 0))
         downloaded = 0
 
-        with open(ZIP_PATH, "wb") as file:
-
-            for chunk in response.iter_content(1024 * 1024):
+        with open(VoskEnums.ZIP_PATH.value, "wb") as file:
+            for chunk in response.iter_content(128 * 1024):
 
                 file.write(chunk)
                 downloaded += len(chunk)
@@ -66,11 +88,14 @@ class DownloadModel(QThread):
 
                 self.progress.emit(int(percent), text)
 
-        with zipfile.ZipFile(ZIP_PATH) as zip_file:
-            zip_file.extractall(MODEL_DIR)
-
-        # Delete model zip file
-        if os.path.exists(ZIP_PATH):
-            os.remove(ZIP_PATH)
-            
-        return MODEL_PATH
+        try:
+            with zipfile.ZipFile(VoskEnums.ZIP_PATH.value) as zipFile:
+                if zipFile.testzip():
+                    raise Exception("Archive is corrupted")
+                
+                zipFile.extractall(VoskEnums.MODELS_DIR.value)
+        finally:
+            # Delete downloaded model zip file
+            VoskEnums.ZIP_PATH.value.unlink(missing_ok=True)
+        
+        return modelPath
