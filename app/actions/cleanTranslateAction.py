@@ -14,10 +14,6 @@ class CleanTranslateAction(AbstractAction):
             Clean input and translated text
         """
         
-        # Mic Icons
-        self.ui.offMicrophone.hide()
-        self.ui.microphone.show()
-        
         self.speechService.stop()
         self.ui.translateBox.clear()
         self.ui.inputBox.clear()

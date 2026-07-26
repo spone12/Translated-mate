@@ -14,10 +14,6 @@ class OffMicrophoneAction(AbstractAction):
             Microphone action
         """
         
-        # Mic Icons
-        self.ui.offMicrophone.hide()
-        self.ui.microphone.show()
-        
         self.speechService.stop()
 
     @property

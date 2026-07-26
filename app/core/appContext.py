@@ -33,4 +33,4 @@ class AppContext:
         self.loadLang = LoadingLangs(self.ui)
 
         # Other
-        self.speech = MicrophoneService()
+        self.speech = MicrophoneService(self.ui)

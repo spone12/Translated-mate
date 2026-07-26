@@ -2,8 +2,9 @@ from .abstractAction import AbstractAction
 
 
 class ReverseTranslateAction(AbstractAction):
-    def __init__(self, ui):
+    def __init__(self, ui, speechService):
         self.ui = ui
+        self.speechService = speechService
 
         # UI subscription
         self.bind()
@@ -12,7 +13,10 @@ class ReverseTranslateAction(AbstractAction):
         """
             Flip the translations around
         """
-    
+        
+        # Disable voice speach recognize
+        self.speechService.stop()
+        
         sourceLangIndex = self.ui.sourceLangList.currentIndex()
         targetLangIndex = self.ui.targetLangList.currentIndex()
 

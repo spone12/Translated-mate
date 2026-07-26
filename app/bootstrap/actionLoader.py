@@ -46,7 +46,7 @@ class ActionLoader:
             CopyTranslateAction(self.context.ui),
             SourceCopyTranslateAction(self.context.ui),
             CleanTranslateAction(self.context.ui, self.context.speech),
-            ReverseTranslateAction(self.context.ui),
+            ReverseTranslateAction(self.context.ui, self.context.speech),
             PreviousTranslationAction(self.context.ui, history),
             NextTranslationAction(self.context.ui, history),
             MicrophoneAction(self.context.ui, self.context.speech, self.context.loadLang),

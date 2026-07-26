@@ -7,6 +7,7 @@ class MicrophoneAction(AbstractAction):
         self.ui = ui
         self.speechService = speechService
         self.loadLang = loadLang
+        self.currentLang = ""
         
         # UI subscription
         self.bind()
@@ -17,9 +18,10 @@ class MicrophoneAction(AbstractAction):
         """
         
         self.ui.progressBar.setValue(0)
-        currentLang = self.loadLang.getKeyLang(self.ui.sourceLangList.currentText())
+        currentLangFull = self.ui.sourceLangList.currentText()
+        currentLang = self.loadLang.getKeyLang(currentLangFull)
 
-        self.downloader = DownloadModel(currentLang)
+        self.downloader = DownloadModel(currentLang, currentLangFull)
         self.downloader.download_started.connect(self.startDownload)
         self.downloader.progress.connect(self.updateDownloadProgress)
         self.downloader.finished.connect(self.onModelDownloaded)
@@ -49,10 +51,7 @@ class MicrophoneAction(AbstractAction):
         """
         
         self.ui.progressBar.hide()
-        
-        # Mic Icons
-        self.ui.microphone.hide()
-        self.ui.offMicrophone.show()
+        self.ui.translateBox.clear()
         
         self.speechService.start(path)
         self.speechService.audioThread.text_signal.connect(
@@ -76,20 +75,20 @@ class MicrophoneAction(AbstractAction):
             self.refreshTextDisplay()
         elif text_type == "partial":
             # Temporarily output the current unfinished word to the end
-            self.refreshTextDisplay(partial_text=text)
+            self.refreshTextDisplay(partialText = text)
         
-    def refreshTextDisplay(self, partial_text: str = "") -> None:
+    def refreshTextDisplay(self, partialText: str = "") -> None:
         """Redraws the text, separating the stable text and 
         what is being written right now
         
         Args:
-            partial_text (str): partial transcribed text
+            partialText (str): partial transcribed text
         """
         
         history = " ".join(self.speechService.transcriptGet())
         
-        if partial_text:
-            current_display = f"{history} {partial_text}..."
+        if partialText:
+            current_display = f"{history} {partialText}..."
         else:
             current_display = history
         

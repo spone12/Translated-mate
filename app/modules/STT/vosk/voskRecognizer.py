@@ -30,15 +30,15 @@ class VoskRecognizer(QThread):
         self.recognizer = None
         self.logger = Logger().getLogger(self.__class__.__name__)
 
-    def loadModel(self, path: str) -> None:
+    def loadModel(self, path: Path) -> None:
         """Load Vosk model
 
         Args:
             path (str): Path to model
         """
         try:
-            self.model = Model(path)
 
+            self.model = Model(str(path))
             self.recognizer = KaldiRecognizer(
                 self.model,
                 self.SAMPLE_RATE

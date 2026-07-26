@@ -12,12 +12,13 @@ class DownloadModel(QThread):
 
     download_started = pyqtSignal()
     progress = pyqtSignal(int, str)
-    finished = pyqtSignal(str)
+    finished = pyqtSignal(Path)
     error = pyqtSignal(str)
     
-    def __init__(self, lang: str):
+    def __init__(self, lang: str, fullNameLanguage: str):
         super().__init__()
         self.lang = lang
+        self.langFull = fullNameLanguage
         self.models = {}
         self.modelType = "small"
     
@@ -30,7 +31,7 @@ class DownloadModel(QThread):
         except Exception as e:
             self.error.emit(str(e))
         
-    def download(self) -> str:
+    def download(self) -> Path:
         """Download model
 
         Returns:
@@ -43,18 +44,18 @@ class DownloadModel(QThread):
             updateModelsList.updateList()
         
         # Check if lang model exists
-        with open(VoskEnums.VOSK_MODELS_LIST.value, "r", encoding="utf-8") as file:
+        with open(VoskEnums.VOSK_MODELS_LIST.value, "r", encoding = "utf-8") as file:
             self.models = json.load(file)
             self.model = self.models.get(self.lang, {}).get(self.modelType, {})
 
             if self.model.get("url") is None:
-                raise Exception(f"Language '{self.lang}' is not supported by Vosk")
+                raise Exception(f"Language \"{self.langFull}\" is not supported by Vosk")
 
         # Output of a ready-made speech recognition model path
         modelPath = VoskEnums.MODELS_DIR.value / self.model.get("name")
 
         if modelPath.exists():
-            return str(modelPath)
+            return modelPath
         
         # Start downloading model
         self.download_started.emit()

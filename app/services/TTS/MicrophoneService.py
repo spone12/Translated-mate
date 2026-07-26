@@ -1,30 +1,39 @@
 from app.modules.STT.vosk.voskRecognizer import VoskRecognizer
+from pathlib import Path
 
 
 class MicrophoneService:
 
-    def __init__(self):
+    def __init__(self, ui):
+        self.ui = ui
         self.audioThread = None
         self.fullTranscript = []
 
-    def start(self, path: str) -> None:
+    def start(self, path: Path) -> None:
         """_summary_
 
         Args:
-            path (str): path to model
+            path (Path): path to model
         """
         
         self.audioThread = VoskRecognizer()
         self.audioThread.loadModel(path)
         self.audioThread.start()
+        
+        # Show record Mic Icon
+        self.ui.microphone.hide()
+        self.ui.offMicrophone.show()
 
     def stop(self) -> None:
-        """_summary_
-        """
+        """Stop signal to record voice"""
 
         if self.audioThread and self.audioThread.isRunning():
             self.fullTranscript = []
             self.audioThread.stop()
+            
+            # Disable record Mic Icon
+            self.ui.offMicrophone.hide()
+            self.ui.microphone.show()
 
     def transcriptAppend(self, text: str) -> None:
         """_summary_
