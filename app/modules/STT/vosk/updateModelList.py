@@ -54,11 +54,11 @@ class UpdateModelList():
                         else f"{VoskEnums.URL.value}{href}"
                 }
 
-        # VoskEnums.VOSK_MODELS_LIST.parent.mkdir(
-        #     parents=True,
-        #     exist_ok=True
-        # )
-        
+        VoskEnums.MODELS_DIR.value.mkdir(
+            parents  = True,
+            exist_ok = True
+        )
+
         with open(VoskEnums.VOSK_MODELS_LIST.value, "w", encoding="utf-8") as file:
             json.dump(models, file, indent=4, ensure_ascii=False)
         

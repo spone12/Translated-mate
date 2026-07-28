@@ -10,7 +10,7 @@ class MicrophoneService:
         self.fullTranscript = []
 
     def start(self, path: Path) -> None:
-        """_summary_
+        """Start voice recognition
 
         Args:
             path (Path): path to model
@@ -36,7 +36,7 @@ class MicrophoneService:
             self.ui.microphone.show()
 
     def transcriptAppend(self, text: str) -> None:
-        """_summary_
+        """Append transcript
 
         Args:
             text (str): _description_
@@ -45,7 +45,7 @@ class MicrophoneService:
         self.fullTranscript.append(text)
     
     def transcriptGet(self) -> list:
-        """_summary_
+        """Get transcript text
 
         Returns:
             list: _description_

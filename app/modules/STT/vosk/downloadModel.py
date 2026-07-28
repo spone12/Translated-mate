@@ -61,14 +61,14 @@ class DownloadModel(QThread):
         self.download_started.emit()
         
         VoskEnums.MODELS_DIR.value.mkdir(
-            parents=True,
-            exist_ok=True
+            parents  = True,
+            exist_ok = True
         )
 
         response = requests.get(
             self.model.get("url"),
-            stream=True,
-            timeout=30
+            stream  = True,
+            timeout = 30
         )
         response.raise_for_status()
 
