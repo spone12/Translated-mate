@@ -1,145 +1,204 @@
-# Deepl translate
-import requests
-from requests.exceptions import HTTPError
-from .abstractTranslator import AbstractTranslator
-from app.core.logger import Logger
-import time
-import math
-import random
-import calendar
-import json
+# DeepL translate
 import datetime
+import json
+import random
 import re
-from app.enums.Translate.translatorsLimit import TranslatorsLimit
+import time
+from requests import Session
+from requests.exceptions import RequestException
+
+from .abstractTranslator import AbstractTranslator
 from app.enums.Translate.translators import Translators
+from app.enums.Translate.translatorsLimit import TranslatorsLimit
 
 
 class DeeplTranslator(AbstractTranslator):
-    """
-        Deepl translate class
-    """
+    """DeepL translator based on the internal JSON-RPC endpoint"""
 
-    _baseUrl   = 'https://www2.deepl.com/jsonrpc?method=LMT_handle_jobs'
-    _DeepLId   = 0
-    _regex     = "(\S.+?([.!?♪。]|$))(?=\s+|$)"
+    _baseUrl = "https://www2.deepl.com/jsonrpc"
+    _DeepLId = 0
+    _regex = r"(\S.+?([.!?♪。]|$))(?=\s+|$)"
+    _requestTimeout = (5, 30)
 
-    def translate(self, text: str, targetLang: str, sourceLang: str = 'auto') -> str:
-        """
-            Main tranlate method
-        """
-        
+    def translate(self, text: str, targetLang: str, sourceLang: str = "auto") -> str:
+        """Translate text and repeat the request once if DeepL returns no result"""
+
+        if sourceLang.lower() == targetLang.lower():
+            return text
+
+        if getattr(self, "_session", None) is None:
+            self.generateDeeplId()
+            self._createDeeplSession()
+
+        result = self.requestTranslation(
+            self.baseUrl,
+            text,
+            targetLang,
+            sourceLang,
+        )
+
+        if result:
+            return result
+
+        # HTTP client
+        self._createDeeplSession()
         self.generateDeeplId()
-        return self.requestTranslation(self.baseUrl, text, targetLang, sourceLang)
+
+        result = self.requestTranslation(
+            self.baseUrl,
+            text,
+            targetLang,
+            sourceLang,
+        )
+
+        if not result:
+            self._session = None
+
+        return result
 
     def generateDeeplId(self) -> None:
+        """Generate the initial JSON-RPC request ID"""
 
-        baseIdMult = 10000
-        currentTime = time.strptime(str(datetime.datetime.now().time()).split('.')[0], '%H:%M:%S')
-        totalSeconds = datetime.timedelta(
-            hours   = currentTime.tm_hour,
-            minutes = currentTime.tm_min,
-            seconds = currentTime.tm_sec).total_seconds() * 1000
-        Rnd = random.Random(totalSeconds)
-        self._DeepLId = baseIdMult * round(baseIdMult * Rnd.random())
-        
-    def requestTranslation(self, url: str, text: str, targetLang: str, sourceLang: str) -> str:
-        """
-            Request a source for text translation
-        """
-        
-        headers = {
-            'Accept': '*/*',
-            'Referer': 'https://www.deepl.com/translator',
-            'Content-type': 'application/json',
-            'Cache-Control': 'no-cache',
-            'Accept-Language': 'en-US;q=0.5,en;q=0.3',
-            'DNT': '1',
-            'TE': 'Trailers',
-            'User-Agent': 'Opera/9.80 (Android; Opera Mini/11.0.1912/37.7549; U; pl) Presto/2.12.423 Version/12.16'
-        }
+        baseIdMult = 10_000
+        millisecondsSinceMidnight = int(
+            (
+                datetime.datetime.now()
+                - datetime.datetime.combine(datetime.date.today(), datetime.time())
+            ).total_seconds()
+            * 1000
+        )
+        randomGenerator = random.Random(millisecondsSinceMidnight)
+        self._DeepLId = baseIdMult * round(baseIdMult * randomGenerator.random())
 
-        matchSentences = re.findall(self._regex, text)
+    def requestTranslation(
+        self,
+        url: str,
+        text: str,
+        targetLang: str,
+        sourceLang: str,
+    ) -> str:
+        """Build a DeepL JSON-RPC request, send it and parse translated sentences."""
+
+        if sourceLang.lower() == targetLang.lower():
+            return text
+
+        preparedText = self._preprocess(text)
+        sentences = [
+            match.group(1)
+            for match in re.finditer(self._regex, preparedText)
+        ]
+
+        if not sentences:
+            sentences.append(preparedText)
+
         jobs = []
+        for index, sentence in enumerate(sentences):
+            contextBefore = [sentences[index - 1]] if index > 0 else []
+            contextAfter = (
+                [sentences[index + 1]]
+                if index + 1 < len(sentences)
+                else []
+            )
 
-        # Generate Jobs
-        lengthMatches = len(matchSentences)
-        for k, sentence in enumerate(matchSentences):
-
-            afterString = []
-            if (k + 1) < lengthMatches:
-                afterString.append(matchSentences[k + 1][0])
-
-            beforeSentences = []
-            if k > 0:
-                for n in range(k):
-                    beforeSentences.append(matchSentences[n][0])
-
-            job = {
+            jobs.append(
+                {
                     "kind": "default",
-                    "preferred_num_beams": 4,
-                    "quality": "fast",
-                    "raw_en_context_after": afterString,
-                    "raw_en_context_before": beforeSentences,
-                    "sentences": [
-                        {
-                            "id":  (k + 1),
-                            "prefix": "",
-                            "text": sentence[0]
-                        }
-                    ]
+                    "raw_en_sentence": sentence,
+                    "raw_en_context_before": contextBefore,
+                    "raw_en_context_after": contextAfter,
+                    "preferred_num_beams": 0,
                 }
+            )
 
-            jobs.append(job)
-        
-        timestamp = calendar.timegm(time.gmtime()) * 1000
+        sourceLanguage = sourceLang.upper()
+        targetLanguage = targetLang.upper()
+
         body = {
-            "id": self._DeepLId,
             "jsonrpc": "2.0",
             "method": "LMT_handle_jobs",
             "params": {
-                "commonJobParams": {
-                    "browserType": 1,
-                    "mode": "translate",
-                    "textType": "plaintext"
-                },
                 "jobs": jobs,
                 "lang": {
-                    "preference": {
-                        "default": "default",
-                        "weight": {}
-                    },
-                    "source_lang_computed": sourceLang.upper(),
-                    "target_lang": targetLang.upper()
+                    "user_preferred_langs": [
+                        sourceLanguage,
+                        targetLanguage,
+                    ],
+                    "source_lang_computed": sourceLanguage,
+                    "target_lang": targetLanguage,
                 },
-                "priority": -1,
-                "timestamp": timestamp
-            }
+                "priority": 1,
+                "commonJobParams": None,
+                "timestamp": int(time.time() * 1000),
+            },
+            "id": self._DeepLId,
         }
 
-        parsedAnswer = ""
-        
+        session = getattr(self, "_session", None)
+        if session is None:
+            self._createDeeplSession()
+            session = self._session
+
         try:
-            request = requests.post(url, data=json.dumps(body), headers = headers)
-            request.raise_for_status()
-        except HTTPError as http_err:
-            self.logger.error(f"HTTP error occurred: {http_err}")
-        except Exception as err:
-            self.logger.error(f"Other error occurred: {err}")
-        else:
+            response = session.post(
+                url,
+                data = json.dumps(body, ensure_ascii=False),
+                timeout = self._requestTimeout,
+            )
+            self._DeepLId += 1
+            response.raise_for_status()
+            answer = response.json()
+        except (RequestException, ValueError) as error:
+            self.logger.error(f"DeepL request failed: {error}")
+            return ""
 
-            answerDecode = json.loads(request.text)
-            if not answerDecode['result']['translations']:
-                self.logger.error(f"Deepl strange response;\nDeepl body is null!")
+        translations = answer.get("result", {}).get("translations")
+        if not translations:
+            self.logger.error(
+                "DeepL strange response; translations are missing: "
+                f"{response.text}"
+            )
+            return ""
 
-            for trans in answerDecode['result']['translations']:
-                parsedAnswer += trans['beams'][0]['sentences'][0]['text']
-        
-        return parsedAnswer
+        translatedSentences = []
+        for translation in translations:
+            beams = translation.get("beams") or []
+            if not beams:
+                continue
+
+            translatedSentence = beams[0].get("postprocessed_sentence")
+            if translatedSentence is not None:
+                translatedSentences.append(translatedSentence)
+
+        return " ".join(translatedSentences)
+
+    def _createDeeplSession(self) -> None:
+        """ Create Deepl session"""
+
+        previousSession = getattr(self, "_session", None)
+        if previousSession is not None:
+            previousSession.close()
+
+        session = Session()
+        session.headers.update(
+            {
+                "Accept": "*/*",
+                "Referer": "https://www.deepl.com/translator",
+                "Content-Type": "application/json",
+                "Accept-Language": "en-US;q=0.5,en;q=0.3",
+                "DNT": "1",
+                "TE": "Trailers",
+            }
+        )
+        self._session = session
+
+    @staticmethod
+    def _preprocess(text: str) -> str:
+        return text.replace("\u2014", "-")
 
     @property
     def baseUrl(self) -> str:
         return self._baseUrl
-    
+
     @property
     def textLimit(self) -> int:
         return TranslatorsLimit.fromValue(Translators.DEEPL)
